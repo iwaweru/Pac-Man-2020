@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    //Quaternions won't be used in the final product. Quick and dirty, but needs to be organized.
+    //Feel free to do so.
     public Rigidbody2D character;
     public bool freeMovement;
     public float speed;
@@ -27,7 +29,7 @@ public class Controller : MonoBehaviour
         if (!moveInput.Equals(new Vector2(0,0)) && !freeMovement && validMove) // Constantly Apply Velocity Vector
         {
             moveVelocity = moveInput.normalized * speed;
-            Flip(moveVelocity);
+            Flip(moveVelocity); //Rotate.
         }
         else if (freeMovement) //Only apply while key is pressed.
         {
