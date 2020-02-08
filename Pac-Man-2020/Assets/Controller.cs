@@ -6,26 +6,25 @@ public class Controller : MonoBehaviour
 {
     public Rigidbody2D character;
     public float speed;
-    private float moveInputHor;
-    private float moveInputVert;
+    private Vector2 moveVelocity;
     // Start is called before the first frame update
     void Start()
     {
         character = GetComponent<Rigidbody2D>();
         character.gravityScale = 0;
-        character.transform.position = new Vector2(-10, 2);
+        character.transform.position = new Vector2(-0.46f, 1.6f);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveInputHor = Input.GetAxis("Horizontal");
-        moveInputVert = Input.GetAxis("Vertical");
+        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        moveVelocity = moveInput.normalized * speed;
     }
 
     private void FixedUpdate()
     {
-        character.velocity = new Vector2(moveInputHor * speed, moveInputVert * speed);
+        character.MovePosition(character.position + moveVelocity * Time.deltaTime);
     }
 }
