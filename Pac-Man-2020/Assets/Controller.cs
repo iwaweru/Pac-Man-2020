@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Controller : MonoBehaviour
 {
     //Quaternions won't be used in the final product. Quick and dirty, but needs to be organized.
@@ -12,14 +11,20 @@ public class Controller : MonoBehaviour
     private Vector2 moveVelocity;
     private Vector2 moveInput;
     private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
-    
+    private Vector2 dest = Vector2.zero;
+
+
     // Start is called before the first frame update
     void Start()
     {
         character = GetComponent<Rigidbody2D>();
         character.gravityScale = 0;
         character.transform.position = new Vector2(-0.46f, 1.6f);
+        dest = transform.position;
     }
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -35,13 +40,22 @@ public class Controller : MonoBehaviour
         {
             moveVelocity = moveInput.normalized * speed;
         }
+
+
+
     }
 
     private void FixedUpdate()
     {
+
          character.MovePosition(character.position + moveVelocity * Time.deltaTime);
+
+         // Animation
+        //Vector2 dir = dest- (Vector2)transform.position;
+        //GetComponent<Animator>().SetFloat("XDirection", dir.x);
+        //GetComponent<Animator>().SetFloat("YDirection", dir.y);
     }
-    
+
     private bool CanMove(Vector2 direction)// Raycast to detect collisions between pac-man and environment.
     {
         Vector2 position = character.transform.position;
@@ -56,7 +70,7 @@ public class Controller : MonoBehaviour
     {
         Quaternion rotater = character.transform.localRotation;
         switch (direction.normalized.x) // Using the unit vector so I can switch on exact cases.
-        {     
+        {
             case -1: // velocity is to the left
                 if (facing != 0) {
                     rotater.eulerAngles = new Vector3(0,0,180);
