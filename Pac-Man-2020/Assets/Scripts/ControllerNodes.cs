@@ -8,10 +8,17 @@ public class ControllerNodes : MonoBehaviour
     private Vector2 input = new Vector2(0,0);
     public float speed = 5.5f;
     private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
+    private Node currentNode;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Node node = getNodeAtPosition(transform.position);
+
+        if(node != null)
+        {
+            currentNode = node;
+            Debug.Log("Current Node: " + currentNode);
+        }
     }
 
 
@@ -29,12 +36,28 @@ public class ControllerNodes : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        Node current = getNodeAtPosition(transform.localPosition);
+        if(current != null)
+        {
+            currentNode = current;
+        }
         Move(input);
     }
 
     void Move(Vector2 direction)
     {
         transform.localPosition += (Vector3)(direction * speed) * Time.deltaTime;
+    }
+
+    Node getNodeAtPosition(Vector2 pos)
+    {
+        GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
+        if (tile != null)
+        {
+            Debug.Log(tile.name);
+            return tile.GetComponent<Node>();//Node is a component of the pill objects.
+        }
+        return null;
     }
 
     void Flip(Vector2 direction) // We are using Quaternions as a very temporary solution -- later, we will use animation frames instead of actually modifying the transform.
