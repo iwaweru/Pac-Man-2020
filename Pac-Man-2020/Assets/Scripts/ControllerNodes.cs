@@ -36,6 +36,11 @@ public class ControllerNodes : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        Node current = getNodeAtPosition(transform.localPosition);
+        if(current != null)
+        {
+            currentNode = current;
+        }
         Move(input);
     }
 
@@ -46,10 +51,10 @@ public class ControllerNodes : MonoBehaviour
 
     Node getNodeAtPosition(Vector2 pos)
     {
-        GameObject tile = gameBoard.board[(int)pos.x, (int)pos.y];
-        Debug.Log(tile.name);
+        GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
         if (tile != null)
         {
+            Debug.Log(tile.name);
             return tile.GetComponent<Node>();//Node is a component of the pill objects.
         }
         return null;
