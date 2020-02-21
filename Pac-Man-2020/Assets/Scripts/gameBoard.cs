@@ -28,9 +28,10 @@ public class gameBoard : MonoBehaviour
             Vector2 pos = o.transform.position; // we use "position" (instead of "localposition") which is in the global space of Unity. 
 
             //Sanity check: we only want to store the objects in the array (pills, walls, etc.) not PacMan itself. 
-            if (o.name != "Pac-Man")
+            if (o.name != "Pac-Man" && o.name != "Game")
 			{
                 //store the object o in the board array
+                Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
 			} else
 			{
