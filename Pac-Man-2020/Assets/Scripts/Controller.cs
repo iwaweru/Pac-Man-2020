@@ -19,7 +19,7 @@ public class Controller : MonoBehaviour
     {
         character = GetComponent<Rigidbody2D>();
         character.gravityScale = 0;
-        character.transform.position = new Vector2(-0.46f, 1.6f);
+        character.transform.position = new Vector2(9, 8);
         dest = transform.position;
     }
 
