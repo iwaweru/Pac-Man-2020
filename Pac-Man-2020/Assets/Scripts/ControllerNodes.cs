@@ -66,6 +66,9 @@ public class ControllerNodes : MonoBehaviour
             ChangePosition(Vector2.right);
             //MoveToNode(direction);
         }
+        //disallow diagonal movement here.
+        input = direction;
+        
     }
 
     // Update is called once per frame
@@ -109,7 +112,6 @@ public class ControllerNodes : MonoBehaviour
 
             }
         }
-
     }
 
 
