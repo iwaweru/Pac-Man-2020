@@ -12,6 +12,7 @@ public class ControllerNodes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector2(6, 8);
         Node node = getNodeAtPosition(transform.position);
 
         if(node != null)
@@ -25,14 +26,23 @@ public class ControllerNodes : MonoBehaviour
     void Update()
     {
         Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
-        //disallow diagonal movement here.
-        if (input != direction && direction != new Vector2(0, 0))
+        Vector2[] validDirs = currentNode.validDir;
+        for(int i = 0; i < validDirs.Length; i++)
         {
-            input = direction;
-            Flip(input);
+            if(validDirs[i] == direction)
+            {
+                
+                input = currentNode.neighbors[i].transform.position;
+                Move(input);
+                Flip(direction);
+                
+            }
         }
+        //disallow diagonal movement here.
+        input = direction;
+        
     }
+
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -41,12 +51,12 @@ public class ControllerNodes : MonoBehaviour
         {
             currentNode = current;
         }
-        Move(input);
     }
 
-    void Move(Vector2 direction)
+    void Move(Vector2 coordinates)
     {
-        transform.localPosition += (Vector3)(direction * speed) * Time.deltaTime;
+        //transform.localPosition += (Vector3)(direction * speed) * Time.deltaTime;
+        transform.position = coordinates;
     }
 
     Node getNodeAtPosition(Vector2 pos)
