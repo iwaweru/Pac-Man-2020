@@ -31,7 +31,7 @@ public class gameBoard : MonoBehaviour
             if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background")
 			{
                 //store the object o in the board array
-                Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
+                //Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
                 //Debug.Log(board[(int)pos.x, (int)pos.y]);
 			} else
