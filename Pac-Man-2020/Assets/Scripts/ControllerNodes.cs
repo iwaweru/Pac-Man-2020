@@ -8,38 +8,43 @@ public class ControllerNodes : MonoBehaviour
     private Vector2 direction = new Vector2(0,0);
     private Vector2 queuedDirection;
 
-    public float speed = 5.5f;
+    public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
+
+    public float speed = 3f;
     private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
     private Node currentNode;
     private Node previousNode;
     private Node targetNode;
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(6, 10);
-        Node current = getNodeAtPosition(transform.position);
+        transform.position = new Vector2(6, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
+
+        Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
         {
             currentNode = current;
             Debug.Log(currentNode);
         }
 
-        direction = Vector2.left;
+        direction = Vector2.left;//Auto start.
         ChangePosition(direction);
     }
 
 
     void Update()
     {
-        CheckInput();
+        CheckInput();//Disallows diagonal or conflicting movements.
 
-        Move();
+        Move();//Move, or act on gathered user  input.
 
-        Flip();
-        
+        Flip();//Update orientation using current direction data.
+
+        stopChewing();//Check if not moving to stop chewing animation.
     }
 
-    void CheckInput()
+    void CheckInput()//Check Input and update current direction.
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -68,6 +73,7 @@ public class ControllerNodes : MonoBehaviour
     {
 
     }
+
     Node CanMove(Vector2 d)
     {
         Node moveToNode = null;
@@ -86,21 +92,20 @@ public class ControllerNodes : MonoBehaviour
 
     void ChangePosition(Vector2 d)
     {
-        if(d != direction)
+        if (d != direction) //If the direction is different from current direction, store it for next intersection.
         {
             queuedDirection = d;
         }
-
-        if(currentNode != null)
+        if(currentNode != null) //If we are at an intersection
         {
-            Node moveToNode = CanMove(d);
+            Node moveToNode = CanMove(d);//Check if input direction is a valid move.
 
-            if(moveToNode != null)
+            if(moveToNode != null)//If it's a valid move.
             {
-                direction = d;
-                targetNode = moveToNode;
-                previousNode = currentNode;
-                currentNode = null;
+                direction = d;//Start moving in the direction of that node.
+                targetNode = moveToNode;//Update target node to node that we just checked.
+                previousNode = currentNode;//We are leaving current node, so it becomes previous node.
+                currentNode = null;//We are no longer on a node.
 
             }
         }
@@ -120,33 +125,30 @@ public class ControllerNodes : MonoBehaviour
 
                 Node moveToNode = CanMove(queuedDirection);
 
-                if(moveToNode != null)
+                if(moveToNode != null)//Does the queued direction actually exist at the intersection?
                 {
                     direction = queuedDirection;
                 }
-                if(moveToNode == null)
+                if(moveToNode == null)//Does the queued direction not exist?
                 {
-                    moveToNode = CanMove(direction);
+                    moveToNode = CanMove(direction);//Try to move using existing direction -- don't update.
                 }
-                if(moveToNode != null)
+                if(moveToNode != null)//If we can move using existing direction, update node targets.
                 {
                     targetNode = moveToNode;
                     previousNode = currentNode;
                     currentNode = null;
                 }
-                else
+                else//We can't move on existing direction OR queued direction, so we stop.
                 {
                     direction = Vector2.zero;
                 }
             }
             else
             {
-                transform.localPosition += (Vector3)(direction * speed) * Time.deltaTime;
+                transform.localPosition += (Vector3)(direction * speed) * Time.deltaTime;//Move.
             }
         }
-
-
-        
     }
 
     void MoveToNode(Vector2 d)
@@ -160,11 +162,8 @@ public class ControllerNodes : MonoBehaviour
         }
     }
 
-    Node getNodeAtPosition(Vector2 pos)
+    Node getNodeAtPosition(Vector2 pos)//Get the intersection at this position.
     {
-
-        Debug.Log("Entered!");
-        Debug.Log("Current Position: X: " + (int)pos.x + " Y: " + (int)pos.y);
         GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
         if (tile != null)
         {
@@ -212,6 +211,19 @@ public class ControllerNodes : MonoBehaviour
                 break;
         }
         transform.localRotation = rotater;
+    }
+
+    void stopChewing()
+    {
+        if(direction == Vector2.zero)
+        {
+            GetComponent<Animator>().enabled = false;
+            //GetComponent<SpriteRenderer>().sprite = idle; //Uncomment this, and set the graphic you want Pac-Man to stop on.
+        }
+        else
+        {
+            GetComponent<Animator>().enabled = true;
+        }
     }
 
     bool OverShotTarget()
