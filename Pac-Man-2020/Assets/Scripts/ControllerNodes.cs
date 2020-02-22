@@ -66,8 +66,6 @@ public class ControllerNodes : MonoBehaviour
             ChangePosition(Vector2.right);
             //MoveToNode(direction);
         }
-        //disallow diagonal movement here.
-        input = direction;
         
     }
 
