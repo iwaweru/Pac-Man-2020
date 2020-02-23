@@ -230,14 +230,12 @@ public class ControllerNodes : MonoBehaviour
     {
         float previousToTarget = LengthFromNode(targetNode.transform.position);
         float previousToSelf = LengthFromNode(transform.position);
-
         return previousToSelf > previousToTarget;
     }
 
     float LengthFromNode(Vector2 target)
     {
         Vector2 vect = target - (Vector2)previousNode.transform.position;
-        
         return vect.sqrMagnitude;
     }
 }
