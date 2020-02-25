@@ -2477,7 +2477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPortal: 1
-  isPellet: 0
+  isPellet: 1
   isLargePellet: 0
   consumed: 0
   portalReceiver: {fileID: 1313529867}
@@ -4407,7 +4407,7 @@ PrefabInstance:
     - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea238d06b143efa409fe948bc2010854, type: 3}
@@ -26492,7 +26492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPortal: 1
-  isPellet: 0
+  isPellet: 1
   isLargePellet: 0
   consumed: 0
   portalReceiver: {fileID: 245593031}
@@ -28773,7 +28773,7 @@ PrefabInstance:
     - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea238d06b143efa409fe948bc2010854, type: 3}
