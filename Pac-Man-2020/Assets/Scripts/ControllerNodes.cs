@@ -41,6 +41,8 @@ public class ControllerNodes : MonoBehaviour
 
         Flip();//Update orientation using current direction data.
 
+        ConsumePellet();  //Run to see if pill to be consumed. 
+
         stopChewing();//Check if not moving to stop chewing animation.
     }
 
@@ -75,6 +77,20 @@ public class ControllerNodes : MonoBehaviour
 
     }
 
+    void ConsumePellet(){
+        GameObject o = GetTileAtPosition(transform.position);
+
+        if(o != null){
+            Pills tile = o.GetComponent<Pills>();
+            if(tile != null){
+                if(!tile.consumed && (tile.isPellet || tile.isLargePellet)){
+                    o.GetComponent<SpriteRenderer>().enabled = false;
+                    tile.consumed = true;
+                }
+            }
+        }
+    }
+
     Node CanMove(Vector2 d)
     {
         Node moveToNode = null;
@@ -89,6 +105,18 @@ public class ControllerNodes : MonoBehaviour
         }
         //disallow diagonal movement here.
         return moveToNode;
+    }
+
+    GameObject GetTileAtPosition(Vector2 pos)
+    {
+        int tileX = Mathf.RoundToInt(pos.x);
+        int tileY = Mathf.RoundToInt(pos.y); //finding position of pill
+
+        GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[tileX,tileY];
+        if(tile != null){
+            return tile;
+        }
+        return null;
     }
 
     void ChangePosition(Vector2 d)
@@ -118,10 +146,26 @@ public class ControllerNodes : MonoBehaviour
 
         if(targetNode != currentNode && targetNode != null)
         {
+
+            if(queuedDirection == direction * -1) 
+            {
+                direction *= -1;
+                Node tempNode = targetNode;
+                targetNode = previousNode;
+                previousNode = tempNode;
+            }
+
             if (OverShotTarget())
             {
                 currentNode = targetNode;
                 transform.localPosition = currentNode.transform.position;
+
+                GameObject otherPortal = GetPortal(currentNode.transform.position);
+
+                if(otherPortal != null){ //Is it a portal
+                    transform.localPosition = otherPortal.transform.position;
+                    currentNode = otherPortal.GetComponent<Node>();
+                }
 
                 Node moveToNode = CanMove(queuedDirection);
 
@@ -237,5 +281,19 @@ public class ControllerNodes : MonoBehaviour
     {
         Vector2 vect = target - (Vector2)previousNode.transform.position;
         return vect.sqrMagnitude;
+    }
+
+    GameObject GetPortal(Vector2 pos)
+    {
+        GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
+        if(tile != null){
+            if(tile.GetComponent<Pills>() !=  null){
+                if(tile.GetComponent<Pills>().isPortal){
+                    GameObject otherPortal = tile.GetComponent<Pills>().portalReceiver;
+                    return  otherPortal;
+                }
+            }
+        } 
+        return null;
     }
 }
