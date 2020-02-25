@@ -11585,7 +11585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPortal: 0
   isPellet: 1
-  isLargePellet: 0
+  isLargePellet: 1
   consumed: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &802269119
@@ -13480,6 +13480,12 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98a86c87e6066c04b9ef97766e797cb8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea238d06b143efa409fe948bc2010854, type: 3}
 --- !u!4 &956989907 stripped
@@ -14017,7 +14023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPortal: 0
   isPellet: 1
-  isLargePellet: 0
+  isLargePellet: 1
   consumed: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1026397299 stripped
@@ -27230,6 +27236,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -27240,6 +27256,12 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98a86c87e6066c04b9ef97766e797cb8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea238d06b143efa409fe948bc2010854, type: 3}
 --- !u!4 &1359372210 stripped
@@ -32508,6 +32530,12 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98a86c87e6066c04b9ef97766e797cb8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea238d06b143efa409fe948bc2010854, type: 3}
 --- !u!4 &1896558464 stripped
@@ -32593,6 +32621,12 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98a86c87e6066c04b9ef97766e797cb8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea238d06b143efa409fe948bc2010854, type: 3}
 --- !u!4 &1897214165 stripped
@@ -34394,7 +34428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPortal: 0
   isPellet: 1
-  isLargePellet: 0
+  isLargePellet: 1
   consumed: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2082682834 stripped
@@ -35382,7 +35416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPortal: 0
   isPellet: 1
-  isLargePellet: 0
+  isLargePellet: 1
   consumed: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &8833820050424502160
