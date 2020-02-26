@@ -83,9 +83,9 @@ public class ControllerNodes : MonoBehaviour
         if(o != null){
             Pills tile = o.GetComponent<Pills>();
             if(tile != null){
-                if(!tile.consumed && (tile.isPellet || tile.isLargePellet)){
+                if(!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
-                    tile.consumed = true;
+                    tile.Consumed = true;
                 }
             }
         }
@@ -262,7 +262,7 @@ public class ControllerNodes : MonoBehaviour
         if(direction == Vector2.zero)
         {
             GetComponent<Animator>().enabled = false;
-            //GetComponent<SpriteRenderer>().sprite = idle; //Uncomment this, and set the graphic you want Pac-Man to stop on.
+            GetComponent<SpriteRenderer>().sprite = idle; //Uncomment this, and set the graphic you want Pac-Man to stop on.
         }
         else
         {
