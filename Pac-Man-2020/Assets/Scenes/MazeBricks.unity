@@ -6199,12 +6199,12 @@ PrefabInstance:
         type: 3}
       propertyPath: idle
       value: 
-      objectReference: {fileID: 21300000, guid: 546e8881bdbfa427387fa73caab94a65,
+      objectReference: {fileID: 21300000, guid: 3ce905275896a2641a9a4b6f597165e4,
         type: 3}
     - target: {fileID: 9147804175160670023, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: speed
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 516da81580c8fb44b99046b18ff4514e, type: 3}

@@ -8,8 +8,9 @@ public class Pills : MonoBehaviour
 
     public bool isPellet;
     public bool isLargePellet;
-    public bool consumed;
+    private bool consumed;
 
     public GameObject portalReceiver;
 
+    public bool Consumed { get => consumed; set => consumed = value; }
 }
