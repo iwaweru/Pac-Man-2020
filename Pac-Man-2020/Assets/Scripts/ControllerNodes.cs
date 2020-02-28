@@ -82,12 +82,16 @@ public class ControllerNodes : MonoBehaviour
 
         if(o != null){
             Pills tile = o.GetComponent<Pills>();
-            if(tile != null){
-                if(!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
+            if(tile != null)
+            {
+                if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
-                    GameObject.Find("Game").GetComponent<AudioSource>().Play();
-                }
+                    GameObject.Find("Game").GetComponent<gameBoard>().addTime(.45f);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
+                    if (!GameObject.Find("Game").GetComponent<AudioSource>().isPlaying) { 
+                        GameObject.Find("Game").GetComponent<AudioSource>().Play();
+                    }
+                } 
             }
         }
     }

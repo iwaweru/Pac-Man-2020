@@ -8,6 +8,7 @@ public class gameBoard : MonoBehaviour
     // board dimensions
     private static int boardWidth = 21; 
     private static int boardHeight = 22;
+    private static float time = 0;
 
     //Array of type GameObject initialized with board width and height
     //These are the locations that will be stored
@@ -42,10 +43,31 @@ public class gameBoard : MonoBehaviour
 		}
     }
 
+    public void addTime(float seconds)
+    {
+        time += seconds;
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        Debug.Log("Time: " + time);
+        if(time != 0)
+        {
+            time -= (float)(1.0/24.0);
+            if(time < 0)
+            {
+                time = 0;
+            }
+        }
+        if (time == 0)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+    }
+
+    private void Update()
+    {
+
     }
 }
