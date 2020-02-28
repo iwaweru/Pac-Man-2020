@@ -2459,9 +2459,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPortal: 1
-  isPellet: 1
+  isPellet: 0
   isLargePellet: 0
-  portalReceiver: {fileID: 0}
+  portalReceiver: {fileID: 647655629}
 --- !u!1001 &248350282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6057,7 +6057,7 @@ MonoBehaviour:
   - {fileID: 1865958741}
   - {fileID: 1591807994}
   - {fileID: 1082435390}
-  - {fileID: 0}
+  - {fileID: 647655631}
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
@@ -9321,7 +9321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPortal: 1
-  isPellet: 1
+  isPellet: 0
   isLargePellet: 0
   portalReceiver: {fileID: 245593031}
 --- !u!114 &647655631
