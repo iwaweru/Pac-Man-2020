@@ -19,7 +19,7 @@ public class ControllerNodes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(6, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
+        transform.position = new Vector2(7, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
 
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
