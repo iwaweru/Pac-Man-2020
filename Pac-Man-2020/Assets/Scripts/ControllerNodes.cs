@@ -19,7 +19,7 @@ public class ControllerNodes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(6, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
+        transform.position = new Vector2(7, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
 
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
@@ -82,12 +82,16 @@ public class ControllerNodes : MonoBehaviour
 
         if(o != null){
             Pills tile = o.GetComponent<Pills>();
-            if(tile != null){
-                if(!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
+            if(tile != null)
+            {
+                if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
-                    GameObject.Find("Game").GetComponent<AudioSource>().Play();
-                }
+                    GameObject.Find("Game").GetComponent<gameBoard>().addTime(.45f);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
+                    if (!GameObject.Find("Game").GetComponent<AudioSource>().isPlaying) { 
+                        GameObject.Find("Game").GetComponent<AudioSource>().Play();
+                    }
+                } 
             }
         }
     }
