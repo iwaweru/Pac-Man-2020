@@ -6,7 +6,7 @@ using UnityEngine;
 public class gameBoard : MonoBehaviour
 {
     // board dimensions
-    private static int boardWidth = 19; 
+    private static int boardWidth = 21; 
     private static int boardHeight = 22;
 
     //Array of type GameObject initialized with board width and height
