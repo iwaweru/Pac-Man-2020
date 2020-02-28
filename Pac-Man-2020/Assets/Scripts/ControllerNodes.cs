@@ -16,6 +16,8 @@ public class ControllerNodes : MonoBehaviour
     private Node previousNode;
     private Node targetNode;
 
+    private int pelletsConsumed = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,8 @@ public class ControllerNodes : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Score: " + (GameObject.Find("Game").GetComponent<gameBoard>().score) * 10);
+
         CheckInput();//Disallows diagonal or conflicting movements.
 
         Move();//Move, or act on gathered user  input.
@@ -86,6 +90,8 @@ public class ControllerNodes : MonoBehaviour
                 if(!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
+                    GameObject.Find("Game").GetComponent<gameBoard>().score += 1;
+                    pelletsConsumed++;
                 }
             }
         }
