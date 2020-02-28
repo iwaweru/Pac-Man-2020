@@ -86,6 +86,7 @@ public class ControllerNodes : MonoBehaviour
                 if(!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
+                    GameObject.Find("Game").GetComponent<AudioSource>().Play();
                 }
             }
         }
@@ -158,7 +159,7 @@ public class ControllerNodes : MonoBehaviour
             if (OverShotTarget())
             {
                 currentNode = targetNode;
-                transform.localPosition = currentNode.transform.position;
+                transform.localPosition = currentNode.transform.position;//Snap pacman back to intersection.
 
                 GameObject otherPortal = GetPortal(currentNode.transform.position);
 
