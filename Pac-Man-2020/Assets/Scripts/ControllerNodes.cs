@@ -92,6 +92,7 @@ public class ControllerNodes : MonoBehaviour
                     tile.Consumed = true;
                     GameObject.Find("Game").GetComponent<gameBoard>().score += 1;
                     pelletsConsumed++;
+                    GameObject.Find("Game").GetComponent<AudioSource>().Play();
                 }
             }
         }
@@ -164,7 +165,7 @@ public class ControllerNodes : MonoBehaviour
             if (OverShotTarget())
             {
                 currentNode = targetNode;
-                transform.localPosition = currentNode.transform.position;
+                transform.localPosition = currentNode.transform.position;//Snap pacman back to intersection.
 
                 GameObject otherPortal = GetPortal(currentNode.transform.position);
 

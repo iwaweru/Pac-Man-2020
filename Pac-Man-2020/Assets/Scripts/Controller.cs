@@ -50,10 +50,7 @@ public class Controller : MonoBehaviour
 
          character.MovePosition(character.position + moveVelocity * Time.deltaTime);
 
-         // Animation
-        //Vector2 dir = dest- (Vector2)transform.position;
-        //GetComponent<Animator>().SetFloat("XDirection", dir.x);
-        //GetComponent<Animator>().SetFloat("YDirection", dir.y);
+         
     }
 
     private bool CanMove(Vector2 direction)// Raycast to detect collisions between pac-man and environment.
