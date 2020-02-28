@@ -1,4 +1,4 @@
-﻿using System.Collections;
+                                                                                           ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class ControllerNodes : MonoBehaviour
     private Vector2 direction = new Vector2(0,0);
     private Vector2 queuedDirection;
 
-    public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
+    public Sprite idle; //The sprite Pac-Man lands on when he stops moving.
 
     public float speed = 3f;
     private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
@@ -41,7 +41,7 @@ public class ControllerNodes : MonoBehaviour
 
         Flip();//Update orientation using current direction data.
 
-        ConsumePellet();  //Run to see if pill to be consumed. 
+        ConsumePellet();  //Run to see if pill to be consumed.
 
         stopChewing();//Check if not moving to stop chewing animation.
     }
@@ -68,7 +68,7 @@ public class ControllerNodes : MonoBehaviour
             ChangePosition(Vector2.right);
             //MoveToNode(direction);
         }
-        
+
     }
 
     // Update is called once per frame
@@ -147,7 +147,7 @@ public class ControllerNodes : MonoBehaviour
         if(targetNode != currentNode && targetNode != null)
         {
 
-            if(queuedDirection == direction * -1) 
+            if(queuedDirection == direction * -1)
             {
                 direction *= -1;
                 Node tempNode = targetNode;
@@ -293,7 +293,7 @@ public class ControllerNodes : MonoBehaviour
                     return  otherPortal;
                 }
             }
-        } 
+        }
         return null;
     }
 }
