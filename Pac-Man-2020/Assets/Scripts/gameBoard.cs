@@ -10,7 +10,6 @@ public class gameBoard : MonoBehaviour
     private static int boardHeight = 30;
     private static float time = 0;
 
-    public int totalPellets = 0;
     public int score = 0;
 
     //Array of type GameObject initialized with board width and height
@@ -34,11 +33,11 @@ public class gameBoard : MonoBehaviour
             //Sanity check: we only want to store the objects in the array (pills, walls, etc.) not PacMan itself. 
             if (o.name != "Clyde" && o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.name != "Blinky" && o.name != "Inky")
 			{
-                if (o.GetComponent<Pills>() != null) {
-                    if (o.GetComponent<Pills>().isPellet || o.GetComponent<Pills>().isLargePellet) {
-                        totalPellets++;
-                    }
-                }
+                //if (o.GetComponent<Pills>() != null) {
+                //    if (o.GetComponent<Pills>().isPellet || o.GetComponent<Pills>().isLargePellet) {
+                //        totalPellets++;
+                //    }
+                //}
                 //store the object o in the board array
                 Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
@@ -53,12 +52,18 @@ public class gameBoard : MonoBehaviour
 
     public void addTime(float seconds)
     {
-        time += seconds;
+        if (time != 0)
+        {
+            time += seconds;
+        }
+        else time += .5f;//Prevents glitching.
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log("Time: " + time);
         if(time != 0)
         {
             time -= (float)(1.0/24.0);

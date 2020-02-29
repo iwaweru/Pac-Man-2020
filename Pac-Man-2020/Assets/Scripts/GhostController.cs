@@ -34,7 +34,6 @@ public class GhostController : ControllerNodes
     }
     override public void CheckInput() //CheckInput Method is used differently
     {
-        Debug.Log("Hitting here.");
         ChangePosition(dirs[RandomNumber()]);
     }
 
