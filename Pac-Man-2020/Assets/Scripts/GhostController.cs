@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GhostController : ControllerNodes
 {
-    private Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
+
     // Start is called before the first frame update
 
     void Start()
@@ -27,18 +27,10 @@ public class GhostController : ControllerNodes
     public override void Update() //Override to change behavior
     {
 
-        CheckInput();
+        randomInput();
 
         Move();
 
     }
-    override public void CheckInput() //CheckInput Method is used differently
-    {
-        ChangePosition(dirs[RandomNumber()]);
-    }
 
-    int RandomNumber() //Random Number Generator for Ghost to use as move input.
-    {
-        return Random.Range(0, 4);
-    }
 }

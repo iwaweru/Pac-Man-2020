@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ControllerNodes : MonoBehaviour
 {
-
+    private Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
     protected bool canReverse = true;
     protected Vector2 direction = new Vector2(0,0);
     protected Vector2 queuedDirection;
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
     public float speed = 3f;
+    public bool randomMovement = false;
     private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
     protected Node currentNode;
     protected Node previousNode;
@@ -36,8 +37,9 @@ public class ControllerNodes : MonoBehaviour
 
     public virtual void Update()
     {
-
-        CheckInput();//Disallows diagonal or conflicting movements.
+        if (!randomMovement)
+            CheckInput();//Disallows diagonal or conflicting movements.
+        else randomInput();
 
         Move();//Move, or act on gathered user  input.
 
@@ -46,6 +48,11 @@ public class ControllerNodes : MonoBehaviour
         ConsumePellet();  //Run to see if pill to be consumed. 
 
         StopChewing();//Check if not moving to stop chewing animation.
+    }
+
+    public virtual void randomInput()
+    {
+        ChangePosition(dirs[RandomNumber()]);
     }
 
     public virtual void CheckInput()//Check Input and update current direction.
@@ -157,7 +164,7 @@ public class ControllerNodes : MonoBehaviour
         if(targetNode != currentNode && targetNode != null)
         {
 
-            if(canReverse && queuedDirection == direction * -1) 
+            if(!randomMovement && canReverse && queuedDirection == direction * -1) 
             {
                 direction *= -1;
                 Node tempNode = targetNode;
@@ -305,5 +312,10 @@ public class ControllerNodes : MonoBehaviour
             }
         } 
         return null;
+    }
+
+    int RandomNumber() //Random Number Generator for Ghost to use as move input.
+    {
+        return Random.Range(0, 4);
     }
 }
