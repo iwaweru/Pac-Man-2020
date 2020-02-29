@@ -18,12 +18,20 @@ public class ControllerNodes : MonoBehaviour
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     private int pelletsConsumed = 0;
 
-
+    protected GameObject orangeGhost; //for ghost class
+    protected GameObject redGhost; 
+    protected GameObject blueGhost;
 
     // Start is called before the first frame update
     void Start()
     {
+        //orangeGhost = GameObject.FindGameObjectWithTag("Clyde"); setting up variable with ghost sprite
+        //redGhost = GameObject.FindGameObjectWithTag("Blinky");
+        //blueGhost = GameObject.FindGameObjectWithTag("Inky");
+
         transform.position = new Vector2(7, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
+        
+
 
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
@@ -89,15 +97,15 @@ public class ControllerNodes : MonoBehaviour
     }
 
     void ConsumePellet(){
-        GameObject o = GetTileAtPosition(transform.position);
+        GameObject o = GetTileAtPosition(transform.position);  //pellet object created with correct coordinates
 
         if(o != null){
-            Pills tile = o.GetComponent<Pills>();
+            Pills tile = o.GetComponent<Pills>(); //gets pill information
             if(tile != null)
             {
-                if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
-                    o.GetComponent<SpriteRenderer>().enabled = false;
-                    tile.Consumed = true;
+                if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){ //tile has visible pellet and is a pellet of some form
+                    o.GetComponent<SpriteRenderer>().enabled = false; //make oill invisible
+                    tile.Consumed = true; //update system
                     GameObject temp = GameObject.Find("Game");//get the game object.
                     gameBoard game = temp.GetComponent<gameBoard>();//get the game state
                     game.score();//score
@@ -132,7 +140,7 @@ public class ControllerNodes : MonoBehaviour
         int tileY = Mathf.RoundToInt(pos.y); //finding position of pill
 
         GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[tileX,tileY];
-        if(tile != null){
+        if(tile != null){ //finds nonempty tiles
             return tile;
         }
         return null;
@@ -168,8 +176,8 @@ public class ControllerNodes : MonoBehaviour
 
             if(!randomMovement && canReverse && queuedDirection == direction * -1) 
             {
-                direction *= -1;
-                Node tempNode = targetNode;
+                direction *= -1; //if quueued is inverse, invert direction
+                Node tempNode = targetNode; //switch targetNode and previousNode
                 targetNode = previousNode;
                 previousNode = tempNode;
             }
@@ -182,8 +190,8 @@ public class ControllerNodes : MonoBehaviour
                 GameObject otherPortal = GetPortal(currentNode.transform.position);
 
                 if(otherPortal != null){ //Is it a portal
-                    transform.localPosition = otherPortal.transform.position;
-                    currentNode = otherPortal.GetComponent<Node>();
+                    transform.localPosition = otherPortal.transform.position; //move pac-man to other portal
+                    currentNode = otherPortal.GetComponent<Node>(); // get components so pac-man can continue
                 }
 
                 Node moveToNode = CanMove(queuedDirection);
@@ -306,10 +314,10 @@ public class ControllerNodes : MonoBehaviour
     {
         GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
         if(tile != null){
-            if(tile.GetComponent<Pills>() !=  null){
-                if(tile.GetComponent<Pills>().isPortal){
+            if(tile.GetComponent<Pills>() !=  null){ //retrieves components of tile
+                if(tile.GetComponent<Pills>().isPortal){ //if portal
                     GameObject otherPortal = tile.GetComponent<Pills>().portalReceiver;
-                    return  otherPortal;
+                    return  otherPortal; //get components of reciever portal 
                 }
             }
         } 
