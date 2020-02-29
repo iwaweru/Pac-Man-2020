@@ -8,9 +8,10 @@ public class gameBoard : MonoBehaviour
     // board dimensions
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
+    public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
 
-    public int score = 0;
+    public int points = 0;
 
     //Array of type GameObject initialized with board width and height
     //These are the locations that will be stored
@@ -48,6 +49,10 @@ public class gameBoard : MonoBehaviour
                 Debug.Log("Found " + o.name + " at " + pos);
 			}
 		}
+    }
+    public void score()
+    {
+        points += MULTIPLIER;
     }
 
     public void addTime(float seconds)

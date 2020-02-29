@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControllerNodes : MonoBehaviour
 {
+
     protected bool canReverse = true;
     protected Vector2 direction = new Vector2(0,0);
     protected Vector2 queuedDirection;
@@ -13,7 +14,7 @@ public class ControllerNodes : MonoBehaviour
     protected Node currentNode;
     protected Node previousNode;
     protected Node targetNode;
-
+    private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     private int pelletsConsumed = 0;
 
     // Start is called before the first frame update
@@ -88,10 +89,10 @@ public class ControllerNodes : MonoBehaviour
                 if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
-                    GameObject temp = GameObject.Find("Game");
-                    gameBoard game = temp.GetComponent<gameBoard>();
-                    game.score += 1;
-                    game.addTime(.45f);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
+                    GameObject temp = GameObject.Find("Game");//get the game object.
+                    gameBoard game = temp.GetComponent<gameBoard>();//get the game state
+                    game.score();//score
+                    game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
                     if (!temp.GetComponent<AudioSource>().isPlaying) { 
                         temp.GetComponent<AudioSource>().Play();
                     }
