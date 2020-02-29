@@ -6,8 +6,8 @@ using UnityEngine;
 public class gameBoard : MonoBehaviour
 {
     // board dimensions
-    private static int boardWidth = 21; 
-    private static int boardHeight = 22;
+    private static int boardWidth = 30; 
+    private static int boardHeight = 30;
     private static float time = 0;
 
     //Array of type GameObject initialized with board width and height
@@ -32,13 +32,13 @@ public class gameBoard : MonoBehaviour
             if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes")
 			{
                 //store the object o in the board array
-                //Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
+                Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
                 //Debug.Log(board[(int)pos.x, (int)pos.y]);
 			} else
 			{
                 //just print this in case PacMan is found. 
-                //Debug.Log("Found " + o.name + " at " + pos);
+                Debug.Log("Found " + o.name + " at " + pos);
 			}
 		}
     }
@@ -51,7 +51,6 @@ public class gameBoard : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("Time: " + time);
         if(time != 0)
         {
             time -= (float)(1.0/24.0);
