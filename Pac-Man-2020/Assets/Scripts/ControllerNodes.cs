@@ -18,6 +18,8 @@ public class ControllerNodes : MonoBehaviour
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     private int pelletsConsumed = 0;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
