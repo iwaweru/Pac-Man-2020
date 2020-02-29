@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class ControllerNodes : MonoBehaviour
 {
-
-    private Vector2 direction = new Vector2(0,0);
-    private Vector2 queuedDirection;
-
+    private Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
+    protected bool canReverse = true;
+    protected Vector2 direction = new Vector2(0,0);
+    protected Vector2 queuedDirection;
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
-
     public float speed = 3f;
+    public bool randomMovement = false;
     private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
-    private Node currentNode;
-    private Node previousNode;
-    private Node targetNode;
+    protected Node currentNode;
+    protected Node previousNode;
+    protected Node targetNode;
+    private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
+    private int pelletsConsumed = 0;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +37,11 @@ public class ControllerNodes : MonoBehaviour
     }
 
 
-    void Update()
+    public virtual void Update()
     {
-        CheckInput();//Disallows diagonal or conflicting movements.
+        if (!randomMovement)
+            CheckInput();//Disallows diagonal or conflicting movements.
+        else randomInput();
 
         Move();//Move, or act on gathered user  input.
 
@@ -43,10 +49,15 @@ public class ControllerNodes : MonoBehaviour
 
         ConsumePellet();  //Run to see if pill to be consumed. 
 
-        stopChewing();//Check if not moving to stop chewing animation.
+        StopChewing();//Check if not moving to stop chewing animation.
     }
 
-    void CheckInput()//Check Input and update current direction.
+    public virtual void randomInput()
+    {
+        ChangePosition(dirs[RandomNumber()]);
+    }
+
+    public virtual void CheckInput()//Check Input and update current direction.
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -87,11 +98,14 @@ public class ControllerNodes : MonoBehaviour
                 if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
-                    GameObject.Find("Game").GetComponent<gameBoard>().addTime(.45f);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
-                    if (!GameObject.Find("Game").GetComponent<AudioSource>().isPlaying) { 
-                        GameObject.Find("Game").GetComponent<AudioSource>().Play();
+                    GameObject temp = GameObject.Find("Game");//get the game object.
+                    gameBoard game = temp.GetComponent<gameBoard>();//get the game state
+                    game.score();//score
+                    game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
+                    if (!temp.GetComponent<AudioSource>().isPlaying) { 
+                        temp.GetComponent<AudioSource>().Play();
                     }
-                } 
+                }                 
             }
         }
     }
@@ -124,7 +138,7 @@ public class ControllerNodes : MonoBehaviour
         return null;
     }
 
-    void ChangePosition(Vector2 d)
+    protected void ChangePosition(Vector2 d)
     {
         if (d != direction) //If the direction is different from current direction, store it for next intersection.
         {
@@ -146,13 +160,13 @@ public class ControllerNodes : MonoBehaviour
     }
 
 
-    void Move()
+    protected void Move()
     {
 
         if(targetNode != currentNode && targetNode != null)
         {
 
-            if(queuedDirection == direction * -1) 
+            if(!randomMovement && canReverse && queuedDirection == direction * -1) 
             {
                 direction *= -1;
                 Node tempNode = targetNode;
@@ -211,7 +225,7 @@ public class ControllerNodes : MonoBehaviour
         }
     }
 
-    Node getNodeAtPosition(Vector2 pos)//Get the intersection at this position.
+    protected Node getNodeAtPosition(Vector2 pos)//Get the intersection at this position.
     {
         GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
         if (tile != null)
@@ -262,7 +276,7 @@ public class ControllerNodes : MonoBehaviour
         transform.localRotation = rotater;
     }
 
-    void stopChewing()
+    void StopChewing()
     {
         if(direction == Vector2.zero)
         {
@@ -300,5 +314,10 @@ public class ControllerNodes : MonoBehaviour
             }
         } 
         return null;
+    }
+
+    int RandomNumber() //Random Number Generator for Ghost to use as move input.
+    {
+        return Random.Range(0, 4);
     }
 }
