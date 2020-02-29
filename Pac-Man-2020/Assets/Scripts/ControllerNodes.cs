@@ -14,6 +14,8 @@ public class ControllerNodes : MonoBehaviour
     protected Node previousNode;
     protected Node targetNode;
 
+    private int pelletsConsumed = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class ControllerNodes : MonoBehaviour
 
     public virtual void Update()
     {
+        Debug.Log("Score: " + (GameObject.Find("Game").GetComponent<gameBoard>().score) * 10);
+
         CheckInput();//Disallows diagonal or conflicting movements.
 
         Move();//Move, or act on gathered user  input.
@@ -85,11 +89,15 @@ public class ControllerNodes : MonoBehaviour
                 if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
+                    gameBoard temp = GameObject.Find("Game").GetComponent<gameBoard>();
+                    GameObject.Find("Game").GetComponent<gameBoard>().score += 1;
+                    pelletsConsumed++;
+                    GameObject.Find("Game").GetComponent<AudioSource>().Play();
                     GameObject.Find("Game").GetComponent<gameBoard>().addTime(.45f);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
                     if (!GameObject.Find("Game").GetComponent<AudioSource>().isPlaying) { 
                         GameObject.Find("Game").GetComponent<AudioSource>().Play();
                     }
-                } 
+                }                 
             }
         }
     }
