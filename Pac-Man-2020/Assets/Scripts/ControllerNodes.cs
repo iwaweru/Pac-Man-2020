@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class ControllerNodes : MonoBehaviour
 {
-
-    private Vector2 direction = new Vector2(0,0);
-    private Vector2 queuedDirection;
-
+    protected bool canReverse = true;
+    protected Vector2 direction = new Vector2(0,0);
+    protected Vector2 queuedDirection;
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
-
     public float speed = 3f;
     private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
-    private Node currentNode;
-    private Node previousNode;
-    private Node targetNode;
+    protected Node currentNode;
+    protected Node previousNode;
+    protected Node targetNode;
 
     private int pelletsConsumed = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(6, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
+        transform.position = new Vector2(7, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
 
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
@@ -35,7 +33,7 @@ public class ControllerNodes : MonoBehaviour
     }
 
 
-    void Update()
+    public virtual void Update()
     {
         Debug.Log("Score: " + (GameObject.Find("Game").GetComponent<gameBoard>().score) * 10);
 
@@ -47,10 +45,10 @@ public class ControllerNodes : MonoBehaviour
 
         ConsumePellet();  //Run to see if pill to be consumed. 
 
-        stopChewing();//Check if not moving to stop chewing animation.
+        StopChewing();//Check if not moving to stop chewing animation.
     }
 
-    void CheckInput()//Check Input and update current direction.
+    public virtual void CheckInput()//Check Input and update current direction.
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -86,14 +84,20 @@ public class ControllerNodes : MonoBehaviour
 
         if(o != null){
             Pills tile = o.GetComponent<Pills>();
-            if(tile != null){
-                if(!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
+            if(tile != null)
+            {
+                if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){
                     o.GetComponent<SpriteRenderer>().enabled = false;
                     tile.Consumed = true;
+                    gameBoard temp = GameObject.Find("Game").GetComponent<gameBoard>();
                     GameObject.Find("Game").GetComponent<gameBoard>().score += 1;
                     pelletsConsumed++;
                     GameObject.Find("Game").GetComponent<AudioSource>().Play();
-                }
+                    GameObject.Find("Game").GetComponent<gameBoard>().addTime(.45f);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
+                    if (!GameObject.Find("Game").GetComponent<AudioSource>().isPlaying) { 
+                        GameObject.Find("Game").GetComponent<AudioSource>().Play();
+                    }
+                }                 
             }
         }
     }
@@ -126,7 +130,7 @@ public class ControllerNodes : MonoBehaviour
         return null;
     }
 
-    void ChangePosition(Vector2 d)
+    protected void ChangePosition(Vector2 d)
     {
         if (d != direction) //If the direction is different from current direction, store it for next intersection.
         {
@@ -148,13 +152,13 @@ public class ControllerNodes : MonoBehaviour
     }
 
 
-    void Move()
+    protected void Move()
     {
 
         if(targetNode != currentNode && targetNode != null)
         {
 
-            if(queuedDirection == direction * -1) 
+            if(canReverse && queuedDirection == direction * -1) 
             {
                 direction *= -1;
                 Node tempNode = targetNode;
@@ -213,7 +217,7 @@ public class ControllerNodes : MonoBehaviour
         }
     }
 
-    Node getNodeAtPosition(Vector2 pos)//Get the intersection at this position.
+    protected Node getNodeAtPosition(Vector2 pos)//Get the intersection at this position.
     {
         GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
         if (tile != null)
@@ -264,7 +268,7 @@ public class ControllerNodes : MonoBehaviour
         transform.localRotation = rotater;
     }
 
-    void stopChewing()
+    void StopChewing()
     {
         if(direction == Vector2.zero)
         {

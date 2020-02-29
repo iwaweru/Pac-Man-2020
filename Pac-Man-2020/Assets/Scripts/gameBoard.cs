@@ -6,8 +6,9 @@ using UnityEngine;
 public class gameBoard : MonoBehaviour
 {
     // board dimensions
-    private static int boardWidth = 19; 
-    private static int boardHeight = 22;
+    private static int boardWidth = 30; 
+    private static int boardHeight = 30;
+    private static float time = 0;
 
     public int totalPellets = 0;
     public int score = 0;
@@ -31,7 +32,7 @@ public class gameBoard : MonoBehaviour
             Vector2 pos = o.transform.position; // we use "position" (instead of "localposition") which is in the global space of Unity. 
 
             //Sanity check: we only want to store the objects in the array (pills, walls, etc.) not PacMan itself. 
-            if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes")
+            if (o.name != "Clyde" && o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.name != "Blinky" && o.name != "Inky")
 			{
                 if (o.GetComponent<Pills>() != null) {
                     if (o.GetComponent<Pills>().isPellet || o.GetComponent<Pills>().isLargePellet) {
@@ -39,21 +40,41 @@ public class gameBoard : MonoBehaviour
                     }
                 }
                 //store the object o in the board array
-                //Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
+                Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
                 //Debug.Log(board[(int)pos.x, (int)pos.y]);
 			} else
 			{
                 //just print this in case PacMan is found. 
-                //Debug.Log("Found " + o.name + " at " + pos);
+                Debug.Log("Found " + o.name + " at " + pos);
 			}
 		}
     }
 
+    public void addTime(float seconds)
+    {
+        time += seconds;
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if(time != 0)
+        {
+            time -= (float)(1.0/24.0);
+            if(time < 0)
+            {
+                time = 0;
+            }
+        }
+        if (time == 0)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+    }
+
+    private void Update()
+    {
+
     }
 }
