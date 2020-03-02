@@ -6,8 +6,10 @@ public class GhostController : ControllerNodes
 {
 
     // Start is called before the first frame update
-    
 
+    public Animator animator;
+
+    private Direction dirNum = Direction.Left;
 
     void Start()
     {
@@ -37,6 +39,30 @@ public class GhostController : ControllerNodes
         randomInput();
 
         Move();
+
+        UpdateOrientation();
+    }
+
+
+    void UpdateOrientation()
+    {
+        if (direction == Vector2.left)
+        {
+            dirNum = Direction.Left;
+        }
+        else if(direction == Vector2.right)
+        {
+            dirNum = Direction.Right;
+        }
+        else if(direction == Vector2.up)
+        {
+            dirNum = Direction.Up;
+        }
+        else if(direction == Vector2.down)
+        {
+            dirNum = Direction.Down;
+        }
+        animator.SetInteger("orientation", (int)dirNum);
 
     }
 

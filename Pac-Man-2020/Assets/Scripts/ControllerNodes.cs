@@ -11,7 +11,7 @@ public class ControllerNodes : MonoBehaviour
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
     public float speed = 3f;
     public bool randomMovement = false;
-    private int facing = 1; // 0 = left, 1 = right, 2 = down, 3 = up;
+    private Direction facing = Direction.Left; // 0 = left, 1 = right, 2 = down, 3 = up;
     protected Node currentNode;
     protected Node previousNode;
     protected Node targetNode;
@@ -42,6 +42,7 @@ public class ControllerNodes : MonoBehaviour
 
         direction = Vector2.left;//Auto start.
         ChangePosition(direction);
+        transform.rotation = Quaternion.Euler(0, 0, 180);
     }
 
 
@@ -250,34 +251,34 @@ public class ControllerNodes : MonoBehaviour
         switch (direction.normalized.x) // Using the unit vector so I can switch on exact cases.
         {
             case -1: // velocity is to the left
-                if (facing != 0)
+                if (facing != Direction.Left)
                 {
                     rotater.eulerAngles = new Vector3(0, 0, 180);
-                    facing = 0;
+                    facing = (Direction)0;
                 }
                 break;
             case 1: // velocity is to the right
-                if (facing != 1)
+                if (facing != Direction.Right)
                 {
                     rotater.eulerAngles = new Vector3(0, 0, 0);
-                    facing = 1;
+                    facing = Direction.Right;
                 }
                 break;
         }
         switch (direction.normalized.y)
         {
             case -1: // velocity is down.
-                if (facing != 2)
+                if (facing != Direction.Down)
                 {
                     rotater.eulerAngles = new Vector3(0, 0, 270);
-                    facing = 2;
+                    facing = Direction.Down;
                 }
                 break;
             case 1: // velocity is up.
-                if (facing != 3)
+                if (facing != Direction.Up)
                 {
                     rotater.eulerAngles = new Vector3(0, 0, 90);
-                    facing = 3;
+                    facing = Direction.Up;
                 }
                 break;
         }
@@ -327,5 +328,12 @@ public class ControllerNodes : MonoBehaviour
     int RandomNumber() //Random Number Generator for Ghost to use as move input.
     {
         return Random.Range(0, 4);
+    }
+
+    public enum Direction {
+        Left,
+        Right,
+        Down, 
+        Up
     }
 }
