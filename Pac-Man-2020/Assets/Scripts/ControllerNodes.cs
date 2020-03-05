@@ -18,18 +18,10 @@ public class ControllerNodes : MonoBehaviour
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     private int pelletsConsumed = 0;
 
-    protected GameObject orangeGhost; //for ghost class
-    protected GameObject redGhost; 
-    protected GameObject blueGhost;
-
     // Start is called before the first frame update
     void Start()
     {
-        //orangeGhost = GameObject.FindGameObjectWithTag("Clyde"); setting up variable with ghost sprite
-        //redGhost = GameObject.FindGameObjectWithTag("Blinky");
-        //blueGhost = GameObject.FindGameObjectWithTag("Inky");
-
-        transform.position = new Vector2(7, 10);//PAC-MAN MUST START ON A NODE FOR NOW.
+        transform.position = new Vector2(10, 4);//PAC-MAN MUST START ON A NODE FOR NOW.
         
 
 
@@ -40,7 +32,7 @@ public class ControllerNodes : MonoBehaviour
             Debug.Log(currentNode);
         }
 
-        direction = Vector2.left;//Auto start.
+        //direction = Vector2.left;//Auto start.
         ChangePosition(direction);
         transform.rotation = Quaternion.Euler(0, 0, 180);
     }

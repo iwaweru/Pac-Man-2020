@@ -15,22 +15,16 @@ public class GhostController : ControllerNodes
     {
         this.canReverse = false;//Ghosts cannot move unless they are at an intersection.
 
-        //redGhost = GameObject.FindGameObjectWithTag("Blinky");
-        //blueGhost = GameObject.FindGameObjectWithTag("Inky");
-
-        transform.position = new Vector2(10, 10);//Ghost must start at node for now.
-        //redGhost.transform.position = new Vector2(11, 10);
-        //blueGhost.transform.position =  new Vector(9,10);
-
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
         {
             currentNode = current;
             Debug.Log(currentNode);
         }
-    
-        direction = Vector2.left;//Auto start.
-        ChangePosition(direction);
+
+        //direction = Vector2.up;//Auto start orangeGhost
+
+        //ChangePosition(direction);
     }
 
     public override void Update() //Override to change behavior
@@ -43,8 +37,7 @@ public class GhostController : ControllerNodes
         UpdateOrientation();
     }
 
-
-    void UpdateOrientation()
+    public void UpdateOrientation()
     {
         if (direction == Vector2.left)
         {
