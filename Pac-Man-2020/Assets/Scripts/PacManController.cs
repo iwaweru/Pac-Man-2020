@@ -20,7 +20,7 @@ public class PacManController : ControllerNodes
 
         direction = Vector2.left;//Auto start.
         ChangePosition(direction);
-        transform.rotation = Quaternion.Euler(0, 0, 180);
+        transform.rotation = Quaternion.Euler(0, 0, 180); //Face left.
     }
     public override void Update()
     {
@@ -106,11 +106,11 @@ public class PacManController : ControllerNodes
                     GameObject temp = GameObject.Find("Game");//get the game object.
                     gameBoard game = temp.GetComponent<gameBoard>();//get the game state
                     game.score();//score
-                    game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
-                    if (!temp.GetComponent<AudioSource>().isPlaying)
-                    {
-                        temp.GetComponent<AudioSource>().Play();
-                    }
+                    //game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
+                    //if (!temp.GetComponent<AudioSource>().isPlaying)
+                    //{
+                    //    temp.GetComponent<AudioSource>().Play();
+                    //}
                 }
             }
         }
