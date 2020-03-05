@@ -10,8 +10,15 @@ public class gameBoard : MonoBehaviour
     private static int boardHeight = 30;
     public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
-
+    //String Names of Game Characters for various uses. 
+    public string Ghost1 = "Blinky";
+    public string Ghost2 = "Inky";
+    public string Ghost3 = "Clyde";
+    public string PacManName = "Pac-Man-Node";
+    //Point Tracker
     public int points = 0;
+    //Delay before game starts again after Pac-Man hits a ghost.
+    public static int DEATH_DELAY = 5;
 
     //Array of type GameObject initialized with board width and height
     //These are the locations that will be stored
@@ -68,7 +75,6 @@ public class gameBoard : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("Time: " + time);
         if(time != 0)
         {
             time -= (float)(1.0/24.0);
@@ -81,6 +87,39 @@ public class gameBoard : MonoBehaviour
         {
             GetComponent<AudioSource>().Stop();
         }
+    }
+
+    public void Die() //Put the death logic here.
+    {
+        StartCoroutine(RepositionCharactersAndDelay());
+    }
+
+    IEnumerator RepositionCharactersAndDelay()
+    {
+        GameObject Inky = GameObject.Find(Ghost1);
+        GameObject Blinky = GameObject.Find(Ghost2);
+        GameObject Clyde = GameObject.Find(Ghost3);
+        GameObject PacMan = GameObject.Find(PacManName);
+        //Disable Scripts for death delay.
+        Inky.SetActive(false);
+        Blinky.SetActive(false);
+        Clyde.SetActive(false);
+        PacMan.SetActive(false);
+        //Reposition the character and reset all temp variables to original conditions.
+        Inky.GetComponent<GhostController>().refresh();
+        Blinky.GetComponent<GhostController>().refresh();
+        Clyde.GetComponent<GhostController>().refresh();
+        PacMan.GetComponent<PacManController>().refresh();
+
+        //Add ready sprite here.
+        yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
+        //Remove ready sprite here. 
+
+        //GO -- reactivate scripts.
+        Inky.SetActive(true);
+        Blinky.SetActive(true);
+        Clyde.SetActive(true);
+        PacMan.SetActive(true);
     }
 
     private void Update()
