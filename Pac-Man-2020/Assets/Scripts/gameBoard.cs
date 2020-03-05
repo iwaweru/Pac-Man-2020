@@ -14,6 +14,7 @@ public class gameBoard : MonoBehaviour
     public string Ghost1 = "Blinky";
     public string Ghost2 = "Inky";
     public string Ghost3 = "Clyde";
+    public string Ghost4 = "Pinky";
     public string PacManName = "Pac-Man-Node";
     //Point Tracker
     public int points = 0;
@@ -82,17 +83,20 @@ public class gameBoard : MonoBehaviour
         GameObject Inky = GameObject.Find(Ghost1);
         GameObject Blinky = GameObject.Find(Ghost2);
         GameObject Clyde = GameObject.Find(Ghost3);
+        GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
         //Disable Scripts for death delay.
         Inky.SetActive(false);
         Blinky.SetActive(false);
         Clyde.SetActive(false);
+        Pinky.SetActive(false);
         PacMan.SetActive(false);
         //Reposition the character and reset all temp variables to original conditions.
         Inky.GetComponent<GhostController>().refresh();
         Blinky.GetComponent<GhostController>().refresh();
         Clyde.GetComponent<GhostController>().refresh();
         PacMan.GetComponent<PacManController>().refresh();
+        Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
@@ -102,6 +106,7 @@ public class gameBoard : MonoBehaviour
         Inky.SetActive(true);
         Blinky.SetActive(true);
         Clyde.SetActive(true);
+        Pinky.SetActive(true);
         PacMan.SetActive(true);
     }
 
