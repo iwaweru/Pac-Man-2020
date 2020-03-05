@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 8574752846295226652}
   - component: {fileID: 8574752846295226653}
   - component: {fileID: 8574752846295226594}
-  - component: {fileID: 8574752846295226595}
   m_Layer: 8
-  m_Name: PinkyUp_0
+  m_Name: Pinky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 1752805823
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3388590680660415747, guid: ae8dc7b3a0a6e440a9b67cd1a0623e04,
+  m_Sprite: {fileID: -1074144560524761612, guid: 31f66eba874776542b96d4b80d1aeb86,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 8574752846295226592}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e6187882a9144832b0dc53837f7c33d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 60b0900878995da43a2062bb6bcc8045, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -119,24 +118,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.0001
---- !u!50 &8574752846295226595
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8574752846295226592}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
