@@ -7,20 +7,28 @@ public class ControllerNodes : MonoBehaviour
     private Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
     protected bool canReverse = true;
     protected Vector2 direction = new Vector2(0,0);
+    protected Vector2 startPosition = new Vector2(7, 10);
     protected Vector2 queuedDirection;
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
     public float speed = 3f;
     public bool randomMovement = false;
-    private Direction facing = Direction.Left; // 0 = left, 1 = right, 2 = down, 3 = up;
+
     protected Node currentNode;
     protected Node previousNode;
     protected Node targetNode;
-    private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
-    private int pelletsConsumed = 0;
 
+<<<<<<< HEAD
+=======
+    private int pelletsConsumed = 0;
+    protected GameObject orangeGhost; //for ghost class
+    protected GameObject redGhost; 
+    protected GameObject blueGhost;
+
+>>>>>>> 87996c1ca086ae2f24a4009ebfc9996f430a939e
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
+<<<<<<< HEAD
         transform.position = new Vector2(10, 4);//PAC-MAN MUST START ON A NODE FOR NOW.
         
 
@@ -35,23 +43,17 @@ public class ControllerNodes : MonoBehaviour
         //direction = Vector2.left;//Auto start.
         ChangePosition(direction);
         transform.rotation = Quaternion.Euler(0, 0, 180);
+=======
+        //orangeGhost = GameObject.FindGameObjectWithTag("Clyde"); setting up variable with ghost sprite
+        //redGhost = GameObject.FindGameObjectWithTag("Blinky");
+        //blueGhost = GameObject.FindGameObjectWithTag("Inky");
+
+>>>>>>> 87996c1ca086ae2f24a4009ebfc9996f430a939e
     }
 
 
     public virtual void Update()
-    {
-        if (!randomMovement)
-            CheckInput();//Disallows diagonal or conflicting movements.
-        else randomInput();
-
-        Move();//Move, or act on gathered user  input.
-
-        Flip();//Update orientation using current direction data.
-
-        ConsumePellet();  //Run to see if pill to be consumed. 
-
-        StopChewing();//Check if not moving to stop chewing animation.
-    }
+    { }
 
     public virtual void randomInput()
     {
@@ -83,32 +85,21 @@ public class ControllerNodes : MonoBehaviour
         
     }
 
+    public void refresh()
+    {
+        
+        direction = Vector2.zero;
+        queuedDirection = Vector2.zero;
+        currentNode = null;
+        targetNode = null;
+        previousNode = null;
+        Start();//Implemented Differently for each Character
+    }
+
     // Update is called once per frame
     private void FixedUpdate()
     {
 
-    }
-
-    void ConsumePellet(){
-        GameObject o = GetTileAtPosition(transform.position);  //pellet object created with correct coordinates
-
-        if(o != null){
-            Pills tile = o.GetComponent<Pills>(); //gets pill information
-            if(tile != null)
-            {
-                if (!tile.Consumed && (tile.isPellet || tile.isLargePellet)){ //tile has visible pellet and is a pellet of some form
-                    o.GetComponent<SpriteRenderer>().enabled = false; //make oill invisible
-                    tile.Consumed = true; //update system
-                    GameObject temp = GameObject.Find("Game");//get the game object.
-                    gameBoard game = temp.GetComponent<gameBoard>();//get the game state
-                    game.score();//score
-                    game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
-                    if (!temp.GetComponent<AudioSource>().isPlaying) { 
-                        temp.GetComponent<AudioSource>().Play();
-                    }
-                }                 
-            }
-        }
     }
 
     Node CanMove(Vector2 d)
@@ -127,7 +118,7 @@ public class ControllerNodes : MonoBehaviour
         return moveToNode;
     }
 
-    GameObject GetTileAtPosition(Vector2 pos)
+    protected GameObject GetTileAtPosition(Vector2 pos)
     {
         int tileX = Mathf.RoundToInt(pos.x);
         int tileY = Mathf.RoundToInt(pos.y); //finding position of pill
@@ -159,7 +150,6 @@ public class ControllerNodes : MonoBehaviour
             }
         }
     }
-
 
     protected void Move()
     {
@@ -235,59 +225,6 @@ public class ControllerNodes : MonoBehaviour
             return tile.GetComponent<Node>();//Node is a component of the pill objects.
         }
         return null;
-    }
-
-    void Flip() // We are using Quaternions as a very temporary solution -- later, we will use animation frames instead of actually modifying the transform.
-    {
-        Quaternion rotater = transform.localRotation;
-        switch (direction.normalized.x) // Using the unit vector so I can switch on exact cases.
-        {
-            case -1: // velocity is to the left
-                if (facing != Direction.Left)
-                {
-                    rotater.eulerAngles = new Vector3(0, 0, 180);
-                    facing = (Direction)0;
-                }
-                break;
-            case 1: // velocity is to the right
-                if (facing != Direction.Right)
-                {
-                    rotater.eulerAngles = new Vector3(0, 0, 0);
-                    facing = Direction.Right;
-                }
-                break;
-        }
-        switch (direction.normalized.y)
-        {
-            case -1: // velocity is down.
-                if (facing != Direction.Down)
-                {
-                    rotater.eulerAngles = new Vector3(0, 0, 270);
-                    facing = Direction.Down;
-                }
-                break;
-            case 1: // velocity is up.
-                if (facing != Direction.Up)
-                {
-                    rotater.eulerAngles = new Vector3(0, 0, 90);
-                    facing = Direction.Up;
-                }
-                break;
-        }
-        transform.localRotation = rotater;
-    }
-
-    void StopChewing()
-    {
-        if(direction == Vector2.zero)
-        {
-            GetComponent<Animator>().enabled = false;
-            GetComponent<SpriteRenderer>().sprite = idle; //Uncomment this, and set the graphic you want Pac-Man to stop on.
-        }
-        else
-        {
-            GetComponent<Animator>().enabled = true;
-        }
     }
 
     bool OverShotTarget()
