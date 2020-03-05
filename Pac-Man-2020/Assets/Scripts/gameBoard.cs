@@ -14,6 +14,7 @@ public class gameBoard : MonoBehaviour
     public string Ghost1 = "Blinky";
     public string Ghost2 = "Inky";
     public string Ghost3 = "Clyde";
+    public string Ghost4 = "Pinky";
     public string PacManName = "Pac-Man-Node";
     //Point Tracker
     public int points = 0;
@@ -39,7 +40,7 @@ public class gameBoard : MonoBehaviour
             Vector2 pos = o.transform.position; // we use "position" (instead of "localposition") which is in the global space of Unity. 
 
             //Sanity check: we only want to store the objects in the array (pills, walls, etc.) not PacMan itself. 
-            if (o.name != "Clyde" && o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.name != "Blinky" && o.name != "Inky")
+            if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.tag != "Ghost")
 			{
                 //if (o.GetComponent<Pills>() != null) {
                 //    if (o.GetComponent<Pills>().isPellet || o.GetComponent<Pills>().isLargePellet) {
@@ -64,29 +65,12 @@ public class gameBoard : MonoBehaviour
 
     public void addTime(float seconds)
     {
-        if (time != 0)
-        {
-            time += seconds;
-        }
-        else time += .5f;//Prevents glitching.
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(time != 0)
-        {
-            time -= (float)(1.0/24.0);
-            if(time < 0)
-            {
-                time = 0;
-            }
-        }
-        if (time == 0)
-        {
-            GetComponent<AudioSource>().Stop();
-        }
     }
 
     public void Die() //Put the death logic here.
@@ -99,17 +83,20 @@ public class gameBoard : MonoBehaviour
         GameObject Inky = GameObject.Find(Ghost1);
         GameObject Blinky = GameObject.Find(Ghost2);
         GameObject Clyde = GameObject.Find(Ghost3);
+        GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
         //Disable Scripts for death delay.
         Inky.SetActive(false);
         Blinky.SetActive(false);
         Clyde.SetActive(false);
+        Pinky.SetActive(false);
         PacMan.SetActive(false);
         //Reposition the character and reset all temp variables to original conditions.
         Inky.GetComponent<GhostController>().refresh();
         Blinky.GetComponent<GhostController>().refresh();
         Clyde.GetComponent<GhostController>().refresh();
         PacMan.GetComponent<PacManController>().refresh();
+        Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
@@ -119,6 +106,7 @@ public class gameBoard : MonoBehaviour
         Inky.SetActive(true);
         Blinky.SetActive(true);
         Clyde.SetActive(true);
+        Pinky.SetActive(true);
         PacMan.SetActive(true);
     }
 
