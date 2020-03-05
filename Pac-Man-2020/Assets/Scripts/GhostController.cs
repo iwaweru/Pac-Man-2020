@@ -7,20 +7,22 @@ public class GhostController : ControllerNodes
 
     // Start is called before the first frame update
 
-    public Animator animator;
-
+    public Animator animator;//This will need to be edited when each ghost is given a different start position. Appears in the GameBoard script.
     private Direction dirNum = Direction.Left;
 
-    void Start()
+    public override void Start()
     {
+        startPosition = new Vector2(10, 10);
+        dirNum = Direction.Left;//Reinitialize for refresh;
         this.canReverse = false;//Ghosts cannot move unless they are at an intersection.
 
         //redGhost = GameObject.FindGameObjectWithTag("Blinky");
         //blueGhost = GameObject.FindGameObjectWithTag("Inky");
-
-        transform.position = new Vector2(10, 10);//Ghost must start at node for now.
         //redGhost.transform.position = new Vector2(11, 10);
         //blueGhost.transform.position =  new Vector(9,10);
+
+        transform.position = startPosition;//Ghost must start at node for now.
+
 
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
@@ -43,8 +45,7 @@ public class GhostController : ControllerNodes
         UpdateOrientation();
     }
 
-
-    void UpdateOrientation()
+    private void UpdateOrientation()
     {
         if (direction == Vector2.left)
         {
