@@ -16,6 +16,8 @@ public class gameBoard : MonoBehaviour
     public string Ghost3 = "Clyde";
     public string Ghost4 = "Pinky";
     public string PacManName = "Pac-Man-Node";
+    //Ready variable which is attached to sprite name but not actual sprite
+    public string ready = "ReadySprite";
     //Point Tracker
     public int points = 0;
     //Delay before game starts again after Pac-Man hits a ghost.
@@ -31,7 +33,6 @@ public class gameBoard : MonoBehaviour
     {
         //Create an array of objects containing every objects in the scene
         Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
-
         //Then iterate over that array
         //Assign each object to the variable "o"
         foreach (GameObject o in objects)
@@ -85,7 +86,9 @@ public class gameBoard : MonoBehaviour
         GameObject Clyde = GameObject.Find(Ghost3);
         GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
+        GameObject readySprite = GameObject.Find(ready);
         //Disable Scripts for death delay.
+        //readySprite.gameObject.SetActive(true);
         Inky.SetActive(false);
         Blinky.SetActive(false);
         Clyde.SetActive(false);
@@ -99,7 +102,9 @@ public class gameBoard : MonoBehaviour
         Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
+        readySprite.GetComponent<SpriteRenderer>().enabled = true;
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
+        readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
 
         //GO -- reactivate scripts.
