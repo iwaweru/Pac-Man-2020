@@ -106,6 +106,7 @@ public class PacManController : ControllerNodes
                     GameObject temp = GameObject.Find("Game");//get the game object.
                     gameBoard game = temp.GetComponent<gameBoard>();//get the game state
                     game.score();//score
+                    game.munch();
                     //game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
                     //if (!temp.GetComponent<AudioSource>().isPlaying)
                     //{

@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class gameBoard : MonoBehaviour
 {
+    public enum MunchSound
+    {
+        ClassicRetro,
+        StylizedArcade,
+        Realistic
+    }
+    public MunchSound munchSound = MunchSound.ClassicRetro;
     // board dimensions
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
@@ -25,6 +32,8 @@ public class gameBoard : MonoBehaviour
     //These are the locations that will be stored
     //We are getting the positions of the game objects and then storing them at that position in this array.
     public GameObject[,] board = new GameObject[boardWidth, boardHeight];
+
+    private bool munch1 = true;
 
     // Start is called before the first frame update
     void Start()
@@ -63,10 +72,6 @@ public class gameBoard : MonoBehaviour
         points += MULTIPLIER;
     }
 
-    public void addTime(float seconds)
-    {
-
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -108,6 +113,49 @@ public class gameBoard : MonoBehaviour
         Clyde.SetActive(true);
         Pinky.SetActive(true);
         PacMan.SetActive(true);
+    }
+
+    public void munch()
+    {
+        switch (munchSound)
+        {
+            case MunchSound.ClassicRetro:
+                if (munch1)
+                {
+                    GetComponents<AudioSource>()[0].Play();
+                    munch1 = false;
+                }
+                else
+                {
+                    GetComponents<AudioSource>()[1].Play();
+                    munch1 = true;
+                }
+                break;
+            case MunchSound.StylizedArcade:
+                if (munch1)
+                {
+                    GetComponents<AudioSource>()[2].Play();
+                    munch1 = false;
+                }
+                else
+                {
+                    GetComponents<AudioSource>()[3].Play();
+                    munch1 = true;
+                }
+                break;
+            case MunchSound.Realistic:
+                if (munch1)
+                {
+                    GetComponents<AudioSource>()[4].Play();
+                    munch1 = false;
+                }
+                else
+                {
+                    GetComponents<AudioSource>()[5].Play();
+                    munch1 = true;
+                }
+                break;
+        }
     }
 
     private void Update()
