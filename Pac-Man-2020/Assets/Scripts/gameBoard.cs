@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class gameBoard : MonoBehaviour
 {
+    public enum MunchSound
+    {
+        ClassicRetro,
+        StylizedArcade,
+        Realistic
+    }
+    public MunchSound munchSound = MunchSound.ClassicRetro;
     // board dimensions
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
@@ -16,8 +23,6 @@ public class gameBoard : MonoBehaviour
     public string Ghost3 = "Clyde";
     public string Ghost4 = "Pinky";
     public string PacManName = "Pac-Man-Node";
-    //Ready variable which is attached to sprite name but not actual sprite
-    public string ready = "ReadySprite";
     //Point Tracker
     public int points = 0;
     //Delay before game starts again after Pac-Man hits a ghost.
@@ -28,11 +33,14 @@ public class gameBoard : MonoBehaviour
     //We are getting the positions of the game objects and then storing them at that position in this array.
     public GameObject[,] board = new GameObject[boardWidth, boardHeight];
 
+    private bool munch1 = true;
+
     // Start is called before the first frame update
     void Start()
     {
         //Create an array of objects containing every objects in the scene
         Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
+
         //Then iterate over that array
         //Assign each object to the variable "o"
         foreach (GameObject o in objects)
@@ -64,10 +72,6 @@ public class gameBoard : MonoBehaviour
         points += MULTIPLIER;
     }
 
-    public void addTime(float seconds)
-    {
-
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -86,9 +90,7 @@ public class gameBoard : MonoBehaviour
         GameObject Clyde = GameObject.Find(Ghost3);
         GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
-        GameObject readySprite = GameObject.Find(ready);
         //Disable Scripts for death delay.
-        readySprite.SetActive(true);
         Inky.SetActive(false);
         Blinky.SetActive(false);
         Clyde.SetActive(false);
@@ -102,9 +104,7 @@ public class gameBoard : MonoBehaviour
         Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
-        readySprite.GetComponent<SpriteRenderer>().enabled = true;
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
-        readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
 
         //GO -- reactivate scripts.
@@ -113,6 +113,49 @@ public class gameBoard : MonoBehaviour
         Clyde.SetActive(true);
         Pinky.SetActive(true);
         PacMan.SetActive(true);
+    }
+
+    public void munch()
+    {
+        switch (munchSound)
+        {
+            case MunchSound.ClassicRetro:
+                if (munch1)
+                {
+                    GetComponents<AudioSource>()[0].Play();
+                    munch1 = false;
+                }
+                else
+                {
+                    GetComponents<AudioSource>()[1].Play();
+                    munch1 = true;
+                }
+                break;
+            case MunchSound.StylizedArcade:
+                if (munch1)
+                {
+                    GetComponents<AudioSource>()[2].Play();
+                    munch1 = false;
+                }
+                else
+                {
+                    GetComponents<AudioSource>()[3].Play();
+                    munch1 = true;
+                }
+                break;
+            case MunchSound.Realistic:
+                if (munch1)
+                {
+                    GetComponents<AudioSource>()[4].Play();
+                    munch1 = false;
+                }
+                else
+                {
+                    GetComponents<AudioSource>()[5].Play();
+                    munch1 = true;
+                }
+                break;
+        }
     }
 
     private void Update()

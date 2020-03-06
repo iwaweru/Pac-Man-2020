@@ -7,7 +7,7 @@ public class ControllerNodes : MonoBehaviour
     private Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
     protected bool canReverse = true;
     protected Vector2 direction = new Vector2(0,0);
-    protected Vector2 startPosition = new Vector2(10, 4);
+    protected Vector2 startPosition = new Vector2(7, 10);
     protected Vector2 queuedDirection;
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
     public float speed = 3f;
@@ -18,9 +18,9 @@ public class ControllerNodes : MonoBehaviour
     protected Node targetNode;
 
     private int pelletsConsumed = 0;
-    //protected GameObject orangeGhost; //for ghost class
-    //protected GameObject redGhost; 
-    //protected GameObject blueGhost;
+    protected GameObject orangeGhost; //for ghost class
+    protected GameObject redGhost; 
+    protected GameObject blueGhost;
 
     // Start is called before the first frame update
     public virtual void Start()
