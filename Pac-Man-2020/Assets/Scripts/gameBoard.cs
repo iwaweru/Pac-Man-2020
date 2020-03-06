@@ -88,7 +88,7 @@ public class gameBoard : MonoBehaviour
         GameObject PacMan = GameObject.Find(PacManName);
         GameObject readySprite = GameObject.Find(ready);
         //Disable Scripts for death delay.
-        //readySprite.gameObject.SetActive(true);
+        readySprite.SetActive(true);
         Inky.SetActive(false);
         Blinky.SetActive(false);
         Clyde.SetActive(false);

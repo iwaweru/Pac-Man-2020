@@ -18,9 +18,9 @@ public class ControllerNodes : MonoBehaviour
     protected Node targetNode;
 
     private int pelletsConsumed = 0;
-    protected GameObject orangeGhost; //for ghost class
-    protected GameObject redGhost; 
-    protected GameObject blueGhost;
+    //protected GameObject orangeGhost; //for ghost class
+    //protected GameObject redGhost; 
+    //protected GameObject blueGhost;
 
     // Start is called before the first frame update
     public virtual void Start()
