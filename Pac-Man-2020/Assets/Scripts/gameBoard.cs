@@ -23,6 +23,8 @@ public class gameBoard : MonoBehaviour
     public string Ghost3 = "Clyde";
     public string Ghost4 = "Pinky";
     public string PacManName = "Pac-Man-Node";
+    //Variable given string name for readySprite object
+    public string ready = "ReadySprite";
     //Point Tracker
     public int points = 0;
     //Delay before game starts again after Pac-Man hits a ghost.
@@ -90,6 +92,7 @@ public class gameBoard : MonoBehaviour
         GameObject Clyde = GameObject.Find(Ghost3);
         GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
+        GameObject readySprite = GameObject.Find(ready);
         //Disable Scripts for death delay.
         Inky.SetActive(false);
         Blinky.SetActive(false);
@@ -104,7 +107,9 @@ public class gameBoard : MonoBehaviour
         Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
+        readySprite.GetComponent<SpriteRenderer>().enabled = true;
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
+        readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
 
         //GO -- reactivate scripts.
