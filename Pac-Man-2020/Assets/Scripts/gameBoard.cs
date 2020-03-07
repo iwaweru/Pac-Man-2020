@@ -107,9 +107,9 @@ public class gameBoard : MonoBehaviour
         Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
-        readySprite.GetComponent<SpriteRenderer>().enabled = true;
+        //readySprite.GetComponent<SpriteRenderer>().enabled = true;
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
-        readySprite.GetComponent<SpriteRenderer>().enabled = false;
+        //readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
 
         //GO -- reactivate scripts.
