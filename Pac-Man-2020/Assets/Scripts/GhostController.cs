@@ -21,7 +21,7 @@ public class GhostController : ControllerNodes
         Red, //leaves third
         Pink //leaves fourth
     }
-    private Vector2[] startPositions = { new Vector2(11, 10), new Vector2(10, 10), new Vector2(9, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
+    private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
     private bool canLeave = false; //Determines if the ghost can leave.
