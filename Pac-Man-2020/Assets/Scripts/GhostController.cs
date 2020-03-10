@@ -84,33 +84,35 @@ public class GhostController : ControllerNodes
         }
     }
 
-    private void shortestPathToPacMan() //Decision making algorithm
+    private void shortestPathToPacMan() //Decision making algorithm: ghost finds his neighbor node closest to PacMan in a straight line and chooses that node as his next direction
     {
-        GameObject Pac = GameObject.FindGameObjectWithTag("PacMan");
-        if(getNodeAtPosition(transform.position) != null)
-        {
-            float minDistance = 9999;
-            Vector2 tempDirection = Vector2.zero;
-            Node currentPosition = getNodeAtPosition(transform.position);
-            Node[] myNeighbors = currentPosition.neighbors;
+        GameObject Pac = GameObject.FindGameObjectWithTag("PacMan"); //we find pacman to later access his position
 
-            for (int i = 0; i < myNeighbors.Length; i++)
+        if(getNodeAtPosition(transform.position) != null) // run only if on a node
+        {
+            float minDistance = 9999; //initialize minDistance to a random big value that's greater than any ghost-pacman distance possible
+            Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
+            Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
+            Node[] myNeighbors = currentPosition.neighbors; //get my neighbors, store them in an array of nodes called myNeighbors
+
+            for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
             {
                 Node neighborNode = myNeighbors[i];
 
-                Vector2 nodePos = neighborNode.transform.position;
-                Vector2 pacPos = Pac.transform.position;
+                Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
+                Vector2 pacPos = Pac.transform.position; //get the coordinates of pacman
 
-                float tempDistance = (pacPos - nodePos).sqrMagnitude;
-                //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
-                if (tempDistance < minDistance)
+                float tempDistance = (pacPos - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
+                
+                if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
                     //Access the valid directions of the node we are currently on.
                     minDistance = tempDistance;
                     tempDirection = currentPosition.validDir[i];
                 }
             }
-            ChangePosition(tempDirection);
+            //ghost chooses to go to the position of tempDirection store after the for-loop
+            ChangePosition(tempDirection); //similar to randomInput()
         }
     }
 
