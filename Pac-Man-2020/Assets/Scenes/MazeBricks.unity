@@ -14556,7 +14556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54dac86570b3045f3b6ee89ed2e025ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  munchSound: 0
+  munchSound: 1
   Ghost1: Blinky
   Ghost2: Inky
   Ghost3: Clyde
