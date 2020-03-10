@@ -52,7 +52,8 @@ public class GhostController : ControllerNodes
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
 
-        randomInput();
+        //        randomInput();
+        shortestPathToPacMan();
 
         if(canLeave) //Don't leave unless your timer is up.
             Move();
@@ -78,6 +79,15 @@ public class GhostController : ControllerNodes
         {
             canLeave = true;
         }
+    }
+
+    private void shortestPathToPacMan()
+    {
+        if(getNodeAtPosition(transform.position) != null)
+        {
+            Debug.Log("I am on a node!");
+        }
+
     }
 
     private void UpdateOrientation()
