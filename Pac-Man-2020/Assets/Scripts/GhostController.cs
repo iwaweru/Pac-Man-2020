@@ -53,7 +53,10 @@ public class GhostController : ControllerNodes
             releaseGhosts();
 
         //        randomInput();
-        shortestPathToPacMan();
+        if (identity == GhostColor.Pink || identity == GhostColor.Red)
+            shortestPathToPacMan();
+        else
+            randomInput();
 
         if(canLeave) //Don't leave unless your timer is up.
             Move();
@@ -81,13 +84,34 @@ public class GhostController : ControllerNodes
         }
     }
 
-    private void shortestPathToPacMan()
+    private void shortestPathToPacMan() //Decision making algorithm
     {
+        GameObject Pac = GameObject.FindGameObjectWithTag("PacMan");
         if(getNodeAtPosition(transform.position) != null)
         {
-            Debug.Log("I am on a node!");
-        }
+            float minDistance = 9999;
+            Vector2 tempDirection = Vector2.zero;
+            Node currentPosition = getNodeAtPosition(transform.position);
+            Node[] myNeighbors = currentPosition.neighbors;
 
+            for (int i = 0; i < myNeighbors.Length; i++)
+            {
+                Node neighborNode = myNeighbors[i];
+
+                Vector2 nodePos = neighborNode.transform.position;
+                Vector2 pacPos = Pac.transform.position;
+
+                float tempDistance = (pacPos - nodePos).sqrMagnitude;
+                //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                if (tempDistance < minDistance)
+                {
+                    //Access the valid directions of the node we are currently on.
+                    minDistance = tempDistance;
+                    tempDirection = currentPosition.validDir[i];
+                }
+            }
+            ChangePosition(tempDirection);
+        }
     }
 
     private void UpdateOrientation()
