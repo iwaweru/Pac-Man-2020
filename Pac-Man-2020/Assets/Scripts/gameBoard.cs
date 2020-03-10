@@ -23,7 +23,7 @@ public class gameBoard : MonoBehaviour
     public string Ghost3 = "Clyde";
     public string Ghost4 = "Pinky";
     public string PacManName = "Pac-Man-Node";
-    //Variable given string name for readySprite object
+    //String identifiers of UI objects.
     public string ready = "ReadySprite";
     //Point Tracker
     public int points = 0;

@@ -21,7 +21,7 @@ public class GhostController : ControllerNodes
         Red, //leaves third
         Pink //leaves fourth
     }
-    private Vector2[] startPositions = { new Vector2(11, 10), new Vector2(10, 10), new Vector2(9, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
+    private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
     private bool canLeave = false; //Determines if the ghost can leave.
@@ -52,7 +52,11 @@ public class GhostController : ControllerNodes
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
 
-        randomInput();
+        //        randomInput();
+        if (identity == GhostColor.Pink || identity == GhostColor.Red)
+            shortestPathToPacMan();
+        else
+            randomInput();
 
         if(canLeave) //Don't leave unless your timer is up.
             Move();
@@ -77,6 +81,36 @@ public class GhostController : ControllerNodes
         else if(identity == GhostColor.Red && releaseTimer > redStartDelay)
         {
             canLeave = true;
+        }
+    }
+
+    private void shortestPathToPacMan() //Decision making algorithm
+    {
+        GameObject Pac = GameObject.FindGameObjectWithTag("PacMan");
+        if(getNodeAtPosition(transform.position) != null)
+        {
+            float minDistance = 9999;
+            Vector2 tempDirection = Vector2.zero;
+            Node currentPosition = getNodeAtPosition(transform.position);
+            Node[] myNeighbors = currentPosition.neighbors;
+
+            for (int i = 0; i < myNeighbors.Length; i++)
+            {
+                Node neighborNode = myNeighbors[i];
+
+                Vector2 nodePos = neighborNode.transform.position;
+                Vector2 pacPos = Pac.transform.position;
+
+                float tempDistance = (pacPos - nodePos).sqrMagnitude;
+                //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                if (tempDistance < minDistance)
+                {
+                    //Access the valid directions of the node we are currently on.
+                    minDistance = tempDistance;
+                    tempDirection = currentPosition.validDir[i];
+                }
+            }
+            ChangePosition(tempDirection);
         }
     }
 

@@ -4165,12 +4165,12 @@ PrefabInstance:
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
@@ -14556,7 +14556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54dac86570b3045f3b6ee89ed2e025ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  munchSound: 0
+  munchSound: 1
   Ghost1: Blinky
   Ghost2: Inky
   Ghost3: Clyde
