@@ -11479,7 +11479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 745153079}
   - component: {fileID: 745153080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Nodes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14094,12 +14094,12 @@ PrefabInstance:
     - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: 1752805823
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464675, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea238d06b143efa409fe948bc2010854, type: 3}
@@ -28438,7 +28438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1314830407}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
