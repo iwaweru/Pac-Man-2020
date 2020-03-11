@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8925563996359968562}
   - component: {fileID: 8925563996359968563}
-  - component: {fileID: 8925563996359968564}
   - component: {fileID: 8925563996359968565}
-  - component: {fileID: 4345124715576077243}
+  - component: {fileID: 5162795072589421491}
+  - component: {fileID: 8925563996359968564}
   m_Layer: 8
   m_Name: Blinky
   m_TagString: Untagged
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 1752805823
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8009920920847565244, guid: f3b8c8bd833c74cf8bb9db7e031ca239,
+  m_Sprite: {fileID: -133077843305011899, guid: bdc6a5a864ec73544ae649e87cb191da,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,25 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8925563996359968564
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8925563996359968567}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f10202ce1ca6c4d84950f16253d4cf2e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!58 &8925563996359968565
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,13 +94,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49
---- !u!114 &4345124715576077243
+--- !u!114 &5162795072589421491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +109,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 8925563996359968567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b35a7daf5966a94f92e0f9138aa9291, type: 3}
+  m_Script: {fileID: 11500000, guid: c2d302085f7f944bdaa7a431adbbcfc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5.5
+  idle: {fileID: 0}
+  speed: 3
+  randomMovement: 0
+  animator: {fileID: 0}
+  identity: 0
+--- !u!95 &8925563996359968564
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8925563996359968567}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16c90ec9a54e31e46ae5d9f755ef1e50, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
