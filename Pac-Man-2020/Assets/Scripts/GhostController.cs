@@ -108,6 +108,9 @@ public class GhostController : ControllerNodes
 
             for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
             {
+                if(direction*(-1) == currentPosition.validDir[i]){
+                    continue;
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node

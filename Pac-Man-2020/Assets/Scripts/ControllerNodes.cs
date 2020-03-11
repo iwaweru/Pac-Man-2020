@@ -37,7 +37,11 @@ public class ControllerNodes : MonoBehaviour
 
     public virtual void randomInput()
     {
-        ChangePosition(dirs[RandomNumber()]);
+        Vector2 newDir = dirs[RandomNumber()];
+        while(direction*(-1) == newDir){
+            newDir = dirs[RandomNumber()];
+        }
+        ChangePosition(newDir);
     }
 
     public virtual void CheckInput()//Check Input and update current direction.
