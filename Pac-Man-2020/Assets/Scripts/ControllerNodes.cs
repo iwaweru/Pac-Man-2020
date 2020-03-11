@@ -65,7 +65,7 @@ public class ControllerNodes : MonoBehaviour
         
     }
 
-    public void refresh()
+    public virtual void refresh()
     {
         
         direction = Vector2.zero;

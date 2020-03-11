@@ -26,6 +26,17 @@ public class GhostController : ControllerNodes
     private float releaseTimer = 0f;
     private bool canLeave = false; //Determines if the ghost can leave.
 
+    public void resetRelease()
+    {
+        releaseTimer = 0;
+        canLeave = false;
+    }
+
+    public override void refresh()
+    {
+        base.refresh();
+        resetRelease();
+    }
     public override void Start()
     {
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
