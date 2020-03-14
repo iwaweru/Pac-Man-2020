@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PacManController : ControllerNodes
 {
+    public bool randomMovement = false;
     private Direction facing = Direction.Left; // 0 = left, 1 = right, 2 = down, 3 = up;
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
 
     public override void Start()
     {
+        if (randomMovement)
+        {
+            this.canReverse = false;
+        }
         facing = Direction.Left;
         transform.position = startPosition;//PAC-MAN MUST START ON A NODE FOR NOW.
         Node current = getNodeAtPosition(transform.position);//Get node at this position.

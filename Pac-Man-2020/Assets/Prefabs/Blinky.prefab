@@ -113,8 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idle: {fileID: 0}
-  speed: 3
+  speed: 4
   randomMovement: 0
+  nAhead: 4
   animator: {fileID: 0}
   identity: 0
 --- !u!95 &8925563996359968564
