@@ -7,10 +7,18 @@ public class GhostController : ControllerNodes
 
     // Start is called before the first frame update
     // Time before ghosts leave jail;
+    private int chaseIteration = 0; //Utility, keeps track of current chase iteration.
+    private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
+    private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
+    private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
+
+
     private float blueStartDelay = 0f;
     private float orangeStartDelay = 5f;
     private float redStartDelay = 10f;
     private float pinkStartDelay = 15f;
+
+    string myHomeBase;
 
     public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
 
@@ -26,7 +34,11 @@ public class GhostController : ControllerNodes
     private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
+    private float behaviorTimer = 0f;
+    private bool isChasing = true;
     private bool canLeave = false; //Determines if the ghost can leave.
+
+    private int cycleNumber = 0;
 
     public void resetRelease()
     {
@@ -41,37 +53,60 @@ public class GhostController : ControllerNodes
     }
     public override void Start()
     {
+        //Initialize and Set Home Base by Identity.
+        if (identity == GhostColor.Blue)
+        {
+            myHomeBase = "Home Base Blue";
+        }
+        else if (identity == GhostColor.Red)
+        {
+            myHomeBase = "Home Base Red";
+        }
+        else if (identity == GhostColor.Orange)
+        {
+            myHomeBase = "Home Base Orange";
+        }
+        else
+            myHomeBase = "Home Base Pink";
+
+        
+
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
         dirNum = Direction.Right;//Reinitialize for refresh;
         this.canReverse = false;//Ghosts cannot move unless they are at an intersection.
 
         transform.position = startPosition;//Ghost must start at node for now.
 
-
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
         {
             currentNode = current;
-            Debug.Log(currentNode);
         }
-
- //     ChangePosition(direction);
     }
 
     public override void Update() //Override to change behavior
     {
         releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
 
+        if (canLeave) //Only increment the Behavior, or chase timer, if the ghost has left.
+            behaviorTimer += Time.deltaTime;
+
+        chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
+
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
 
-        //        randomInput();
-        if (identity == GhostColor.Pink || identity == GhostColor.Red)
-            shortestPathToPacMan();
-        else if (identity == GhostColor.Orange)
-            nAheadOfPacMan();
-        else //so only blue goes random, coz he is stupid...
-            randomInput();
+        if (isChasing) //Use preprogrammed AI if chasing.
+        {
+            if (identity == GhostColor.Red)
+                shortestPathTo(objectName: "Pac-Man-Node");
+            else if (identity == GhostColor.Pink)
+                nAheadOfPacMan();
+            else //so only blue goes random, coz he is stupid...
+                randomInput();
+        }
+        else //Otherwise, "Scatter" or chase home base.
+            shortestPathTo(objectName: myHomeBase);
 
         if (canLeave) //Don't leave unless your timer is up.
             Move();
@@ -99,9 +134,9 @@ public class GhostController : ControllerNodes
         }
     }
 
-    private void shortestPathToPacMan() //Decision making algorithm: ghost finds his neighbor node closest to PacMan as a vector and chooses that node as his next direction
+    private void shortestPathTo(string objectName) //Decision making algorithm: ghost finds his neighbor node closest to PacMan as a vector and chooses that node as his next direction
     {
-        GameObject Pac = GameObject.FindGameObjectWithTag("PacMan"); //we find pacman to later access his position
+        GameObject target = GameObject.Find(objectName); //we find pacman to later access his position
 
         if(getNodeAtPosition(transform.position) != null) //run only if on a node
         {
@@ -120,9 +155,9 @@ public class GhostController : ControllerNodes
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
-                Vector2 pacPos = Pac.transform.position; //get the coordinates of pacman
+                Vector2 targetPos = target.transform.position; //get the coordinates of pacman
 
-                float tempDistance = (pacPos - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
+                float tempDistance = (targetPos - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
                 
                 if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
@@ -211,6 +246,23 @@ public class GhostController : ControllerNodes
         }
         animator.SetInteger("orientation", (int)dirNum);
 
+    }
+
+    private void chaseOrFlee()
+    {
+        if (chaseIteration >= numberOfChaseIterations)
+            isChasing = true;
+        else if(isChasing && behaviorTimer > 20f)
+        {
+            isChasing = false;
+            behaviorTimer = 0f;
+        }
+        else if(!isChasing && behaviorTimer > 7f)
+        {
+            isChasing = true;
+            behaviorTimer = 0f;
+            chaseIteration++;
+        }
     }
 
 }
