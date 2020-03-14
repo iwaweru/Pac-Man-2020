@@ -7,6 +7,12 @@ public class GhostController : ControllerNodes
 
     // Start is called before the first frame update
     // Time before ghosts leave jail;
+    private int chaseIteration = 0; //Utility, keeps track of current chase iteration.
+    private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
+    private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
+    private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
+
+
     private float blueStartDelay = 0f;
     private float orangeStartDelay = 5f;
     private float redStartDelay = 10f;
@@ -47,6 +53,7 @@ public class GhostController : ControllerNodes
     }
     public override void Start()
     {
+        //Initialize and Set Home Base by Identity.
         if (identity == GhostColor.Blue)
         {
             myHomeBase = "Home Base Blue";
@@ -62,46 +69,43 @@ public class GhostController : ControllerNodes
         else
             myHomeBase = "Home Base Pink";
 
+        
+
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
         dirNum = Direction.Right;//Reinitialize for refresh;
         this.canReverse = false;//Ghosts cannot move unless they are at an intersection.
 
         transform.position = startPosition;//Ghost must start at node for now.
 
-
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
         {
             currentNode = current;
-            Debug.Log(currentNode);
         }
-
- //     ChangePosition(direction);
     }
 
     public override void Update() //Override to change behavior
     {
-        if (identity == GhostColor.Red)
-            Debug.Log("Currently Chasing: " + isChasing);
         releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
-        if(canLeave)
-            behaviorTimer += Time.deltaTime;//Increment the Behavior Timer.
 
-        chaseOrFlee();//Are we chasing or fleeing? 20 second chase time, seven second flee time.
+        if (canLeave) //Only increment the Behavior, or chase timer, if the ghost has left.
+            behaviorTimer += Time.deltaTime;
+
+        chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
 
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
 
-        if (isChasing)
+        if (isChasing) //Use preprogrammed AI if chasing.
         {
-            if (identity == GhostColor.Pink || identity == GhostColor.Red)
+            if (identity == GhostColor.Red)
                 shortestPathTo(objectName: "Pac-Man-Node");
-            else if (identity == GhostColor.Orange)
+            else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
             else //so only blue goes random, coz he is stupid...
                 randomInput();
         }
-        else
+        else //Otherwise, "Scatter" or chase home base.
             shortestPathTo(objectName: myHomeBase);
 
         if (canLeave) //Don't leave unless your timer is up.
@@ -246,7 +250,9 @@ public class GhostController : ControllerNodes
 
     private void chaseOrFlee()
     {
-        if(isChasing && behaviorTimer > 20f)
+        if (chaseIteration >= numberOfChaseIterations)
+            isChasing = true;
+        else if(isChasing && behaviorTimer > 20f)
         {
             isChasing = false;
             behaviorTimer = 0f;
@@ -255,8 +261,8 @@ public class GhostController : ControllerNodes
         {
             isChasing = true;
             behaviorTimer = 0f;
+            chaseIteration++;
         }
-        Debug.Log("Am I Chasing: " + isChasing);
     }
 
 }
