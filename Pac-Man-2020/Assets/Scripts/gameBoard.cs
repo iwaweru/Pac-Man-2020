@@ -110,7 +110,7 @@ public class gameBoard : MonoBehaviour
         //Add ready sprite here.
         readySprite.GetComponent<SpriteRenderer>().enabled = true;
         readySprite.GetComponent<Animator>().enabled = true;
-        readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
+        //readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
         //readySprite.GetComponent<Animator>().Stop(); //reseting the animation back to the  first frame
         readySprite.GetComponent<SpriteRenderer>().enabled = false;
