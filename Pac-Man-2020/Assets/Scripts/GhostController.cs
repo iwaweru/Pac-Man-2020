@@ -5,14 +5,14 @@ using UnityEngine;
 public class GhostController : ControllerNodes
 {
 
-    // Start is called before the first frame update
-    // Time before ghosts leave jail;
-    private int chaseIteration = 0; //Utility, keeps track of current chase iteration.
+    // Scatter Mode Settings
+    private int chaseIteration = 0; //Keeps track of current chase iteration.
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
     private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
     private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
 
 
+    // Time before ghosts leave jail;
     private float blueStartDelay = 0f;
     private float orangeStartDelay = 5f;
     private float redStartDelay = 10f;
@@ -35,10 +35,8 @@ public class GhostController : ControllerNodes
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
     private float behaviorTimer = 0f;
-    private bool isChasing = true;
+    private bool isChasing = true; //Am I chasing or fleeing (Scatter Mode)
     private bool canLeave = false; //Determines if the ghost can leave.
-
-    private int cycleNumber = 0;
 
     public void resetRelease()
     {
@@ -108,7 +106,7 @@ public class GhostController : ControllerNodes
         else //Otherwise, "Scatter" or chase home base.
             shortestPathTo(objectName: myHomeBase);
 
-        if (canLeave) //Don't leave unless your timer is up.
+        if (canLeave) //Don't leave unless your release timer is up.
             Move();
 
         UpdateOrientation();
