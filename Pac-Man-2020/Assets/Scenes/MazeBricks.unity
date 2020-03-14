@@ -32969,7 +32969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664695342}
   - component: {fileID: 1664695343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ScoreSprite
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -33025,8 +33025,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1752805823
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d3d366e0389ad48f3b33130197c8aafa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36309,7 +36309,7 @@ GameObject:
   - component: {fileID: 1978515202}
   - component: {fileID: 1978515203}
   - component: {fileID: 1978515204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HighSprite
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -36365,8 +36365,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1752805823
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5a7177e80ea1a48dbbca04fe5198b3aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
