@@ -108,10 +108,10 @@ public class gameBoard : MonoBehaviour
 
 
         //Add ready sprite here.
-        readySprite.GetComponent<SpriteRenderer>().enabled = true;
-        readySprite.GetComponent<Animator>().enabled = true;
+        //readySprite.GetComponent<SpriteRenderer>().enabled = true;
+        //readySprite.GetComponent<Animator>().enabled = true;
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
-        readySprite.GetComponent<SpriteRenderer>().enabled = false;
+        //readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
 
         //GO -- reactivate scripts.
