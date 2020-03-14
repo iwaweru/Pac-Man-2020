@@ -26,7 +26,11 @@ public class GhostController : ControllerNodes
     private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
+    private float behaviorTimer = 0f;
+    private bool isChasing = true;
     private bool canLeave = false; //Determines if the ghost can leave.
+
+    private int cycleNumber = 0;
 
     public void resetRelease()
     {
@@ -61,20 +65,25 @@ public class GhostController : ControllerNodes
     public override void Update() //Override to change behavior
     {
         releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
+        incrementBehaviorTimer(); //Increment the Behavior Timer.
 
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
 
         //        randomInput();
-        if (identity == GhostColor.Pink || identity == GhostColor.Red)
-            shortestPathToPacMan();
-        else if (identity == GhostColor.Orange)
-            nAheadOfPacMan();
-        else //so only blue goes random, coz he is stupid...
-            randomInput();
-
+        if (isChasing)
+        {
+            if (identity == GhostColor.Pink || identity == GhostColor.Red)
+                shortestPathToPacMan();
+            else if (identity == GhostColor.Orange)
+                nAheadOfPacMan();
+            else //so only blue goes random, coz he is stupid...
+                randomInput();
+        }
+        else
+            Scatter();
         if (canLeave) //Don't leave unless your timer is up.
-            Move();
+                Move();
 
         UpdateOrientation();
     }
@@ -96,6 +105,58 @@ public class GhostController : ControllerNodes
         else if(identity == GhostColor.Red && releaseTimer > redStartDelay)
         {
             canLeave = true;
+        }
+    }
+
+    private void Scatter()
+    {
+        GameObject target;
+
+        if (identity == GhostColor.Blue)
+        {
+            target = GameObject.Find("Home Base Blue");
+        }
+        else if (identity == GhostColor.Red)
+        {
+            target = GameObject.Find("Home Base Red");
+        }
+        else if (identity == GhostColor.Orange)
+        {
+            target = GameObject.Find("Home Base Orange");
+        }
+        else
+            target = GameObject.Find("Home Base Pink"); 
+
+        if (getNodeAtPosition(transform.position) != null) //run only if on a node
+        {
+            float minDistance = 9999; //initialize minDistance to a random big value that's greater than any ghost-pacman distance possible
+            Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
+            Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
+            Node[] myNeighbors = currentPosition.neighbors; //get my neighbors, store them in an array of nodes called myNeighbors
+
+            for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
+            {
+                if (direction * (-1) == currentPosition.validDir[i])
+                {
+                    continue;
+                }
+
+                Node neighborNode = myNeighbors[i];
+
+                Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
+                Vector2 targetPos = target.transform.position; //get the coordinates of pacman
+
+                float tempDistance = (targetPos - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
+
+                if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                {
+                    //Access the valid directions of the node we are currently on.
+                    minDistance = tempDistance;
+                    tempDirection = currentPosition.validDir[i];
+                }
+            }
+            //ghost chooses to go to the position of tempDirection store after the for-loop
+            ChangePosition(tempDirection); //similar to randomInput()
         }
     }
 
@@ -211,6 +272,12 @@ public class GhostController : ControllerNodes
         }
         animator.SetInteger("orientation", (int)dirNum);
 
+    }
+
+    private void incrementBehaviorTimer()
+    {
+        behaviorTimer += Time.deltaTime;
+        
     }
 
 }
