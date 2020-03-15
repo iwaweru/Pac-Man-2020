@@ -100,7 +100,7 @@ public class GhostController : ControllerNodes
                 shortestPathTo(objectName: "Pac-Man-Node");
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
-            else //so only blue goes random, coz he is stupid...
+            else 
                 randomInput();
         }
         else //Otherwise, "Scatter" or chase home base.
