@@ -49,6 +49,7 @@ public class GhostController : ControllerNodes
         base.refresh();
         resetRelease();
     }
+
     public override void Start()
     {
         //Initialize and Set Home Base by Identity.
@@ -100,6 +101,8 @@ public class GhostController : ControllerNodes
                 shortestPathTo(objectName: "Pac-Man-Node");
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
+            else if (identity == GhostColor.Blue)
+                doubleRedtoPacPlusTwo();
             else 
                 randomInput();
         }
@@ -132,7 +135,7 @@ public class GhostController : ControllerNodes
         }
     }
 
-    private void shortestPathTo(string objectName) //Decision making algorithm: ghost finds his neighbor node closest to PacMan as a vector and chooses that node as his next direction
+    private void shortestPathTo(string objectName) //Decision making algorithm: ghost finds his neighbor node closest to some object as a vector and chooses that node as his next direction
     {
         GameObject target = GameObject.Find(objectName); //we find pacman to later access his position
 
@@ -169,6 +172,76 @@ public class GhostController : ControllerNodes
         }
     }
 
+    //Overloading shortestPathTo to take vector2s as input also
+
+    private void shortestPathTo(Vector2 targetPosition) //Decision making algorithm: ghost finds his neighbor node closest to some postion as a vector and chooses that node as his next direction
+    {
+
+        if (getNodeAtPosition(transform.position) != null) //run only if on a node
+        {
+            float minDistance = 9999; //initialize minDistance to a random big value that's greater than any ghost-pacman distance possible
+            Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
+            Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
+            Node[] myNeighbors = currentPosition.neighbors; //get my neighbors, store them in an array of nodes called myNeighbors
+
+            for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
+            {
+                if (direction * (-1) == currentPosition.validDir[i])
+                {
+                    continue;
+                }
+
+                Node neighborNode = myNeighbors[i];
+
+                Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
+
+                float tempDistance = (targetPosition - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
+
+                if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                {
+                    //Access the valid directions of the node we are currently on.
+                    minDistance = tempDistance;
+                    tempDirection = currentPosition.validDir[i];
+                }
+            }
+            //ghost chooses to go to the position of tempDirection store after the for-loop
+            ChangePosition(tempDirection); //similar to randomInput()
+        }
+    }
+
+    private void doubleRedtoPacPlusTwo() ///Decision making algorithm: that choose the shortest path to the position obtained by doubling the vector from Blinky(red) to PacMan+2units.
+    {
+        Vector2 target = Vector2.zero;
+
+        PacManController Pac = GameObject.FindGameObjectWithTag("PacMan").GetComponent<PacManController>(); //we find pacman to later access his position
+        Direction PacFacing = Pac.getFacing(); //get the direction he is facing
+
+        GameObject red = GameObject.Find("Blinky"); //find red/blinky to use his position
+
+        //Now we need to use the vector coordinates of pac and red to find the vector coordinates of the target node
+        Vector2 pacPos = Pac.transform.position; //get the coordinates of pacman
+        Vector2 redPos = red.transform.position; //get the coordinates of red
+
+        Vector2 pacPosPlusTwo = Vector2.zero;
+
+        //choose how to add +2 to pac's coordinates and assgin it tt pacPosPlusTwo
+        if (PacFacing == Direction.Down)
+            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y - 2);
+        else if (PacFacing == Direction.Left)
+            pacPosPlusTwo = new Vector2(pacPos.x - 2, pacPos.y);
+        else if (PacFacing == Direction.Right)
+            pacPosPlusTwo = new Vector2(pacPos.x + 2, pacPos.y);
+        else //implies that PacFacing == Direction.Up
+            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y + 2);
+
+        //Now use pacPosPlusTwo and redPos to find and assign target
+
+        target = new Vector2(2 * (pacPosPlusTwo.x - redPos.x) , 2 * (pacPosPlusTwo.y - redPos.y)); //target is double the vector from red to pac+2 (vector algebra)
+
+        shortestPathTo(targetPosition: target); //now that inky has his target position, just take the shortest path to it. 
+    }
+
+
     private void nAheadOfPacMan() //Decision making algorithm: ghost finds his neighbor node closest to n pills ahead of PacMan as a vector and chooses that node as his next direction
     {
         PacManController Pac = GameObject.FindGameObjectWithTag("PacMan").GetComponent<PacManController>(); //we find pacman to later access his position
@@ -199,9 +272,9 @@ public class GhostController : ControllerNodes
                 //can be rewritten using a switch statement
                 //this is the most significant difference with shortestPathToPacMan() 
                 if (PacFacing == Direction.Down)
-                    PacNAheadPosition = new Vector2(pacPos.x , pacPos.y - nAhead);
+                    PacNAheadPosition = new Vector2(pacPos.x, pacPos.y - nAhead);
                 else if (PacFacing == Direction.Left)
-                    PacNAheadPosition = new Vector2(pacPos.x - nAhead , pacPos.y);
+                    PacNAheadPosition = new Vector2(pacPos.x - nAhead, pacPos.y);
                 else if (PacFacing == Direction.Right)
                     PacNAheadPosition = new Vector2(pacPos.x + nAhead, pacPos.y);
                 else //implies that PacFacing == Direction.Up
