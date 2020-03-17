@@ -26,7 +26,7 @@ public class gameBoard : MonoBehaviour
     //String identifiers of UI objects.
     public string ready = "ReadySprite";
     //Point Tracker
-    public int points = 0;
+    public static int points = 0;
     //Delay before game starts again after Pac-Man hits a ghost.
     public static int DEATH_DELAY = 5;
 
