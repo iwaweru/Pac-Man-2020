@@ -36432,7 +36432,7 @@ MonoBehaviour:
   - {fileID: 1004771047}
   - {fileID: 1809095958}
   maxscore: 2147483647
-  recalc: 0
+  recalc: 1
 --- !u!1 &1911240693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,

@@ -22,8 +22,9 @@ public class ScoreObject : MonoBehaviour
     void Update()
     {
         if(recalc){//this is probably where points will be added so score stays updated
+            score = gameBoard.points; //gets points variable from gameBoard
             UpdateScore(score);
-            recalc = false;
+            //recalc = false;
         }
     }
 
