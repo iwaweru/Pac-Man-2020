@@ -5,12 +5,20 @@ using UnityEngine;
 public class GhostController : ControllerNodes
 {
 
-    // Start is called before the first frame update
+    // Scatter Mode Settings
+    private int chaseIteration = 0; //Keeps track of current chase iteration.
+    private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
+    private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
+    private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
+
+
     // Time before ghosts leave jail;
     private float blueStartDelay = 0f;
     private float orangeStartDelay = 5f;
     private float redStartDelay = 10f;
     private float pinkStartDelay = 15f;
+
+    string myHomeBase;
 
     public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
 
@@ -26,6 +34,8 @@ public class GhostController : ControllerNodes
     private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
+    private float behaviorTimer = 0f;
+    private bool isChasing = true; //Am I chasing or fleeing (Scatter Mode)
     private bool canLeave = false; //Determines if the ghost can leave.
 
     public void resetRelease()
@@ -39,41 +49,67 @@ public class GhostController : ControllerNodes
         base.refresh();
         resetRelease();
     }
+
     public override void Start()
     {
+        //Initialize and Set Home Base by Identity.
+        if (identity == GhostColor.Blue)
+        {
+            myHomeBase = "Home Base Blue";
+        }
+        else if (identity == GhostColor.Red)
+        {
+            myHomeBase = "Home Base Red";
+        }
+        else if (identity == GhostColor.Orange)
+        {
+            myHomeBase = "Home Base Orange";
+        }
+        else
+            myHomeBase = "Home Base Pink";
+
+        
+
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
         dirNum = Direction.Right;//Reinitialize for refresh;
         this.canReverse = false;//Ghosts cannot move unless they are at an intersection.
 
         transform.position = startPosition;//Ghost must start at node for now.
 
-
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
         if (current != null)
         {
             currentNode = current;
-            Debug.Log(currentNode);
         }
-
- //     ChangePosition(direction);
     }
 
     public override void Update() //Override to change behavior
     {
         releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
 
+        if (canLeave) //Only increment the Behavior, or chase timer, if the ghost has left.
+            behaviorTimer += Time.deltaTime;
+
+        chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
+
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
 
-        //        randomInput();
-        if (identity == GhostColor.Pink || identity == GhostColor.Red)
-            shortestPathToPacMan();
-        else if (identity == GhostColor.Orange)
-            nAheadOfPacMan();
-        else //so only blue goes random, coz he is stupid...
-            randomInput();
+        if (isChasing) //Use preprogrammed AI if chasing.
+        {
+            if (identity == GhostColor.Red)
+                shortestPathTo(objectName: "Pac-Man-Node");
+            else if (identity == GhostColor.Pink)
+                nAheadOfPacMan();
+            else if (identity == GhostColor.Blue)
+                doubleRedtoPacPlusTwo();
+            else 
+                randomInput();
+        }
+        else //Otherwise, "Scatter" or chase home base.
+            shortestPathTo(objectName: myHomeBase);
 
-        if (canLeave) //Don't leave unless your timer is up.
+        if (canLeave) //Don't leave unless your release timer is up.
             Move();
 
         UpdateOrientation();
@@ -99,9 +135,9 @@ public class GhostController : ControllerNodes
         }
     }
 
-    private void shortestPathToPacMan() //Decision making algorithm: ghost finds his neighbor node closest to PacMan as a vector and chooses that node as his next direction
+    private void shortestPathTo(string objectName) //Decision making algorithm: ghost finds his neighbor node closest to some object as a vector and chooses that node as his next direction
     {
-        GameObject Pac = GameObject.FindGameObjectWithTag("PacMan"); //we find pacman to later access his position
+        GameObject target = GameObject.Find(objectName); //we find pacman to later access his position
 
         if(getNodeAtPosition(transform.position) != null) //run only if on a node
         {
@@ -120,9 +156,9 @@ public class GhostController : ControllerNodes
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
-                Vector2 pacPos = Pac.transform.position; //get the coordinates of pacman
+                Vector2 targetPos = target.transform.position; //get the coordinates of pacman
 
-                float tempDistance = (pacPos - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
+                float tempDistance = (targetPos - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
                 
                 if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
@@ -135,6 +171,76 @@ public class GhostController : ControllerNodes
             ChangePosition(tempDirection); //similar to randomInput()
         }
     }
+
+    //Overloading shortestPathTo to take vector2s as input also
+
+    private void shortestPathTo(Vector2 targetPosition) //Decision making algorithm: ghost finds his neighbor node closest to some postion as a vector and chooses that node as his next direction
+    {
+
+        if (getNodeAtPosition(transform.position) != null) //run only if on a node
+        {
+            float minDistance = 9999; //initialize minDistance to a random big value that's greater than any ghost-pacman distance possible
+            Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
+            Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
+            Node[] myNeighbors = currentPosition.neighbors; //get my neighbors, store them in an array of nodes called myNeighbors
+
+            for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
+            {
+                if (direction * (-1) == currentPosition.validDir[i])
+                {
+                    continue;
+                }
+
+                Node neighborNode = myNeighbors[i];
+
+                Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
+
+                float tempDistance = (targetPosition - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
+
+                if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                {
+                    //Access the valid directions of the node we are currently on.
+                    minDistance = tempDistance;
+                    tempDirection = currentPosition.validDir[i];
+                }
+            }
+            //ghost chooses to go to the position of tempDirection store after the for-loop
+            ChangePosition(tempDirection); //similar to randomInput()
+        }
+    }
+
+    private void doubleRedtoPacPlusTwo() ///Decision making algorithm: that choose the shortest path to the position obtained by doubling the vector from Blinky(red) to PacMan+2units.
+    {
+        Vector2 target = Vector2.zero;
+
+        PacManController Pac = GameObject.FindGameObjectWithTag("PacMan").GetComponent<PacManController>(); //we find pacman to later access his position
+        Direction PacFacing = Pac.getFacing(); //get the direction he is facing
+
+        GameObject red = GameObject.Find("Blinky"); //find red/blinky to use his position
+
+        //Now we need to use the vector coordinates of pac and red to find the vector coordinates of the target node
+        Vector2 pacPos = Pac.transform.position; //get the coordinates of pacman
+        Vector2 redPos = red.transform.position; //get the coordinates of red
+
+        Vector2 pacPosPlusTwo = Vector2.zero;
+
+        //choose how to add +2 to pac's coordinates and assgin it tt pacPosPlusTwo
+        if (PacFacing == Direction.Down)
+            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y - 2);
+        else if (PacFacing == Direction.Left)
+            pacPosPlusTwo = new Vector2(pacPos.x - 2, pacPos.y);
+        else if (PacFacing == Direction.Right)
+            pacPosPlusTwo = new Vector2(pacPos.x + 2, pacPos.y);
+        else //implies that PacFacing == Direction.Up
+            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y + 2);
+
+        //Now use pacPosPlusTwo and redPos to find and assign target
+
+        target = new Vector2(2 * (pacPosPlusTwo.x - redPos.x) , 2 * (pacPosPlusTwo.y - redPos.y)); //target is double the vector from red to pac+2 (vector algebra)
+
+        shortestPathTo(targetPosition: target); //now that inky has his target position, just take the shortest path to it. 
+    }
+
 
     private void nAheadOfPacMan() //Decision making algorithm: ghost finds his neighbor node closest to n pills ahead of PacMan as a vector and chooses that node as his next direction
     {
@@ -166,9 +272,9 @@ public class GhostController : ControllerNodes
                 //can be rewritten using a switch statement
                 //this is the most significant difference with shortestPathToPacMan() 
                 if (PacFacing == Direction.Down)
-                    PacNAheadPosition = new Vector2(pacPos.x , pacPos.y - nAhead);
+                    PacNAheadPosition = new Vector2(pacPos.x, pacPos.y - nAhead);
                 else if (PacFacing == Direction.Left)
-                    PacNAheadPosition = new Vector2(pacPos.x - nAhead , pacPos.y);
+                    PacNAheadPosition = new Vector2(pacPos.x - nAhead, pacPos.y);
                 else if (PacFacing == Direction.Right)
                     PacNAheadPosition = new Vector2(pacPos.x + nAhead, pacPos.y);
                 else //implies that PacFacing == Direction.Up
@@ -211,6 +317,23 @@ public class GhostController : ControllerNodes
         }
         animator.SetInteger("orientation", (int)dirNum);
 
+    }
+
+    private void chaseOrFlee()
+    {
+        if (chaseIteration >= numberOfChaseIterations)
+            isChasing = true;
+        else if(isChasing && behaviorTimer > 20f)
+        {
+            isChasing = false;
+            behaviorTimer = 0f;
+        }
+        else if(!isChasing && behaviorTimer > 7f)
+        {
+            isChasing = true;
+            behaviorTimer = 0f;
+            chaseIteration++;
+        }
     }
 
 }

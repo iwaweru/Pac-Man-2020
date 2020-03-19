@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idle: {fileID: 21300000, guid: 3ce905275896a2641a9a4b6f597165e4, type: 3}
-  speed: 3
+  speed: 5
   randomMovement: 0
 --- !u!95 &774375320409627205
 Animator:

@@ -11,7 +11,7 @@ public class ControllerNodes : MonoBehaviour
     protected Vector2 queuedDirection;
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
     public float speed = 3f;
-    public bool randomMovement = false;
+
 
     protected Node currentNode;
     protected Node previousNode;
@@ -141,7 +141,7 @@ public class ControllerNodes : MonoBehaviour
         if(targetNode != currentNode && targetNode != null)
         {
 
-            if(!randomMovement && canReverse && queuedDirection == direction * -1) 
+            if(canReverse && queuedDirection == direction * -1) 
             {
                 direction *= -1; //if quueued is inverse, invert direction
                 Node tempNode = targetNode; //switch targetNode and previousNode
