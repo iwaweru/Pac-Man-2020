@@ -4172,6 +4172,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pac-Man-Node
       objectReference: {fileID: 0}
+    - target: {fileID: 774375320409627205, guid: 516da81580c8fb44b99046b18ff4514e,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15297,7 +15302,6 @@ MonoBehaviour:
   Ghost4: Pinky
   PacManName: Pac-Man-Node
   ready: ReadySprite
-  points: 0
 --- !u!4 &980712364
 Transform:
   m_ObjectHideFlags: 0
