@@ -101,7 +101,7 @@ public class gameBoard : MonoBehaviour
         GameObject PacMan = GameObject.Find(PacManName);
         GameObject readySprite = GameObject.Find(ready);
 
-        //Stop movement and animation
+        //Pause game on contact
         Time.timeScale = 0.0f;
         Inky.GetComponent<GhostController>().enabled = false;
         Inky.GetComponent<Animator>().enabled = false;
@@ -118,6 +118,15 @@ public class gameBoard : MonoBehaviour
         yield return new WaitForSeconds(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
         //Ghost contact sound/ death sound
         //Disable Scripts for death delay.
+        Inky.GetComponent<GhostController>().enabled = true;
+        Inky.GetComponent<Animator>().enabled = true;
+        Blinky.GetComponent<GhostController>().enabled = true;
+        Blinky.GetComponent<Animator>().enabled = true;
+        Clyde.GetComponent<GhostController>().enabled = true;
+        Clyde.GetComponent<Animator>().enabled = true;
+        Pinky.GetComponent<GhostController>().enabled = true;
+        Pinky.GetComponent<Animator>().enabled = true;
+        //Unpause after contact
         Inky.SetActive(false);
         Blinky.SetActive(false);
         Clyde.SetActive(false);
@@ -127,6 +136,8 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<Animator>().enabled = true;
         PacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
         yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
+        PacMan.GetComponent<PacManController>().enabled = true;
+        PacMan.GetComponent<Animator>().enabled = true;
         PacMan.SetActive(false); // now pacman disappears since animation played
 
 
