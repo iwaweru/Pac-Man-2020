@@ -59,13 +59,13 @@ public class gameBoard : MonoBehaviour
                 //    }
                 //}
                 //store the object o in the board array
-                Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
+               // Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
                 //Debug.Log(board[(int)pos.x, (int)pos.y]);
 			} else
 			{
                 //just print this in case PacMan is found. 
-                Debug.Log("Found " + o.name + " at " + pos);
+                // Debug.Log("Found " + o.name + " at " + pos);
 			}
 		}
     }

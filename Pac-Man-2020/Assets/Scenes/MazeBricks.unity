@@ -2377,6 +2377,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (126)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: corner
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15297,7 +15302,6 @@ MonoBehaviour:
   Ghost4: Pinky
   PacManName: Pac-Man-Node
   ready: ReadySprite
-  points: 0
 --- !u!4 &980712364
 Transform:
   m_ObjectHideFlags: 0
@@ -17489,7 +17493,7 @@ GameObject:
   - component: {fileID: 1151314419}
   m_Layer: 9
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: corner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -30691,6 +30695,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (67)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: corner
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31441,6 +31450,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (109)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: corner
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -35491,6 +35505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: corner
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}

@@ -10,6 +10,7 @@ TagManager:
   - UI
   - PacMan
   - Base
+  - corner
   layers:
   - Default
   - TransparentFX
