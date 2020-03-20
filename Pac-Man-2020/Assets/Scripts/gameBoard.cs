@@ -53,7 +53,7 @@ public class gameBoard : MonoBehaviour
             Vector2 pos = o.transform.position; // we use "position" (instead of "localposition") which is in the global space of Unity. 
 
             //Sanity check: we only want to store the objects in the array (pills, walls, etc.) not PacMan itself. 
-            if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.tag != "Ghost" && o.tag != "UI" && o.tag != "Base")
+            if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.tag != "Ghost" && o.tag != "UI" && o.tag != "Base" && o.tag != "Sound")
 			{
                 //if (o.GetComponent<Pills>() != null) {
                 //    if (o.GetComponent<Pills>().isPellet || o.GetComponent<Pills>().isLargePellet) {
@@ -94,6 +94,7 @@ public class gameBoard : MonoBehaviour
 
     IEnumerator RepositionCharactersAndDelay()
     {
+        GameObject DeathSound = GameObject.Find("DeathSound");
         GameObject Inky = GameObject.Find(Ghost1);
         GameObject Blinky = GameObject.Find(Ghost2);
         GameObject Clyde = GameObject.Find(Ghost3);
@@ -135,6 +136,7 @@ public class gameBoard : MonoBehaviour
         GameObject pacMan = GameObject.Find(PacManName);
         PacMan.GetComponent<Animator>().enabled = true;
         PacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
+        DeathSound.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
         PacMan.GetComponent<PacManController>().enabled = true;
         PacMan.GetComponent<Animator>().enabled = true;
