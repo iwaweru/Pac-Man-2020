@@ -95,13 +95,14 @@ public class gameBoard : MonoBehaviour
     IEnumerator RepositionCharactersAndDelay()
     {
         GameObject DeathSound = GameObject.Find("DeathSound");
+        GameObject BackgroundSound = GameObject.Find("BackgroundSound");
         GameObject Inky = GameObject.Find(Ghost1);
         GameObject Blinky = GameObject.Find(Ghost2);
         GameObject Clyde = GameObject.Find(Ghost3);
         GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
         GameObject readySprite = GameObject.Find(ready);
-
+        BackgroundSound.GetComponent<AudioSource>().Stop();
         //Pause game on contact
         Time.timeScale = 0.0f;
         Inky.GetComponent<GhostController>().enabled = false;
@@ -165,6 +166,7 @@ public class gameBoard : MonoBehaviour
         Clyde.SetActive(true);
         Pinky.SetActive(true);
         PacMan.SetActive(true);
+        BackgroundSound.GetComponent<AudioSource>().Play();
     }
 
     public void munch()
