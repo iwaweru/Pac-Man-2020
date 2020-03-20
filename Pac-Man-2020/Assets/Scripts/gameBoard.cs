@@ -30,7 +30,7 @@ public class gameBoard : MonoBehaviour
     //Delay before game starts again after Pac-Man hits a ghost.
     public static int DEATH_DELAY = 5;
     public static int PAUSE_DELAY = 1; //pause when ghost hits pacman
-    public static int WAIT_DELAY = 3; //delay for death animation
+    public static int WAIT_DELAY = 2; //delay for death animation
 
     //Array of type GameObject initialized with board width and height
     //These are the locations that will be stored
