@@ -5,12 +5,18 @@ using UnityEngine;
 public class GhostController : ControllerNodes
 {
 
+    //Fright Mode Variables
+    private static bool isScared;
+    public static float frightTime= 10f;
+    private static float blinkAtTime = 7f;
+
+
     // Scatter Mode Settings
     private int chaseIteration = 0; //Keeps track of current chase iteration.
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
     private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
     private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
-
+    
 
     // Time before ghosts leave jail;
     private float blueStartDelay = 0f;
@@ -103,11 +109,13 @@ public class GhostController : ControllerNodes
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
                 doubleRedtoPacPlusTwo();
-            else 
+            else
                 randomInput();
         }
-        else //Otherwise, "Scatter" or chase home base.
+        else if (!isScared) //Otherwise, "Scatter" or chase home base.
             shortestPathTo(objectName: myHomeBase);
+        else
+            randomInput();
 
         if (canLeave) //Don't leave unless your release timer is up.
             Move();
