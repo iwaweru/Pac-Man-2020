@@ -20,9 +20,9 @@ public class GhostController : ControllerNodes
 
     // Time before ghosts leave jail;
     private float blueStartDelay = 0f;
-    private float orangeStartDelay = 50f;
-    private float redStartDelay = 100f;
-    private float pinkStartDelay = 150f;
+    private float orangeStartDelay = 5f;
+    private float redStartDelay = 10f;
+    private float pinkStartDelay = 15f;
 
     string myHomeBase;
 
