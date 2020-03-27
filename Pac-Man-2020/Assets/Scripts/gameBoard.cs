@@ -84,11 +84,6 @@ public class gameBoard : MonoBehaviour
 
     public void Die() //Put the death logic here.
       {
-    //     Time.timeScale = 0.0f;
-    //     GameObject pacMan = GameObject.Find(PacManName);
-    //     pacMan.GetComponent<PacManController>().enabled = false;
-    //     pacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
-    //     Time.timeScale = 1.0f;
         StartCoroutine(RepositionCharactersAndDelay());
     }
 
