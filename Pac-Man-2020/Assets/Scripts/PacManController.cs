@@ -112,6 +112,10 @@ public class PacManController : ControllerNodes
                     gameBoard game = temp.GetComponent<gameBoard>();//get the game state
                     game.score();//score
                     game.munch();
+                    if (tile.isLargePellet)
+                    {
+                        GhostController.IsScared = true;
+                    }
                     //game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
                     //if (!temp.GetComponent<AudioSource>().isPlaying)
                     //{

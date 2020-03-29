@@ -6,9 +6,10 @@ public class GhostController : ControllerNodes
 {
 
     //Fright Mode Variables
-    private static bool isScared;
-    public static float frightTime= 10f;
-    private static float blinkAtTime = 7f;
+    private static bool isScared = false;
+    public static float frightTime= 5f;
+    private static float blinkAtTime = 3f;
+    private static float scaredTimer = 0f;
 
 
     // Scatter Mode Settings
@@ -43,6 +44,9 @@ public class GhostController : ControllerNodes
     private float behaviorTimer = 0f;
     private bool isChasing = true; //Am I chasing or fleeing (Scatter Mode)
     private bool canLeave = false; //Determines if the ghost can leave.
+
+    public static bool IsScared { get => isScared; set => isScared = value; }
+    public static float ScaredTimer { get => scaredTimer; set => scaredTimer = value; }
 
     public void resetRelease()
     {
@@ -91,9 +95,11 @@ public class GhostController : ControllerNodes
 
     public override void Update() //Override to change behavior
     {
+        Debug.Log("Scared Timer" + " " + scaredTimer + " Fright Time" + " " + frightTime);
         releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
+        Scared();
 
-        if (canLeave) //Only increment the Behavior, or chase timer, if the ghost has left.
+        if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
             behaviorTimer += Time.deltaTime;
 
         chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
@@ -305,6 +311,23 @@ public class GhostController : ControllerNodes
 
     }
 
+    private void Scared()
+    {
+        if (scaredTimer > 0 && scaredTimer <= frightTime)
+        {
+            animator.SetBool("frightened", true);
+            if(scaredTimer >= blinkAtTime)
+            {
+                animator.SetBool("blink", true);
+            }
+        }
+        else
+        {
+            animator.SetBool("frightened", false);
+            animator.SetBool("blink", false);
+        }
+    }
+
     private void UpdateOrientation()
     {
         if (direction == Vector2.left)
@@ -329,18 +352,25 @@ public class GhostController : ControllerNodes
 
     private void chaseOrFlee()
     {
-        if (chaseIteration >= numberOfChaseIterations)
-            isChasing = true;
-        else if(isChasing && behaviorTimer > 20f)
+        if (!isScared)
+        {
+            if (chaseIteration >= numberOfChaseIterations)
+                isChasing = true;
+            else if (isChasing && behaviorTimer > 20f)
+            {
+                isChasing = false;
+                behaviorTimer = 0f;
+            }
+            else if (!isChasing && behaviorTimer > 7f)
+            {
+                isChasing = true;
+                behaviorTimer = 0f;
+                chaseIteration++;
+            }
+        }
+        else
         {
             isChasing = false;
-            behaviorTimer = 0f;
-        }
-        else if(!isChasing && behaviorTimer > 7f)
-        {
-            isChasing = true;
-            behaviorTimer = 0f;
-            chaseIteration++;
         }
     }
 
