@@ -7,6 +7,7 @@ public class PacManController : ControllerNodes
     public bool randomMovement = false;
     private Direction facing = Direction.Left; // 0 = left, 1 = right, 2 = down, 3 = up;
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
+    public int totalPellets=0;
 
     public override void Start()
     {
@@ -37,7 +38,7 @@ public class PacManController : ControllerNodes
 
         Flip();//Update orientation using current direction data.
 
-        ConsumePellet();  //Run to see if pill to be consumed. 
+        ConsumePellet();  //Run to see if pill to be consumed.
 
         StopChewing();//Check if not moving to stop chewing animation.
     }
@@ -112,6 +113,15 @@ public class PacManController : ControllerNodes
                     gameBoard game = temp.GetComponent<gameBoard>();//get the game state
                     game.score();//score
                     game.munch();
+                    totalPellets++;
+
+                    if (totalPellets == 30){
+                      GetComponent<Animator>().enabled = false;
+                      GetComponent<SpriteRenderer>().sprite = nextLevel;
+                      GameObject.Find("Game").GetComponent<gameBoard>().LevelUp();
+
+
+                    }
                     //game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
                     //if (!temp.GetComponent<AudioSource>().isPlaying)
                     //{

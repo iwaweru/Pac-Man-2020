@@ -4369,6 +4369,18 @@ PrefabInstance:
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3126367209715892093, guid: 516da81580c8fb44b99046b18ff4514e,
+        type: 3}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 21300000, guid: c3c20817c33a74d6487324d3f7d4e9fe,
+        type: 3}
+    - target: {fileID: 3126367209715892093, guid: 516da81580c8fb44b99046b18ff4514e,
+        type: 3}
+      propertyPath: nextLevel
+      value: 
+      objectReference: {fileID: 21300000, guid: c3c20817c33a74d6487324d3f7d4e9fe,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 516da81580c8fb44b99046b18ff4514e, type: 3}
 --- !u!1001 &359688547
@@ -15564,6 +15576,7 @@ MonoBehaviour:
   Ghost3: Clyde
   Ghost4: Pinky
   PacManName: Pac-Man-Node
+  PacManLevel: PacManLevel
   ready: ReadySprite
 --- !u!4 &980712364
 Transform:
