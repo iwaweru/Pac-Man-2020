@@ -61,13 +61,13 @@ public class gameBoard : MonoBehaviour
                 //    }
                 //}
                 //store the object o in the board array
-                Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
+               // Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
                 //Debug.Log(board[(int)pos.x, (int)pos.y]);
 			} else
 			{
                 //just print this in case PacMan is found. 
-                Debug.Log("Found " + o.name + " at " + pos);
+                // Debug.Log("Found " + o.name + " at " + pos);
 			}
 		}
     }
@@ -84,11 +84,6 @@ public class gameBoard : MonoBehaviour
 
     public void Die() //Put the death logic here.
       {
-    //     Time.timeScale = 0.0f;
-    //     GameObject pacMan = GameObject.Find(PacManName);
-    //     pacMan.GetComponent<PacManController>().enabled = false;
-    //     pacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
-    //     Time.timeScale = 1.0f;
         StartCoroutine(RepositionCharactersAndDelay());
     }
 

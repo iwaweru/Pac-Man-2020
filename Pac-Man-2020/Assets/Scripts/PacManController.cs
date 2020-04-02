@@ -20,7 +20,7 @@ public class PacManController : ControllerNodes
         if (current != null)
         {
             currentNode = current;
-            Debug.Log(currentNode);
+            // Debug.Log(currentNode);
         }
 
         direction = Vector2.left;//Auto start.

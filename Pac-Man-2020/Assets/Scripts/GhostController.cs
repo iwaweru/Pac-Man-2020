@@ -17,7 +17,13 @@ public class GhostController : ControllerNodes
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
     private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
     private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
-    
+
+    // Bashful settings
+    private bool isAtCorner = false; 
+    private Vector2 nextNodePos;
+    Node[] cornerNodes = new Node[4];
+    private bool needNewTarget = true;
+    // I am also using isChasing property for Bashful
 
     // Time before ghosts leave jail;
     private float blueStartDelay = 0f;
@@ -65,6 +71,12 @@ public class GhostController : ControllerNodes
 
     public override void Start()
     {
+        GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
+        
+        for(int i = 0; i < cornerNodes.Length; i++){
+            Vector2 nodePos = go[i].transform.position;
+            cornerNodes[i] = getNodeAtPosition(nodePos);
+        }
         //Initialize and Set Home Base by Identity.
         if (identity == GhostColor.Blue)
         {
@@ -323,6 +335,48 @@ public class GhostController : ControllerNodes
         }
 
     }
+private bool b = true;
+
+
+
+    private void BashfulAI()
+    {
+        Vector2 pacPos = GameObject.FindGameObjectWithTag("PacMan").transform.position;
+        Vector2 ghostPos = transform.position;
+        Node ghostNode = getNodeAtPosition(ghostPos);
+    
+        if(ghostNode != null){
+            for(int i = 0; i < cornerNodes.Length && !isAtCorner && !isChasing; i++){
+                if(cornerNodes[i] == ghostNode){
+                    print("I am corner");
+                    isAtCorner = true;
+                }
+            }
+            if(isAtCorner){
+                print("Is at corner");
+                isChasing = true;
+                isAtCorner = false;
+            }
+            if((ghostPos - pacPos).sqrMagnitude <= 20 || !isChasing){
+                print("Chase turned off");
+                isChasing = false;
+                if((ghostPos - pacPos).sqrMagnitude <= 20 && needNewTarget){
+                    nextNodePos = cornerNodes[(int)Random.Range(0, 4)].transform.position;
+                    needNewTarget = false;
+                    print("new target: " + nextNodePos);
+                }
+                print("Taarget: " + nextNodePos);
+                shortestPathTo(nextNodePos);
+            }else{
+                if(isChasing){
+                    shortestPathTo(pacPos);
+                }
+                needNewTarget = true;
+            }
+        }
+        
+    }
+
 
     private void Scared()//Might need to extract this to the gameboard class so that transitions are instantaneous.
     {
