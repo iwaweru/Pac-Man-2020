@@ -10,7 +10,7 @@ public class GhostController : ControllerNodes
     public static float frightTime= 5f;
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
-
+    private bool returningHome = false;
 
     // Scatter Mode Settings
     private int chaseIteration = 0; //Keeps track of current chase iteration.
@@ -24,6 +24,8 @@ public class GhostController : ControllerNodes
     private float orangeStartDelay = 5f;
     private float redStartDelay = 10f;
     private float pinkStartDelay = 15f;
+
+    private float myStartDelay;
 
     string myHomeBase;
 
@@ -60,6 +62,7 @@ public class GhostController : ControllerNodes
         resetRelease();
     }
 
+
     public override void Start()
     {
         //Initialize and Set Home Base by Identity.
@@ -78,7 +81,22 @@ public class GhostController : ControllerNodes
         else
             myHomeBase = "Home Base Pink";
 
-        
+        if (identity == GhostColor.Blue)
+        {
+            myStartDelay = blueStartDelay;
+        }
+        else if (identity == GhostColor.Pink)
+        {
+            myStartDelay = pinkStartDelay;
+        }
+        else if (identity == GhostColor.Orange)
+        {
+            myStartDelay = orangeStartDelay;
+        }
+        else
+        {
+            myStartDelay = redStartDelay;
+        }
 
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
         dirNum = Direction.Right;//Reinitialize for refresh;
@@ -95,9 +113,10 @@ public class GhostController : ControllerNodes
 
     public override void Update() //Override to change behavior
     {
-        Debug.Log("Scared Timer" + " " + scaredTimer + " Fright Time" + " " + frightTime);
         releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
-        Scared();
+
+        if (releaseTimer - ScaredTimer >= myStartDelay) // Only apply scared mode to ghosts that are outside jail when Pac-Man eats a pellet.
+            Scared();
 
         if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
             behaviorTimer += Time.deltaTime;
@@ -106,22 +125,28 @@ public class GhostController : ControllerNodes
 
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
-
-        if (isChasing) //Use preprogrammed AI if chasing.
+        if (returningHome)
         {
-            if (identity == GhostColor.Red)
-                shortestPathTo(objectName: "Pac-Man-Node");
-            else if (identity == GhostColor.Pink)
-                nAheadOfPacMan();
-            else if (identity == GhostColor.Blue)
-                doubleRedtoPacPlusTwo();
+            shortestPathTo(startPositions[(int)identity]);
+        }
+        else
+        {
+            if (isChasing) //Use preprogrammed AI if chasing.
+            {
+                if (identity == GhostColor.Red)
+                    shortestPathTo(objectName: "Pac-Man-Node");
+                else if (identity == GhostColor.Pink)
+                    nAheadOfPacMan();
+                else if (identity == GhostColor.Blue)
+                    doubleRedtoPacPlusTwo();
+                else
+                    randomInput();
+            }
+            else if (!isScared) //Otherwise, "Scatter" or chase home base.
+                shortestPathTo(objectName: myHomeBase);
             else
                 randomInput();
         }
-        else if (!isScared) //Otherwise, "Scatter" or chase home base.
-            shortestPathTo(objectName: myHomeBase);
-        else
-            randomInput();
 
         if (canLeave) //Don't leave unless your release timer is up.
             Move();
@@ -131,19 +156,7 @@ public class GhostController : ControllerNodes
 
     private void releaseGhosts()
     {
-        if(identity == GhostColor.Blue && releaseTimer > blueStartDelay)
-        {
-            canLeave = true;
-        }
-        else if(identity == GhostColor.Pink && releaseTimer > pinkStartDelay)
-        {
-            canLeave = true;
-        }
-        else if(identity == GhostColor.Orange && releaseTimer > orangeStartDelay)
-        {
-            canLeave = true;
-        }
-        else if(identity == GhostColor.Red && releaseTimer > redStartDelay)
+        if(releaseTimer >= myStartDelay)
         {
             canLeave = true;
         }
@@ -210,12 +223,12 @@ public class GhostController : ControllerNodes
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
 
                 float tempDistance = (targetPosition - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
-
-                if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                if(tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
                     //Access the valid directions of the node we are currently on.
                     minDistance = tempDistance;
                     tempDirection = currentPosition.validDir[i];
+
                 }
             }
             //ghost chooses to go to the position of tempDirection store after the for-loop
@@ -311,7 +324,7 @@ public class GhostController : ControllerNodes
 
     }
 
-    private void Scared()
+    private void Scared()//Might need to extract this to the gameboard class so that transitions are instantaneous.
     {
         if (scaredTimer > 0 && scaredTimer <= frightTime)
         {
@@ -325,8 +338,18 @@ public class GhostController : ControllerNodes
         {
             animator.SetBool("frightened", false);
             animator.SetBool("blink", false);
+            isScared = false; //This code communicates with the game board script.
         }
     }
+
+    public void Die()
+    {
+        
+        GameObject.Find("Game").GetComponent<gameBoard>().PauseGame(0.5f);
+        returningHome = true;
+
+    }
+
 
     private void UpdateOrientation()
     {
@@ -349,6 +372,7 @@ public class GhostController : ControllerNodes
         animator.SetInteger("orientation", (int)dirNum);
 
     }
+    
 
     private void chaseOrFlee()
     {
