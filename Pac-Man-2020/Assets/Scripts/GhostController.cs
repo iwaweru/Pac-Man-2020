@@ -26,9 +26,9 @@ public class GhostController : ControllerNodes
     // I am also using isChasing property for Bashful
 
     // Time before ghosts leave jail;
-    private float blueStartDelay = 0f;
+    private float redStartDelay = 0f;
     private float orangeStartDelay = 5f;
-    private float redStartDelay = 10f;
+    private float blueStartDelay = 10f;
     private float pinkStartDelay = 15f;
 
     private float myStartDelay;
@@ -41,9 +41,9 @@ public class GhostController : ControllerNodes
     private Direction dirNum = Direction.Right;
     public enum GhostColor
     {
-        Blue, //leaves first
+        Red, //leaves first
         Orange, //leaves second
-        Red, //leaves third
+        Blue, //leaves third
         Pink //leaves fourth
     }
     private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
@@ -93,6 +93,7 @@ public class GhostController : ControllerNodes
         else
             myHomeBase = "Home Base Pink";
 
+        //Set myStartDelay at bootup to save computation during game and make scaling other features easier.
         if (identity == GhostColor.Blue)
         {
             myStartDelay = blueStartDelay;
@@ -137,10 +138,6 @@ public class GhostController : ControllerNodes
 
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
-        if (returningHome)
-        {
-            shortestPathTo(startPositions[(int)identity]);
-        }
         else
         {
             if (isChasing) //Use preprogrammed AI if chasing.
@@ -180,6 +177,8 @@ public class GhostController : ControllerNodes
 
         if(getNodeAtPosition(transform.position) != null) //run only if on a node
         {
+
+
             float minDistance = 9999; //initialize minDistance to a random big value that's greater than any ghost-pacman distance possible
             Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
             Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
@@ -222,7 +221,6 @@ public class GhostController : ControllerNodes
             Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
             Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
             Node[] myNeighbors = currentPosition.neighbors; //get my neighbors, store them in an array of nodes called myNeighbors
-
             for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
             {
                 if (direction * (-1) == currentPosition.validDir[i])
@@ -235,7 +233,7 @@ public class GhostController : ControllerNodes
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
 
                 float tempDistance = (targetPosition - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
-                if(tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
                     //Access the valid directions of the node we are currently on.
                     minDistance = tempDistance;
