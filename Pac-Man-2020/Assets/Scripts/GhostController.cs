@@ -5,6 +5,10 @@ using UnityEngine;
 public class GhostController : ControllerNodes
 {
 
+
+// blinky
+// if numpellets consumed == cruiseElroy , speed *0.5
+
     // Scatter Mode Settings
     private int chaseIteration = 0; //Keeps track of current chase iteration.
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
@@ -68,7 +72,7 @@ public class GhostController : ControllerNodes
         else
             myHomeBase = "Home Base Pink";
 
-        
+
 
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
         dirNum = Direction.Right;//Reinitialize for refresh;
@@ -90,7 +94,7 @@ public class GhostController : ControllerNodes
         if (canLeave) //Only increment the Behavior, or chase timer, if the ghost has left.
             behaviorTimer += Time.deltaTime;
 
-        chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
+        chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file.
 
         if(!canLeave) //Don't release if we already can leave (efficiency check only).
             releaseGhosts();
@@ -103,7 +107,7 @@ public class GhostController : ControllerNodes
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
                 doubleRedtoPacPlusTwo();
-            else 
+            else
                 randomInput();
         }
         else //Otherwise, "Scatter" or chase home base.
@@ -159,7 +163,7 @@ public class GhostController : ControllerNodes
                 Vector2 targetPos = target.transform.position; //get the coordinates of pacman
 
                 float tempDistance = (targetPos - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
-                
+
                 if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
                     //Access the valid directions of the node we are currently on.
@@ -238,7 +242,7 @@ public class GhostController : ControllerNodes
 
         target = 2 * (pacPosPlusTwo - redPos); //target is double the vector from red to pac+2 (vector algebra)
 
-        shortestPathTo(targetPosition: target); //now that inky has his target position, just take the shortest path to it. 
+        shortestPathTo(targetPosition: target); //now that inky has his target position, just take the shortest path to it.
     }
 
 
@@ -270,7 +274,7 @@ public class GhostController : ControllerNodes
 
                 //if statement to choose the right n pills ahead position depending on which direction pacman is going
                 //can be rewritten using a switch statement
-                //this is the most significant difference with shortestPathToPacMan() 
+                //this is the most significant difference with shortestPathToPacMan()
                 if (PacFacing == Direction.Down)
                     PacNAheadPosition = new Vector2(pacPos.x, pacPos.y - nAhead);
                 else if (PacFacing == Direction.Left)

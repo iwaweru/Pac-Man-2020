@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.SceneManagement;
+
+
 
 
 public class gameBoard : MonoBehaviour
@@ -45,6 +48,7 @@ public class gameBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //Create an array of objects containing every objects in the scene
         Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
 
@@ -86,6 +90,12 @@ public class gameBoard : MonoBehaviour
     }
     public void LevelUp()
     {
+      // sets up scene for transtition
+      // pause game
+      // play pacman animation
+      // pause sound
+      // change speed of blinky 
+      //SceneManager.LoadScene("new");
     StartCoroutine(LevelTransition());
   }
 
@@ -136,7 +146,12 @@ public class gameBoard : MonoBehaviour
       GameObject pacMan = GameObject.Find(PacManName);
       PacMan.GetComponent<Animator>().enabled = true;
       PacMan.GetComponent<Animator>().Play("levelUpPac", 0, 0);
-      DeathSound.GetComponent<AudioSource>().Play();
+
+      //DeathSound.GetComponent<AudioSource>().Play();
+      //SceneManager.LoadScene("MazeBricks");
+
+      // increase ghost speed , cruise ellroy
+      //reset gameboard state
       yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
       PacMan.GetComponent<PacManController>().enabled = true;
       PacMan.GetComponent<Animator>().enabled = true;
