@@ -90,6 +90,11 @@ public class PacManController : ControllerNodes
             GetComponent<Animator>().enabled = false;
             GetComponent<SpriteRenderer>().sprite = idle; //Uncomment this, and set the graphic you want Pac-Man to stop on.
         }
+        if(totalPellets==30) {
+          GetComponent<Animator>().enabled = false;
+          GetComponent<SpriteRenderer>().sprite = nextLevel;
+        }
+
         else
         {
             GetComponent<Animator>().enabled = true;
@@ -118,6 +123,7 @@ public class PacManController : ControllerNodes
                     if (totalPellets == 30){
                       GetComponent<Animator>().enabled = false;
                       GetComponent<SpriteRenderer>().sprite = nextLevel;
+                      //GetComponent<Animator>().Play("DeathAnim", 0, 0);
                       GameObject.Find("Game").GetComponent<gameBoard>().LevelUp();
 
 

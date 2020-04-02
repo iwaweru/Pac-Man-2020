@@ -133,13 +133,14 @@ public class gameBoard : MonoBehaviour
       Clyde.SetActive(false);
       Pinky.SetActive(false);// not pacman yet since death animation plays once ghosts disappear
 
-      //GameObject pacManLevel = GameObject.Find(PacManLevel);
-      //PacLevel.GetComponent<Animator>().Play("levelUpPac", 0, 0);
+      GameObject pacMan = GameObject.Find(PacManName);
+      PacMan.GetComponent<Animator>().enabled = true;
+      PacMan.GetComponent<Animator>().Play("levelUpPac", 0, 0);
       DeathSound.GetComponent<AudioSource>().Play();
       yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
       PacMan.GetComponent<PacManController>().enabled = true;
       PacMan.GetComponent<Animator>().enabled = true;
-      PacMan.SetActive(false); // now pacman disappears since animation played
+      PacMan.SetActive(false);
 
 
       //Reposition the character and reset all temp variables to original conditions.
