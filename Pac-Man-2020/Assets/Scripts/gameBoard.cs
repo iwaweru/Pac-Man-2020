@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.SceneManagement;
-
+using UnityEngine.SceneManagement;
 
 
 
@@ -27,12 +26,13 @@ public class gameBoard : MonoBehaviour
     public string Ghost4 = "Pinky";
     public string PacManName = "Pac-Man-Node";
     public string PacManLevel = "PacManLevel";
+    public int speed ;
 
     //String identifiers of UI objects.
     public string ready = "ReadySprite";
     //Point Tracker
     public static int points = 0;
-    public static int level = 1;
+
     //Delay before game starts again after Pac-Man hits a ghost.
     public static int DEATH_DELAY = 5;
     public static int PAUSE_DELAY = 1; //pause when ghost hits pacman
@@ -90,11 +90,19 @@ public class gameBoard : MonoBehaviour
     }
     public void LevelUp()
     {
+    /*  level ++;
+      cruiseElroy -= 25;
+      if (1<= level <=5){
+
+      }else {
+        SceneManager.LoadScene("Winner");
+      }*/
+
       // sets up scene for transtition
       // pause game
       // play pacman animation
       // pause sound
-      // change speed of blinky 
+      // change speed of blinky
       //SceneManager.LoadScene("new");
     StartCoroutine(LevelTransition());
   }
@@ -137,24 +145,24 @@ public class gameBoard : MonoBehaviour
       Clyde.GetComponent<Animator>().enabled = true;
       Pinky.GetComponent<GhostController>().enabled = true;
       Pinky.GetComponent<Animator>().enabled = true;
+
       //Unpause after contact
       Inky.SetActive(false);
       Blinky.SetActive(false);
       Clyde.SetActive(false);
       Pinky.SetActive(false);// not pacman yet since death animation plays once ghosts disappear
 
-      GameObject pacMan = GameObject.Find(PacManName);
+
       PacMan.GetComponent<Animator>().enabled = true;
       PacMan.GetComponent<Animator>().Play("levelUpPac", 0, 0);
 
-      //DeathSound.GetComponent<AudioSource>().Play();
-      //SceneManager.LoadScene("MazeBricks");
 
+      //DeathSound.GetComponent<AudioSource>().Play();
       // increase ghost speed , cruise ellroy
       //reset gameboard state
       yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
       PacMan.GetComponent<PacManController>().enabled = true;
-      PacMan.GetComponent<Animator>().enabled = true;
+
       PacMan.SetActive(false);
 
 
@@ -165,6 +173,15 @@ public class gameBoard : MonoBehaviour
       PacMan.GetComponent<PacManController>().refresh();
       Pinky.GetComponent<GhostController>().refresh();
 
+
+
+
+
+
+
+
+      yield return new WaitForSeconds(WAIT_DELAY);
+      SceneManager.LoadScene("MazeBricks");
       //Add ready sprite here.
       readySprite.GetComponent<SpriteRenderer>().enabled = true;
       readySprite.GetComponent<Animator>().enabled = true;
@@ -172,8 +189,13 @@ public class gameBoard : MonoBehaviour
       yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
       readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
       readySprite.GetComponent<SpriteRenderer>().enabled = false;
-      //Remove ready sprite here.
 
+
+
+      /*PacMan.GetComponent<Animator>().speed =5;
+      PacMan.GetComponent<Animator>().enabled = true;
+      //Remove ready sprite here.
+yield return new WaitForSeconds(WAIT_DELAY);
       //GO -- reactivate scripts.
       Inky.SetActive(true);
       Blinky.SetActive(true);
@@ -181,6 +203,10 @@ public class gameBoard : MonoBehaviour
       Pinky.SetActive(true);
       PacMan.SetActive(true);
       BackgroundSound.GetComponent<AudioSource>().Play();
+      */
+
+
+
     }
 
 
@@ -201,6 +227,7 @@ public class gameBoard : MonoBehaviour
 
     IEnumerator RepositionCharactersAndDelay()
     {
+
         GameObject DeathSound = GameObject.Find("DeathSound");
         GameObject BackgroundSound = GameObject.Find("BackgroundSound");
         GameObject Inky = GameObject.Find(Ghost1);

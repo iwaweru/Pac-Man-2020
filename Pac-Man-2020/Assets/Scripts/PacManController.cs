@@ -125,7 +125,7 @@ public class PacManController : ControllerNodes
                       GetComponent<SpriteRenderer>().sprite = nextLevel;
                       //GetComponent<Animator>().Play("DeathAnim", 0, 0);
                       GameObject.Find("Game").GetComponent<gameBoard>().LevelUp();
-                      
+
 
 
 
