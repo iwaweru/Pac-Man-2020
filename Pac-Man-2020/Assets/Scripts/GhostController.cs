@@ -62,7 +62,7 @@ public class GhostController : ControllerNodes
 
     public override void Start()
     {
-        // get cornoer nodes for BashfulAI
+        // get corner nodes for BashfulAI
         go = GameObject.FindGameObjectsWithTag("corner");
         for(int i = 0; i < cornerNodes.Length; i++){
             Vector2 nodePos = go[i].transform.position;
@@ -122,14 +122,14 @@ public class GhostController : ControllerNodes
         if (isChasing) //Use preprogrammed AI if chasing.
         {
             if (identity == GhostColor.Red)
-                shortestPathTo(objectName: "Pac-Man-Node");
+                Dijkstra();
+                // shortestPathTo(objectName: "Pac-Man-Node");
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
-                Dijkstra();
-                //doubleRedtoPacPlusTwo();
+                doubleRedtoPacPlusTwo();
             else 
-                randomInput();
+                BashfulAI();
         }
         else //Otherwise, "Scatter" or chase home base.
             shortestPathTo(objectName: myHomeBase);
@@ -307,7 +307,7 @@ public class GhostController : ControllerNodes
 
                 //now that we have the right PacFourAheadPosition we want, we can find its distance to the ghost...
 
-                float tempDistance = Mathf.Abs((PacNAheadPosition - nodePos).sqrMagnitude); //distance from n pills ahead of pacman to the node we are currently iterating over
+                float tempDistance = (PacNAheadPosition - nodePos).sqrMagnitude; //distance from n pills ahead of pacman to the node we are currently iterating over
 
                 if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
@@ -332,26 +332,21 @@ public class GhostController : ControllerNodes
         if(ghostNode != null){
             for(int i = 0; i < cornerNodes.Length && !isAtCorner && !isChasing; i++){
                 if(cornerNodes[i] == ghostNode){
-                    // print("I am corner");
                     isAtCorner = true;
                 }
             }
             if(isAtCorner){
-                // print("Is at corner");
                 isChasing = true;
                 isAtCorner = false;
             }
             if((ghostPos - pacPos).sqrMagnitude <= 20 || !isChasing){
-                // print("Chase turned off");
                 isChasing = false;
                 if((ghostPos - pacPos).sqrMagnitude <= 20 && needNewTarget){
                     int num = (int)Random.Range(0, 4);
                     print(num);
                     nextNodePos = cornerNodes[num].transform.position;
                     needNewTarget = false;
-                    // print("new target: " + nextNodePos);
                 }
-                // print("Taarget: " + nextNodePos);
                 shortestPathTo(nextNodePos);
             }else{
                 if(isChasing){
@@ -383,16 +378,12 @@ public class GhostController : ControllerNodes
                     Node u = v.neighbors[i];
                     if(!visited.Contains(u)){
                         float thisPathLength = v.distance + v.neighborDistance[i]; // distance to parent node from origin + distance to this neighbor node
-                        // print("u: " + u.distance);
-                        // print("v: " + v.distance);
                         if(u.distance > thisPathLength){
                             u.distance = thisPathLength; // distance to parent node from origin + distance to this neighbor node
                             u.predecessor = v;
                         }
                         priorityList.Add(u); 
                         priorityList.Sort((x, y) => x.distance.CompareTo(y.distance)); // sort list based on Node distance from ghost; Node with smallest distance first
-                    
-                        //print(priorityList[0].ToString());
                     }
                 }  
             }
@@ -403,8 +394,6 @@ public class GhostController : ControllerNodes
     }
 
     private Vector2 findNextDirection(Node ghostNode, Node pacManNode){
-        // print("ghostNode: " + ghostNode);
-        // print("pacManNode: " + pacManNode.predecessor);
         if(ghostNode != pacManNode.predecessor){
             return findNextDirection(ghostNode, pacManNode.predecessor);
         }else{
