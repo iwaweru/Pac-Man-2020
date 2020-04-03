@@ -114,10 +114,9 @@ public class GhostController : ControllerNodes
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
+                doubleRedtoPacPlusTwo();
+            else
                 BashfulAI();
-                //doubleRedtoPacPlusTwo();
-            else 
-                randomInput();
         }
         else //Otherwise, "Scatter" or chase home base.
             shortestPathTo(objectName: myHomeBase);
