@@ -200,7 +200,6 @@ public class ControllerNodes : MonoBehaviour
         GameObject tile = GameObject.Find("Game").GetComponent<gameBoard>().board[(int)pos.x, (int)pos.y];
         if (tile != null)
         {
-            Debug.Log("Not Null");
             return tile.GetComponent<Node>();//Node is a component of the pill objects.
         }
         return null;

@@ -11,6 +11,7 @@ TagManager:
   - PacMan
   - Base
   - Sound
+  - corner
   layers:
   - Default
   - TransparentFX
