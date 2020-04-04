@@ -42,6 +42,10 @@ public class GhostController : ControllerNodes
     private float blueStartDelay = 10f;
     private float pinkStartDelay = 15f;
 
+    public float defaultSpeed;
+    public float eyeSpeed;
+
+
     private float myStartDelay;
 
     string myHomeBase;
@@ -83,6 +87,7 @@ public class GhostController : ControllerNodes
 
     public override void Start()
     {
+        speed = defaultSpeed;
         GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
         
         for(int i = 0; i < cornerNodes.Length; i++){
@@ -447,6 +452,9 @@ private bool b = true;
         resetAnimator();
         returningHome = true;
         GetComponent<Animator>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        speed = eyeSpeed;
+        
 
     }
 
@@ -464,6 +472,8 @@ private bool b = true;
         releaseTimer = myStartDelay;//We were just released. Helps out animator.
         returningHome = false;
         GetComponent<Animator>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+        speed = defaultSpeed;
     }
 
     private void UpdateOrientation()

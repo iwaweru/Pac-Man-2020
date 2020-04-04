@@ -13,7 +13,6 @@ public class ControllerNodes : MonoBehaviour
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
     public float speed = 3f;
 
-
     protected Node currentNode;
     protected Node previousNode;
     protected Node targetNode;
