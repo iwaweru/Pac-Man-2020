@@ -11,7 +11,7 @@ public class GhostController : ControllerNodes
     public static float frightTime= 5f;
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
-
+    private bool returningHome = false;
     public Node ghostHouse;
     // Scatter Mode Settings
     private int chaseIteration = 0; //Keeps track of current chase iteration.
@@ -164,7 +164,7 @@ public class GhostController : ControllerNodes
                     else if (identity == GhostColor.Blue)
                         doubleRedtoPacPlusTwo();
                     else
-                        BashfulAI(); //Bashful AI Allows ghosts to reenter jail.
+                        randomInput(); //Bashful AI Allows ghosts to reenter jail.
                 }
                 else //Otherwise, "Scatter" or chase home base.
                     shortestPathTo(objectName: myHomeBase);
@@ -204,6 +204,14 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
+                if (!returningHome)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
@@ -239,6 +247,14 @@ public class GhostController : ControllerNodes
                 if (direction * (-1) == currentPosition.validDir[i])
                 {
                     continue;
+                }
+                if (!returningHome)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
                 }
                 Node neighborNode = myNeighbors[i];
 
@@ -310,6 +326,14 @@ public class GhostController : ControllerNodes
                 if (direction * (-1) == currentPosition.validDir[i]) //Mate must document
                 {
                     continue;
+                }
+                if (!returningHome)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
                 }
                 Node neighborNode = myNeighbors[i];
 
