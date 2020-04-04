@@ -47,7 +47,8 @@ public class ControllerNodes : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            ChangePosition(Vector2.down);
+            if (!currentNode.GetComponent<Pills>().isJailEntrance)
+                ChangePosition(Vector2.down);
             //MoveToNode(direction);
         }
         else if (Input.GetKeyDown(KeyCode.W))

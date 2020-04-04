@@ -127,36 +127,48 @@ public class GhostController : ControllerNodes
 
     public override void Update() //Override to change behavior
     {
-        releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
-
-        if (releaseTimer - ScaredTimer >= myStartDelay){ // Only apply scared mode to ghosts that are outside jail when Pac-Man eats a pellet.
-            currentlyScared = true;
-            Scared();
+        if (returningHome)
+        {
+            shortestPathTo(ghostHouse.transform.position);
+            if(transform.position == ghostHouse.transform.position)
+            {
+                canLeave = false;
+            }
         }
-        if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
-            behaviorTimer += Time.deltaTime;
-
-        chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
-
-        if(!canLeave) //Don't release if we already can leave (efficiency check only).
-            releaseGhosts();
         else
         {
-            if (currentlyScared)
-                randomInput();
-            else if (isChasing) //Use preprogrammed AI if chasing.
-            {
-                if (identity == GhostColor.Red)
-                    shortestPathTo(objectName: "Pac-Man-Node");
-                else if (identity == GhostColor.Pink)
-                    nAheadOfPacMan();
-                else if (identity == GhostColor.Blue)
-                    doubleRedtoPacPlusTwo();
-                else
-                    BashfulAI();
+            releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
+
+            if (releaseTimer - ScaredTimer >= myStartDelay)
+            { // Only apply scared mode to ghosts that are outside jail when Pac-Man eats a pellet.
+                currentlyScared = true;
+                Scared();
             }
-            else //Otherwise, "Scatter" or chase home base.
-                shortestPathTo(objectName: myHomeBase);
+            if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
+                behaviorTimer += Time.deltaTime;
+
+            chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
+
+            if (!canLeave) //Don't release if we already can leave (efficiency check only).
+                releaseGhosts();
+            else
+            {
+                if (currentlyScared)
+                    randomInput();
+                else if (isChasing) //Use preprogrammed AI if chasing.
+                {
+                    if (identity == GhostColor.Red)
+                        shortestPathTo(objectName: "Pac-Man-Node");
+                    else if (identity == GhostColor.Pink)
+                        nAheadOfPacMan();
+                    else if (identity == GhostColor.Blue)
+                        doubleRedtoPacPlusTwo();
+                    else
+                        randomInput(); //Bashful AI Allows ghosts to reenter jail.
+                }
+                else //Otherwise, "Scatter" or chase home base.
+                    shortestPathTo(objectName: myHomeBase);
+            }
         }
 
         if (canLeave) //Don't leave unless your release timer is up.
