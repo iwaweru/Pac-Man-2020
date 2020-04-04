@@ -12,7 +12,9 @@ public class GhostController : ControllerNodes
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
     private bool returningHome = false;
+    public Animation defaultState;
 
+    public Animation defualtAnimation;
     public Sprite eyesLeft;
     public Sprite eyesRight;
     public Sprite eyesUp;
@@ -124,7 +126,7 @@ public class GhostController : ControllerNodes
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
         dirNum = Direction.Right;//Reinitialize for refresh;
         this.canReverse = false;//Ghosts cannot move unless they are at an intersection.
-
+        animator = GetComponent<Animator>();
         transform.position = startPosition;//Ghost must start at node for now.
 
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
@@ -141,7 +143,7 @@ public class GhostController : ControllerNodes
             shortestPathTo(myGhostHouse.transform.position);
             if(transform.position == myGhostHouse.transform.position || transform.position == otherGhostHouse.transform.position)
             {
-                canLeave = false;
+                respawn();
             }
         }
         else
@@ -438,14 +440,39 @@ private bool b = true;
         }
     }
 
-    public void Die()
+    private void exitScaredMode()
     {
-        
+        Animator anim = GetComponent<Animator>();
+        anim.SetBool("blink", true);
+        anim.SetBool("frightened", false);
+        anim.SetBool("blink", false);
+    }
+
+    public void Die()
+    { 
         GameObject.Find("Game").GetComponent<gameBoard>().PauseGame(0.5f);
         returningHome = true;
+        GetComponent<Animator>().SetTrigger("reset");
+        GetComponent<Animator>().SetBool("frightened", false);
+        GetComponent<Animator>().SetBool("blink", false);
+        GetComponent<Animator>().enabled = false;
+
 
     }
 
+    void respawn()
+    {
+        releaseTimer = myStartDelay;//We were just released. Helps out animator.
+        returningHome = false;
+        resetAnimator();
+    }
+
+    void resetAnimator()
+    {
+        Animator anim = GetComponent<Animator>();
+        anim.enabled = true;
+        
+    }
 
     private void UpdateOrientation()
     {
@@ -471,6 +498,8 @@ private bool b = true;
         }
         else
         {
+            GetComponent<Animator>().enabled = false;
+            Debug.Log("Disabling!");
             if (direction == Vector2.left)
             {
                 GetComponent<SpriteRenderer>().sprite = eyesLeft;

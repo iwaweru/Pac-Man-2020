@@ -83,7 +83,7 @@ public class gameBoard : MonoBehaviour
     }
 
     public void Die() //Put the death logic here.
-      {
+    {
         StartCoroutine(RepositionCharactersAndDelay());
     }
 
