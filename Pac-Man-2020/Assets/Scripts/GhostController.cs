@@ -12,6 +12,12 @@ public class GhostController : ControllerNodes
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
     private bool returningHome = false;
+
+    public Sprite eyesLeft;
+    public Sprite eyesRight;
+    public Sprite eyesUp;
+    public Sprite eyesDown;
+
     public Node myGhostHouse;
     public Node otherGhostHouse;
 
@@ -443,23 +449,45 @@ private bool b = true;
 
     private void UpdateOrientation()
     {
-        if (direction == Vector2.left)
+        if (!returningHome)
         {
-            dirNum = Direction.Left;
+            if (direction == Vector2.left)
+            {
+                dirNum = Direction.Left;
+            }
+            else if (direction == Vector2.right)
+            {
+                dirNum = Direction.Right;
+            }
+            else if (direction == Vector2.up)
+            {
+                dirNum = Direction.Up;
+            }
+            else if (direction == Vector2.down)
+            {
+                dirNum = Direction.Down;
+            }
+            animator.SetInteger("orientation", (int)dirNum);
         }
-        else if(direction == Vector2.right)
+        else
         {
-            dirNum = Direction.Right;
+            if (direction == Vector2.left)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesLeft;
+            }
+            else if (direction == Vector2.right)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesRight;
+            }
+            else if (direction == Vector2.up)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesUp;
+            }
+            else if (direction == Vector2.down)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesDown;
+            }
         }
-        else if(direction == Vector2.up)
-        {
-            dirNum = Direction.Up;
-        }
-        else if(direction == Vector2.down)
-        {
-            dirNum = Direction.Down;
-        }
-        animator.SetInteger("orientation", (int)dirNum);
 
     }
     
