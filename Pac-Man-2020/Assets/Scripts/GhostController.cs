@@ -12,7 +12,9 @@ public class GhostController : ControllerNodes
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
     private bool returningHome = false;
-    public Node ghostHouse;
+    public Node myGhostHouse;
+    public Node otherGhostHouse;
+
     // Scatter Mode Settings
     private int chaseIteration = 0; //Keeps track of current chase iteration.
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
@@ -129,8 +131,8 @@ public class GhostController : ControllerNodes
     {
         if (returningHome)
         {
-            shortestPathTo(ghostHouse.transform.position);
-            if(transform.position == ghostHouse.transform.position)
+            shortestPathTo(myGhostHouse.transform.position);
+            if(transform.position == myGhostHouse.transform.position || transform.position == otherGhostHouse.transform.position)
             {
                 canLeave = false;
             }
