@@ -140,7 +140,9 @@ public class GhostController : ControllerNodes
             releaseGhosts();
         else
         {
-            if (isChasing) //Use preprogrammed AI if chasing.
+            if (isScared)
+                randomInput();
+            else if (isChasing) //Use preprogrammed AI if chasing.
             {
                 if (identity == GhostColor.Red)
                     shortestPathTo(objectName: "Pac-Man-Node");
@@ -151,10 +153,8 @@ public class GhostController : ControllerNodes
                 else
                     BashfulAI();
             }
-            else if (!isScared) //Otherwise, "Scatter" or chase home base.
+            else //Otherwise, "Scatter" or chase home base.
                 shortestPathTo(objectName: myHomeBase);
-            else
-                randomInput();
         }
 
         if (canLeave) //Don't leave unless your release timer is up.
