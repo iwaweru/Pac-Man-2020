@@ -1588,7 +1588,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
-  isJailEntrance: 0
+  isJailEntrance: 1
   portalReceiver: {fileID: 0}
 --- !u!1 &140336741 stripped
 GameObject:
@@ -5079,7 +5079,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
-  isJailEntrance: 0
+  isJailEntrance: 1
   portalReceiver: {fileID: 0}
 --- !u!1001 &408417911
 PrefabInstance:
@@ -13163,7 +13163,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
-  isJailEntrance: 0
+  isJailEntrance: 1
   portalReceiver: {fileID: 0}
 --- !u!1 &796920882 stripped
 GameObject:

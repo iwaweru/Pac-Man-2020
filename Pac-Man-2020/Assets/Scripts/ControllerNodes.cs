@@ -32,7 +32,7 @@ public class ControllerNodes : MonoBehaviour
     public virtual void randomInput()
     {
         Vector2 newDir = dirs[RandomNumber()];
-        while(direction*(-1) == newDir){
+        while(direction*(-1) == newDir || (newDir == Vector2.down && GetTileAtPosition(transform.position).GetComponent<Pills>().isJailEntrance)){
             newDir = dirs[RandomNumber()];
         }
         ChangePosition(newDir);

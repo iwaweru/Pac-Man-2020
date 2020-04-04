@@ -7,6 +7,7 @@ public class GhostController : ControllerNodes
 
     //Fright Mode Variables
     private static bool isScared = false;
+    private bool currentlyScared = false;
     public static float frightTime= 5f;
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
@@ -128,9 +129,10 @@ public class GhostController : ControllerNodes
     {
         releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
 
-        if (releaseTimer - ScaredTimer >= myStartDelay) // Only apply scared mode to ghosts that are outside jail when Pac-Man eats a pellet.
+        if (releaseTimer - ScaredTimer >= myStartDelay){ // Only apply scared mode to ghosts that are outside jail when Pac-Man eats a pellet.
+            currentlyScared = true;
             Scared();
-
+        }
         if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
             behaviorTimer += Time.deltaTime;
 
@@ -140,7 +142,7 @@ public class GhostController : ControllerNodes
             releaseGhosts();
         else
         {
-            if (isScared)
+            if (currentlyScared)
                 randomInput();
             else if (isChasing) //Use preprogrammed AI if chasing.
             {
@@ -190,7 +192,14 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-
+                if (!returningHome)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
@@ -227,7 +236,14 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-
+                if (!returningHome)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
@@ -299,7 +315,14 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-
+                if (!returningHome)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
@@ -390,6 +413,7 @@ private bool b = true;
         {
             animator.SetBool("frightened", false);
             animator.SetBool("blink", false);
+            currentlyScared = false;
         }
     }
 
