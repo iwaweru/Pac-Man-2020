@@ -161,8 +161,9 @@ public class gameBoard : MonoBehaviour
       // increase ghost speed , cruise ellroy
       //reset gameboard state
       yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
-      PacMan.GetComponent<PacManController>().enabled = true;
 
+      PacMan.GetComponent<PacManController>().enabled = true;
+      PacMan.GetComponent<Animator>().enabled = true;
       PacMan.SetActive(false);
 
 
@@ -180,22 +181,27 @@ public class gameBoard : MonoBehaviour
 
 
 
-      yield return new WaitForSeconds(WAIT_DELAY);
+      //yield return new WaitForSeconds(WAIT_DELAY);
       SceneManager.LoadScene("MazeBricks");
       //Add ready sprite here.
+
+
       readySprite.GetComponent<SpriteRenderer>().enabled = true;
       readySprite.GetComponent<Animator>().enabled = true;
       readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
       yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
       readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
       readySprite.GetComponent<SpriteRenderer>().enabled = false;
+      PauseGame(0.5f);
 
 
 
-      /*PacMan.GetComponent<Animator>().speed =5;
-      PacMan.GetComponent<Animator>().enabled = true;
+
+
+      //PacMan.GetComponent<Animator>().speed =5;
+      //PacMan.GetComponent<Animator>().enabled = true;
       //Remove ready sprite here.
-yield return new WaitForSeconds(WAIT_DELAY);
+
       //GO -- reactivate scripts.
       Inky.SetActive(true);
       Blinky.SetActive(true);
@@ -203,7 +209,7 @@ yield return new WaitForSeconds(WAIT_DELAY);
       Pinky.SetActive(true);
       PacMan.SetActive(true);
       BackgroundSound.GetComponent<AudioSource>().Play();
-      */
+
 
 
 
