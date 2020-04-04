@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControllerNodes : MonoBehaviour
 {
+    protected bool isPacMan = false;//Used for jailhouse logic
     private Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
     protected bool canReverse = true;
     protected Vector2 direction = new Vector2(0,0);
@@ -47,8 +48,7 @@ public class ControllerNodes : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            if (!currentNode.GetComponent<Pills>().isJailEntrance)
-                ChangePosition(Vector2.down);
+            ChangePosition(Vector2.down);
             //MoveToNode(direction);
         }
         else if (Input.GetKeyDown(KeyCode.W))
@@ -89,9 +89,14 @@ public class ControllerNodes : MonoBehaviour
         {
             if(currentNode.validDir[i] == d)
             {
+                
                 moveToNode = currentNode.neighbors[i];
                 break;
             }
+        }
+        if (isPacMan && d == Vector2.down && currentNode.GetComponent<Pills>().isJailEntrance)
+        {
+            return null;
         }
         //disallow diagonal movement here.
         return moveToNode;

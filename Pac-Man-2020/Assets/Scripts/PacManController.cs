@@ -10,6 +10,7 @@ public class PacManController : ControllerNodes
 
     public override void Start()
     {
+        isPacMan = true;
         if (randomMovement)
         {
             this.canReverse = false;
