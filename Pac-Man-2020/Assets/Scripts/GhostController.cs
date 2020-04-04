@@ -440,23 +440,22 @@ private bool b = true;
         }
     }
 
-    private void exitScaredMode()
+    public void Die()
     {
-        Animator anim = GetComponent<Animator>();
-        anim.SetBool("blink", true);
-        anim.SetBool("frightened", false);
-        anim.SetBool("blink", false);
+        
+        GameObject.Find("Game").GetComponent<gameBoard>().PauseGame(0.5f);
+        resetAnimator();
+        returningHome = true;
+        GetComponent<Animator>().enabled = false;
+
     }
 
-    public void Die()
-    { 
-        GameObject.Find("Game").GetComponent<gameBoard>().PauseGame(0.5f);
-        returningHome = true;
+    void resetAnimator()
+    {
+
         GetComponent<Animator>().SetTrigger("reset");
         GetComponent<Animator>().SetBool("frightened", false);
         GetComponent<Animator>().SetBool("blink", false);
-        GetComponent<Animator>().enabled = false;
-
 
     }
 
@@ -464,14 +463,7 @@ private bool b = true;
     {
         releaseTimer = myStartDelay;//We were just released. Helps out animator.
         returningHome = false;
-        resetAnimator();
-    }
-
-    void resetAnimator()
-    {
-        Animator anim = GetComponent<Animator>();
-        anim.enabled = true;
-        
+        GetComponent<Animator>().enabled = true;
     }
 
     private void UpdateOrientation()
