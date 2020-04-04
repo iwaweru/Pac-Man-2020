@@ -12,7 +12,7 @@ public class GhostController : ControllerNodes
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
     private bool returningHome = false;
-
+    public Node ghostHouse;
     // Scatter Mode Settings
     private int chaseIteration = 0; //Keeps track of current chase iteration.
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
@@ -401,7 +401,7 @@ private bool b = true;
 
     private void Scared()//Might need to extract this to the gameboard class so that transitions are instantaneous.
     {
-        if (scaredTimer > 0 && scaredTimer <= frightTime)
+        if (scaredTimer > 0 && scaredTimer <= frightTime)//Need to add transition from blink to fright for timer reset.
         {
             animator.SetBool("frightened", true);
             if(scaredTimer >= blinkAtTime)
