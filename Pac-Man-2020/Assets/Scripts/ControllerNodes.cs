@@ -66,7 +66,7 @@ public class ControllerNodes : MonoBehaviour
 
     public virtual void refresh()
     {
-        
+        returningHome = false;
         direction = Vector2.zero;
         queuedDirection = Vector2.zero;
         currentNode = null;

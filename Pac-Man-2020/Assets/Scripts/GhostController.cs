@@ -164,7 +164,7 @@ public class GhostController : ControllerNodes
                     else if (identity == GhostColor.Blue)
                         doubleRedtoPacPlusTwo();
                     else
-                        randomInput(); //Bashful AI Allows ghosts to reenter jail.
+                        BashfulAI(); //Bashful AI Allows ghosts to reenter jail.
                 }
                 else //Otherwise, "Scatter" or chase home base.
                     shortestPathTo(objectName: myHomeBase);
