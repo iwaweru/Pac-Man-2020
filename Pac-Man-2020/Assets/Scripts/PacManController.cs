@@ -114,6 +114,7 @@ public class PacManController : ControllerNodes
                     game.munch();
                     if (tile.isLargePellet)
                     {
+                        GhostController.ScaredTimer = 0f;
                         GhostController.IsScared = true;
                     }
                     //game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
