@@ -67,6 +67,7 @@ public class GhostController : ControllerNodes
 
     public override void refresh()
     {
+        returningHome = false;
         base.refresh();
         resetRelease();
     }
