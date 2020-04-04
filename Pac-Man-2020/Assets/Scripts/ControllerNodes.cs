@@ -11,6 +11,7 @@ public class ControllerNodes : MonoBehaviour
     protected Vector2 queuedDirection;
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving. 
     public float speed = 3f;
+    protected bool returningHome = false;
 
 
     protected Node currentNode;
@@ -47,8 +48,7 @@ public class ControllerNodes : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            if (!currentNode.GetComponent<Pills>().isJailEntrance)
-                ChangePosition(Vector2.down);
+            ChangePosition(Vector2.down);
             //MoveToNode(direction);
         }
         else if (Input.GetKeyDown(KeyCode.W))
@@ -92,6 +92,10 @@ public class ControllerNodes : MonoBehaviour
                 moveToNode = currentNode.neighbors[i];
                 break;
             }
+        }
+        if(GetTileAtPosition(transform.position).GetComponent<Pills>().isJailEntrance && d == Vector2.down && !returningHome)//Place Jail Restriction here.
+        {
+            moveToNode = null;
         }
         //disallow diagonal movement here.
         return moveToNode;
