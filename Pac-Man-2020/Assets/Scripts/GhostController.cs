@@ -149,7 +149,7 @@ public class GhostController : ControllerNodes
                 else if (identity == GhostColor.Blue)
                     doubleRedtoPacPlusTwo();
                 else
-                    randomInput();
+                    BashfulAI();
             }
             else if (!isScared) //Otherwise, "Scatter" or chase home base.
                 shortestPathTo(objectName: myHomeBase);
