@@ -390,7 +390,6 @@ private bool b = true;
         {
             animator.SetBool("frightened", false);
             animator.SetBool("blink", false);
-            isScared = false; //This code communicates with the game board script.
         }
     }
 
