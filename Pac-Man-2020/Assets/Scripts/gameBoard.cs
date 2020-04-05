@@ -116,6 +116,7 @@ public class gameBoard : MonoBehaviour
       GameObject Blinky = GameObject.Find(Ghost2);
       GameObject Clyde = GameObject.Find(Ghost3);
       GameObject Pinky = GameObject.Find(Ghost4);
+      GameObject TransSound = GameObject.Find("IntermissionSound");
       //GameObject PacLevel = GameObject.Find(PacManLevel);
       GameObject PacMan = GameObject.Find(PacManName);
       GameObject readySprite = GameObject.Find(ready);
@@ -156,6 +157,9 @@ public class gameBoard : MonoBehaviour
       PacMan.GetComponent<Animator>().enabled = true;
       PacMan.GetComponent<Animator>().Play("levelUpPac", 0, 0);
 
+    //  SceneManager.LoadScene("Intermission");
+      TransSound.GetComponent<AudioSource>().Play();
+
 
       //DeathSound.GetComponent<AudioSource>().Play();
       // increase ghost speed , cruise ellroy
@@ -178,13 +182,13 @@ public class gameBoard : MonoBehaviour
 
 
 
-
+      SceneManager.LoadScene("MazeBricks");
 
 
       //yield return new WaitForSeconds(WAIT_DELAY);
-      SceneManager.LoadScene("MazeBricks");
+      //SceneManager.LoadScene("MazeBricks");
       //Add ready sprite here.
-
+//PauseGame(5.0f);
 
       readySprite.GetComponent<SpriteRenderer>().enabled = true;
       readySprite.GetComponent<Animator>().enabled = true;
@@ -192,7 +196,9 @@ public class gameBoard : MonoBehaviour
       yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
       readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
       readySprite.GetComponent<SpriteRenderer>().enabled = false;
-      PauseGame(0.5f);
+
+
+      PauseGame(5.0f);
 
 
 

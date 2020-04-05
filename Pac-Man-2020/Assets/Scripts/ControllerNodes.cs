@@ -14,6 +14,7 @@ public class ControllerNodes : MonoBehaviour
     public float speed = 3f;
 
 
+
     protected Node currentNode;
     protected Node previousNode;
     protected Node targetNode;
