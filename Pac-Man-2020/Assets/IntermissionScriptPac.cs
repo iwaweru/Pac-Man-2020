@@ -5,15 +5,12 @@ using UnityEngine;
 public class IntermissionScriptPac : MonoBehaviour
 {
   protected Vector2 pacTransBegin = new Vector2(22, 10);
-  protected Vector2 pacTransEnd = new Vector2(-17, 10);
-  protected Vector3 removeSprite = new Vector3(-14,10,0);
+  protected Vector2 pacTransEnd = new Vector2(-24, 10);
+
   public float timeForMove = 6.0f;
   //public float endTime = 0.0f;
   float timer;
-  public string Pacc = "Pac-Man1";
-
-  public Vector3 StopPos =  GameObject.Find("New Pikel-26").transform.position;
-
+  float time = 0.0f;
 
 
 
@@ -26,18 +23,16 @@ public class IntermissionScriptPac : MonoBehaviour
     }
 
 
-    void delSprite(){
-       GameObject Pac = GameObject.Find(Pacc);
-      if (Pac.transform.position == StopPos){
 
-      //Pac.GetComponent<SpriteRenderer>().enabled = false;
-      }
-    }
 
 
   // Update is called once per frame
   void Update()
   {
+
+    time += Time.deltaTime;
+
+if (time >= 1.5f){
 
 
     timer -= Time.deltaTime;
@@ -46,8 +41,10 @@ public class IntermissionScriptPac : MonoBehaviour
                      float degreeOfMovement = (timeForMove - timer) / timeForMove;
                      transform.position = new Vector2 (pacTransBegin.x + (distance.x * degreeOfMovement), pacTransBegin.y );
                    }
+                 }
 
-      delSprite();
+
+
 
     }
 

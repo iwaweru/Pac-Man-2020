@@ -15588,6 +15588,7 @@ MonoBehaviour:
   Ghost4: Pinky
   PacManName: Pac-Man-Node
   PacManLevel: PacManLevel
+  speed: 0
   ready: ReadySprite
 --- !u!4 &980712364
 Transform:
@@ -16408,7 +16409,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 17.58154
+  orthographic size: 12.778109
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -17793,7 +17794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151314415}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6, y: 8.9, z: 0}
+  m_LocalPosition: {x: 7.3, y: 8.9, z: 0}
   m_LocalScale: {x: 0.8908169, y: 1.0197802, z: 1}
   m_Children: []
   m_Father: {fileID: 454881596}
@@ -27716,7 +27717,7 @@ Tilemap:
   - m_RefCount: 1092
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.34109113, g: 0.990566, b: 0.8179638, a: 1}
   m_Origin: {x: -21, y: -12, z: 0}
   m_Size: {x: 42, y: 26, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}

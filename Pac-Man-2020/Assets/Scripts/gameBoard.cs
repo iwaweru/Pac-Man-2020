@@ -116,7 +116,7 @@ public class gameBoard : MonoBehaviour
       GameObject Blinky = GameObject.Find(Ghost2);
       GameObject Clyde = GameObject.Find(Ghost3);
       GameObject Pinky = GameObject.Find(Ghost4);
-      GameObject TransSound = GameObject.Find("IntermissionSound");
+
       //GameObject PacLevel = GameObject.Find(PacManLevel);
       GameObject PacMan = GameObject.Find(PacManName);
       GameObject readySprite = GameObject.Find(ready);
@@ -157,11 +157,10 @@ public class gameBoard : MonoBehaviour
       PacMan.GetComponent<Animator>().enabled = true;
       PacMan.GetComponent<Animator>().Play("levelUpPac", 0, 0);
 
-    //  SceneManager.LoadScene("Intermission");
-      TransSound.GetComponent<AudioSource>().Play();
+      SceneManager.LoadScene("Intermission");
 
 
-      //DeathSound.GetComponent<AudioSource>().Play();
+
       // increase ghost speed , cruise ellroy
       //reset gameboard state
       yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation

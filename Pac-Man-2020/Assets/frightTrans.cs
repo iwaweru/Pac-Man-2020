@@ -10,7 +10,8 @@ public class frightTrans : MonoBehaviour
   public float timeForMove = 6.0f;
   //public float endTime = 0.0f;
   float timer;
-  public string frightPac = "frightG";
+  
+  public float time = 0.0f;
 
   //public Vector3 StopPos =  GameObject.Find("New Pikel-26").transform.position;
 
@@ -26,18 +27,14 @@ public class frightTrans : MonoBehaviour
     }
 
 
-    /*void delSprite(){
-       GameObject BigPac = GameObject.Find(BigPac);
-      if (Pac.transform.position == StopPos){
 
-      //Pac.GetComponent<SpriteRenderer>().enabled = false;
-      }
-    }*/
 
 
   // Update is called once per frame
   void Update()
   {
+    time += Time.deltaTime;
+    if (time >= 7.0f){
 
 
     timer -= Time.deltaTime;
@@ -46,8 +43,9 @@ public class frightTrans : MonoBehaviour
                      float degreeOfMovement = (timeForMove - timer) / timeForMove;
                      transform.position = new Vector2 (frightBegin.x - (distance.x * degreeOfMovement), frightBegin.y );
                    }
+                 }
 
-      //delSprite();
+
 
     }
 
