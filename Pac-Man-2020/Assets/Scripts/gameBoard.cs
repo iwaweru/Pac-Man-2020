@@ -82,7 +82,7 @@ public class gameBoard : MonoBehaviour
 
 		}
 
-    StartGame();
+    //StartGame();
 
 
     }
@@ -348,79 +348,79 @@ StartCoroutine(NextL());
     IEnumerator RepositionCharactersAndDelay()
     {
 
-        GameObject DeathSound = GameObject.Find("DeathSound");
-        GameObject BackgroundSound = GameObject.Find("BackgroundSound");
-        GameObject Inky = GameObject.Find(Ghost1);
-        GameObject Blinky = GameObject.Find(Ghost2);
-        GameObject Clyde = GameObject.Find(Ghost3);
-        GameObject Pinky = GameObject.Find(Ghost4);
-        GameObject PacMan = GameObject.Find(PacManName);
-        GameObject readySprite = GameObject.Find(ready);
-        BackgroundSound.GetComponent<AudioSource>().Stop();
-        //Pause game on contact
-        Time.timeScale = 0.0f;
-        Inky.GetComponent<GhostController>().enabled = false;
-        Inky.GetComponent<Animator>().enabled = false;
-        Blinky.GetComponent<GhostController>().enabled = false;
-        Blinky.GetComponent<Animator>().enabled = false;
-        Clyde.GetComponent<GhostController>().enabled = false;
-        Clyde.GetComponent<Animator>().enabled = false;
-        Pinky.GetComponent<GhostController>().enabled = false;
-        Pinky.GetComponent<Animator>().enabled = false;
-        PacMan.GetComponent<PacManController>().enabled = false;
-        PacMan.GetComponent<Animator>().enabled = false;
+      GameObject DeathSound = GameObject.Find("DeathSound");
+      GameObject BackgroundSound = GameObject.Find("BackgroundSound");
+      GameObject Inky = GameObject.Find(Ghost1);
+      GameObject Blinky = GameObject.Find(Ghost2);
+      GameObject Clyde = GameObject.Find(Ghost3);
+      GameObject Pinky = GameObject.Find(Ghost4);
+      GameObject PacMan = GameObject.Find(PacManName);
+      GameObject readySprite = GameObject.Find(ready);
+      BackgroundSound.GetComponent<AudioSource>().Stop();
+      //Pause game on contact
+      Time.timeScale = 0.0f;
+      Inky.GetComponent<GhostController>().enabled = false;
+      Inky.GetComponent<Animator>().enabled = false;
+      Blinky.GetComponent<GhostController>().enabled = false;
+      Blinky.GetComponent<Animator>().enabled = false;
+      Clyde.GetComponent<GhostController>().enabled = false;
+      Clyde.GetComponent<Animator>().enabled = false;
+      Pinky.GetComponent<GhostController>().enabled = false;
+      Pinky.GetComponent<Animator>().enabled = false;
+      PacMan.GetComponent<PacManController>().enabled = false;
+      PacMan.GetComponent<Animator>().enabled = false;
 
-        Time.timeScale = 1.0f;
-        yield return new WaitForSeconds(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
-        //Ghost contact sound/ death sound
-        //Disable Scripts for death delay.
-        Inky.GetComponent<GhostController>().enabled = true;
-        Inky.GetComponent<Animator>().enabled = true;
-        Blinky.GetComponent<GhostController>().enabled = true;
-        Blinky.GetComponent<Animator>().enabled = true;
-        Clyde.GetComponent<GhostController>().enabled = true;
-        Clyde.GetComponent<Animator>().enabled = true;
-        Pinky.GetComponent<GhostController>().enabled = true;
-        Pinky.GetComponent<Animator>().enabled = true;
-        //Unpause after contact
-        Inky.SetActive(false);
-        Blinky.SetActive(false);
-        Clyde.SetActive(false);
-        Pinky.SetActive(false);// not pacman yet since death animation plays once ghosts disappear
+      Time.timeScale = 1.0f;
+      yield return new WaitForSeconds(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
+      //Ghost contact sound/ death sound
+      //Disable Scripts for death delay.
+      Inky.GetComponent<GhostController>().enabled = true;
+      Inky.GetComponent<Animator>().enabled = true;
+      Blinky.GetComponent<GhostController>().enabled = true;
+      Blinky.GetComponent<Animator>().enabled = true;
+      Clyde.GetComponent<GhostController>().enabled = true;
+      Clyde.GetComponent<Animator>().enabled = true;
+      Pinky.GetComponent<GhostController>().enabled = true;
+      Pinky.GetComponent<Animator>().enabled = true;
+      //Unpause after contact
+      Inky.SetActive(false);
+      Blinky.SetActive(false);
+      Clyde.SetActive(false);
+      Pinky.SetActive(false);// not pacman yet since death animation plays once ghosts disappear
 
-        GameObject pacMan = GameObject.Find(PacManName);
-        PacMan.GetComponent<Animator>().enabled = true;
-        PacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
-        DeathSound.GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
-        PacMan.GetComponent<PacManController>().enabled = true;
-        PacMan.GetComponent<Animator>().enabled = true;
-        PacMan.SetActive(false); // now pacman disappears since animation played
+      GameObject pacMan = GameObject.Find(PacManName);
+      PacMan.GetComponent<Animator>().enabled = true;
+      PacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
+      DeathSound.GetComponent<AudioSource>().Play();
+      yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
+      PacMan.GetComponent<PacManController>().enabled = true;
+      PacMan.GetComponent<Animator>().enabled = true;
+      PacMan.SetActive(false); // now pacman disappears since animation played
 
 
-        //Reposition the character and reset all temp variables to original conditions.
-        Inky.GetComponent<GhostController>().refresh();
-        Blinky.GetComponent<GhostController>().refresh();
-        Clyde.GetComponent<GhostController>().refresh();
-        PacMan.GetComponent<PacManController>().refresh();
-        Pinky.GetComponent<GhostController>().refresh();
+      //Reposition the character and reset all temp variables to original conditions.
+      Inky.GetComponent<GhostController>().refresh();
+      Blinky.GetComponent<GhostController>().refresh();
+      Clyde.GetComponent<GhostController>().refresh();
+      PacMan.GetComponent<PacManController>().refresh();
+      Pinky.GetComponent<GhostController>().refresh();
 
-        //Add ready sprite here.
-        readySprite.GetComponent<SpriteRenderer>().enabled = true;
-        readySprite.GetComponent<Animator>().enabled = true;
-        readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
-        yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
-        readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
-        readySprite.GetComponent<SpriteRenderer>().enabled = false;
-        //Remove ready sprite here.
+      //Add ready sprite here.
+      readySprite.GetComponent<SpriteRenderer>().enabled = true;
+      readySprite.GetComponent<Animator>().enabled = true;
+      readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
+      yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
+      readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
+      readySprite.GetComponent<SpriteRenderer>().enabled = false;
+      //Remove ready sprite here.
 
-        //GO -- reactivate scripts.
-        Inky.SetActive(true);
-        Blinky.SetActive(true);
-        Clyde.SetActive(true);
-        Pinky.SetActive(true);
-        PacMan.SetActive(true);
-        BackgroundSound.GetComponent<AudioSource>().Play();
+      //GO -- reactivate scripts.
+      Inky.SetActive(true);
+      Blinky.SetActive(true);
+      Clyde.SetActive(true);
+      Pinky.SetActive(true);
+      PacMan.SetActive(true);
+      BackgroundSound.GetComponent<AudioSource>().Play();
 
     }
 
