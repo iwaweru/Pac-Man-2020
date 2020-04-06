@@ -10,6 +10,7 @@ public class PacManController : ControllerNodes
     public int totalPellets=0;
 
 
+
     public override void Start()
     {
         if (randomMovement)
@@ -120,6 +121,7 @@ public class PacManController : ControllerNodes
                     game.score();//score
                     game.munch();
                     totalPellets++;
+
 
                     if (totalPellets == 191){
                       GetComponent<Animator>().enabled = false;

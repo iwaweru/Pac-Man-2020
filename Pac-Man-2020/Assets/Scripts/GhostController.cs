@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GhostController : ControllerNodes
 {
+public string Cruise = "Blinky";
+
 
 
 // blinky
 // if numpellets consumed == cruiseElroy , speed *0.5
 
     // Scatter Mode Settings
+
     private int chaseIteration = 0; //Keeps track of current chase iteration.
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
     private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
@@ -60,8 +63,17 @@ public class GhostController : ControllerNodes
         resetRelease();
     }
 
+    public void CruiseElroy(){
+      GameObject Cruise1 = GameObject.Find(Cruise);
+      Cruise1.GetComponent<Animator>().SetFloat("Speed",7);
+
+
+      }
+
+
     public override void Start()
     {
+      CruiseElroy();
         GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
 
         for(int i = 0; i < cornerNodes.Length; i++){

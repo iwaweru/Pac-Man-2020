@@ -4008,6 +4008,11 @@ PrefabInstance:
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: Speed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8925563996359968562, guid: 4d7e9083dcb21427a878d6dece2cc33f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15587,8 +15592,8 @@ MonoBehaviour:
   Ghost3: Clyde
   Ghost4: Pinky
   PacManName: Pac-Man-Node
-  PacManLevel: PacManLevel
   speed: 0
+  NextLevlTimer: 0
   ready: ReadySprite
 --- !u!4 &980712364
 Transform:

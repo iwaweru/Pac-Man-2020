@@ -81,7 +81,9 @@ public class gameBoard : MonoBehaviour
 			}
 
 		}
+
     StartGame();
+
 
     }
     public void score()
@@ -96,6 +98,7 @@ public class gameBoard : MonoBehaviour
     }
 
     public void StartGame(){
+      level++;
       StartCoroutine(Begin());
     }
     IEnumerator Begin()
@@ -111,7 +114,7 @@ public class gameBoard : MonoBehaviour
     GameObject readySprite = GameObject.Find(ready);
     //BackgroundSound.GetComponent<AudioSource>().Stop();
 
-    PauseGame(5.0f);
+    //PauseGame(5.0f);
     readySprite.GetComponent<SpriteRenderer>().enabled = true;
     readySprite.GetComponent<Animator>().enabled = true;
     readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
@@ -292,6 +295,7 @@ StartCoroutine(NextL());
 
     public void Die() //Put the death logic here.
       {
+        level = 1;
         StartCoroutine(RepositionCharactersAndDelay());
     }
 
@@ -417,6 +421,7 @@ StartCoroutine(NextL());
         Pinky.SetActive(true);
         PacMan.SetActive(true);
         BackgroundSound.GetComponent<AudioSource>().Play();
+
     }
 
     public void munch()
