@@ -9,6 +9,7 @@ public class PacManController : ControllerNodes
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     public int totalPellets=0;
 
+
     public override void Start()
     {
         if (randomMovement)
@@ -90,10 +91,10 @@ public class PacManController : ControllerNodes
             GetComponent<Animator>().enabled = false;
             GetComponent<SpriteRenderer>().sprite = idle; //Uncomment this, and set the graphic you want Pac-Man to stop on.
         }
-        if(totalPellets==30) {
+        /*if(totalPellets==30) {
           GetComponent<Animator>().enabled = false;
           GetComponent<SpriteRenderer>().sprite = nextLevel;
-        }
+        }*/
 
         else
         {
@@ -120,10 +121,11 @@ public class PacManController : ControllerNodes
                     game.munch();
                     totalPellets++;
 
-                    if (totalPellets == 30){
+                    if (totalPellets == 191){
                       GetComponent<Animator>().enabled = false;
                       GetComponent<SpriteRenderer>().sprite = nextLevel;
                       //GetComponent<Animator>().Play("DeathAnim", 0, 0);
+
                       GameObject.Find("Game").GetComponent<gameBoard>().LevelUp();
 
 

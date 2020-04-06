@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class bigPacTrans : MonoBehaviour
@@ -12,16 +13,30 @@ public class bigPacTrans : MonoBehaviour
   //public float endTime = 0.0f;
   float timer;
   public float time = 0.0f;
+  public int level = 1;
 
 
   void Start()
   {
-    //
 
+      level ++;
       transform.position = bigPacBegin;
       timer = timeForMove;
 
     }
+
+    public void NextLevel(){
+      if (time >= 15.5f){
+
+        //SceneManager.LoadScene("MazeBricks");
+        //GameObject.Find("Game").GetComponent<gameBoard>().NextLev();
+        SceneManager.LoadScene("MazeBricks");
+
+
+      }
+    }
+
+
 
 
 
@@ -43,6 +58,7 @@ public class bigPacTrans : MonoBehaviour
                      float degreeOfMovement = (timeForMove - timer) / timeForMove;
                      transform.position = new Vector2 (bigPacBegin.x - (distance.x * degreeOfMovement), bigPacBegin.y );
                    }
+                   NextLevel();
 
                  }
 }
