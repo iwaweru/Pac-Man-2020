@@ -182,27 +182,16 @@ public class gameBoard : MonoBehaviour
 
 
       SceneManager.LoadScene("MazeBricks");
-
-
       //yield return new WaitForSeconds(WAIT_DELAY);
-      //SceneManager.LoadScene("MazeBricks");
       //Add ready sprite here.
-//PauseGame(5.0f);
-
+      //PauseGame(5.0f);
       readySprite.GetComponent<SpriteRenderer>().enabled = true;
       readySprite.GetComponent<Animator>().enabled = true;
       readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
       yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
       readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
       readySprite.GetComponent<SpriteRenderer>().enabled = false;
-
-
-      PauseGame(5.0f);
-
-
-
-
-
+      yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
       //PacMan.GetComponent<Animator>().speed =5;
       //PacMan.GetComponent<Animator>().enabled = true;
       //Remove ready sprite here.
