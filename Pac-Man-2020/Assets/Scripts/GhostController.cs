@@ -6,7 +6,7 @@ public class GhostController : ControllerNodes
 {
 
 
-//    float spd = GameObject.Find("Pac-Man-Node").GetComponent<PacManController>().speed;
+    public float blinkySpeed = GameObject.Find("Blinky").GetComponent<GhostController>().speed;
 
 
 // blinky
