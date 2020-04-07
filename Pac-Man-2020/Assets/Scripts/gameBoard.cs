@@ -33,7 +33,7 @@ public class gameBoard : MonoBehaviour
     public string ready = "ReadySprite";
     //Point Tracker
     public static int points = 0;
-    public static int level = 0;
+    public static int level = 1;
 
     //Delay before game starts again after Pac-Man hits a ghost.
     public static int DEATH_DELAY = 5;
@@ -82,7 +82,8 @@ public class gameBoard : MonoBehaviour
 
 		}
 
-    //StartGame();
+
+    StartGame();
 
 
     }
@@ -98,6 +99,7 @@ public class gameBoard : MonoBehaviour
     }
 
     public void StartGame(){
+
       level++;
       StartCoroutine(Begin());
     }
@@ -114,7 +116,7 @@ public class gameBoard : MonoBehaviour
     GameObject readySprite = GameObject.Find(ready);
     //BackgroundSound.GetComponent<AudioSource>().Stop();
 
-    //PauseGame(5.0f);
+    PauseGame(5.0f);
     readySprite.GetComponent<SpriteRenderer>().enabled = true;
     readySprite.GetComponent<Animator>().enabled = true;
     readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
@@ -188,6 +190,7 @@ public class gameBoard : MonoBehaviour
       // pause sound
       // change speed of blinky
       //SceneManager.LoadScene("new");
+      level ++;
     StartCoroutine(LevelTransition());
   }
 
@@ -295,7 +298,8 @@ StartCoroutine(NextL());
 
     public void Die() //Put the death logic here.
       {
-        level = 1;
+        level =1;
+
         StartCoroutine(RepositionCharactersAndDelay());
     }
 
@@ -421,6 +425,7 @@ StartCoroutine(NextL());
       Pinky.SetActive(true);
       PacMan.SetActive(true);
       BackgroundSound.GetComponent<AudioSource>().Play();
+
 
     }
 

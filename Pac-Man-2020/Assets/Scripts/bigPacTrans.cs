@@ -26,7 +26,7 @@ public class bigPacTrans : MonoBehaviour
     }
 
     public void NextLevel(){
-      if (time >= 15.5f){
+      if (time >= 10.2f){
 
         //SceneManager.LoadScene("MazeBricks");
         //GameObject.Find("Game").GetComponent<gameBoard>().NextLev();
@@ -48,7 +48,7 @@ public class bigPacTrans : MonoBehaviour
     time += Time.deltaTime;
 
 
-    if (time >= 8.0f){
+    if (time >= 5f){
 
 
     timer -= Time.deltaTime;

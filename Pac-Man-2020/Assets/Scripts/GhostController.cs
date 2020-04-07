@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GhostController : ControllerNodes
 {
-public string Cruise = "Blinky";
 
+
+//    float spd = GameObject.Find("Pac-Man-Node").GetComponent<PacManController>().speed;
 
 
 // blinky
@@ -63,17 +64,17 @@ public string Cruise = "Blinky";
         resetRelease();
     }
 
-    public void CruiseElroy(){
+    /*public void CruiseElroy(){
       GameObject Cruise1 = GameObject.Find(Cruise);
       Cruise1.GetComponent<Animator>().SetFloat("Speed",7);
 
 
-      }
+      }*/
 
 
     public override void Start()
     {
-      CruiseElroy();
+      //CruiseElroy();
         GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
 
         for(int i = 0; i < cornerNodes.Length; i++){
@@ -141,7 +142,11 @@ public string Cruise = "Blinky";
             Move();
 
         UpdateOrientation();
+
+
     }
+
+
 
     private void releaseGhosts()
     {

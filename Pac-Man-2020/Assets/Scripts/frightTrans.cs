@@ -10,7 +10,7 @@ public class frightTrans : MonoBehaviour
   public float timeForMove = 6.0f;
   //public float endTime = 0.0f;
   float timer;
-  
+
   public float time = 0.0f;
 
   //public Vector3 StopPos =  GameObject.Find("New Pikel-26").transform.position;
@@ -34,7 +34,7 @@ public class frightTrans : MonoBehaviour
   void Update()
   {
     time += Time.deltaTime;
-    if (time >= 7.0f){
+    if (time >= 4.0f){
 
 
     timer -= Time.deltaTime;

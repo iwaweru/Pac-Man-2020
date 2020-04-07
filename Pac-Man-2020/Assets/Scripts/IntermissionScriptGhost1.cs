@@ -25,7 +25,7 @@ public class IntermissionScriptGhost1 : MonoBehaviour
     void Update()
     {
       time += Time.deltaTime;
-      if (time >= 2.0f){
+      if (time >= 0.5f){
 
 
       timer -= Time.deltaTime;

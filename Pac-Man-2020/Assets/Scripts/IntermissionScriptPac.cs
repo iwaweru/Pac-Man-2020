@@ -32,7 +32,7 @@ public class IntermissionScriptPac : MonoBehaviour
 
     time += Time.deltaTime;
 
-if (time >= 1.5f){
+
 
 
     timer -= Time.deltaTime;
@@ -41,7 +41,7 @@ if (time >= 1.5f){
                      float degreeOfMovement = (timeForMove - timer) / timeForMove;
                      transform.position = new Vector2 (pacTransBegin.x + (distance.x * degreeOfMovement), pacTransBegin.y );
                    }
-                 }
+
 
 
 

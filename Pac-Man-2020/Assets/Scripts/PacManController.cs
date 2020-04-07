@@ -123,7 +123,7 @@ public class PacManController : ControllerNodes
                     totalPellets++;
 
 
-                    if (totalPellets == 191){
+                    if (totalPellets == 30){
                       GetComponent<Animator>().enabled = false;
                       GetComponent<SpriteRenderer>().sprite = nextLevel;
                       //GetComponent<Animator>().Play("DeathAnim", 0, 0);
