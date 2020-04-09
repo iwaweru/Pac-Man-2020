@@ -10,7 +10,7 @@ public class GhostController : ControllerNodes
     private static bool isScared = false;
     private bool currentlyScared = false;
     public static float frightTime= 5f;
-    private static float blinkForSeconds = 1.5f;
+    private static float blinkForSeconds = 1.5f;//How long the ghost should blink for at the end of its fright duration. Cannot be greater than or equal to frighttime.
     private static float scaredTimer = 0f;
     private bool isConsumed = false;
     public Animation defaultState;
