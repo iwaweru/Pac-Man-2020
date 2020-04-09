@@ -11,7 +11,7 @@ public class GhostController : ControllerNodes
     public static float frightTime= 5f;
     private static float blinkAtTime = 3f;
     private static float scaredTimer = 0f;
-    private bool returningHome = false;
+    private bool isConsumed = false;
     public Animation defaultState;
 
     public Animation defualtAnimation;
@@ -79,7 +79,7 @@ public class GhostController : ControllerNodes
 
     public override void refresh()
     {
-        returningHome = false;
+        isConsumed = false;
         base.refresh();
         resetRelease();
     }
@@ -143,7 +143,7 @@ public class GhostController : ControllerNodes
 
     public override void Update() //Override to change behavior
     {
-        if (returningHome)
+        if (isConsumed)
         {
             shortestPathTo(myGhostHouse.transform.position);
             if(transform.position == myGhostHouse.transform.position || transform.position == otherGhostHouse.transform.position)
@@ -220,7 +220,7 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-                if (!returningHome)
+                if (!isConsumed)
                 {
                     GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
                     if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
@@ -264,7 +264,7 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-                if (!returningHome)
+                if (!isConsumed)
                 {
                     GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
                     if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
@@ -343,7 +343,7 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-                if (!returningHome)
+                if (!isConsumed)
                 {
                     GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
                     if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
@@ -450,7 +450,7 @@ private bool b = true;
         
         GameObject.Find("Game").GetComponent<gameBoard>().PauseGame(0.5f);
         resetAnimator();
-        returningHome = true;
+        isConsumed = true;
         GetComponent<Animator>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
         speed = eyeSpeed;
@@ -470,7 +470,7 @@ private bool b = true;
     void respawn()
     {
         releaseTimer = myStartDelay;//We were just released. Helps out animator.
-        returningHome = false;
+        isConsumed = false;
         GetComponent<Animator>().enabled = true;
         GetComponent<CircleCollider2D>().enabled = true;
         speed = defaultSpeed;
@@ -478,7 +478,7 @@ private bool b = true;
 
     private void UpdateOrientation()
     {
-        if (!returningHome)
+        if (!isConsumed)
         {
             if (direction == Vector2.left)
             {
