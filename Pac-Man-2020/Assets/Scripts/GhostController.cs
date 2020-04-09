@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +10,12 @@ public class GhostController : ControllerNodes
     private static bool isScared = false;
     private bool currentlyScared = false;
     public static float frightTime= 5f;
-    private static float blinkAtTime = 3f;
+    private static float blinkForSeconds = 1.5f;
     private static float scaredTimer = 0f;
     private bool isConsumed = false;
     public Animation defaultState;
+    public float defaultSpeed;
+    public float eyeSpeed;
 
     public Animation defualtAnimation;
     public Sprite eyesLeft;
@@ -42,8 +45,7 @@ public class GhostController : ControllerNodes
     private float blueStartDelay = 10f;
     private float pinkStartDelay = 15f;
 
-    public float defaultSpeed;
-    public float eyeSpeed;
+
 
 
     private float myStartDelay;
@@ -84,7 +86,7 @@ public class GhostController : ControllerNodes
         resetRelease();
     }
 
-
+    //Currently, Ghosts will continue behavior they were currently in upon Pac-Death (Scatter or Chase Mode)
     public override void Start()
     {
         speed = defaultSpeed;
@@ -145,21 +147,18 @@ public class GhostController : ControllerNodes
     {
         if (isConsumed)
         {
-            shortestPathTo(myGhostHouse.transform.position);
-            if(transform.position == myGhostHouse.transform.position || transform.position == otherGhostHouse.transform.position)
-            {
-                respawn();
-            }
+            returnToJail();
         }
         else
         {
             releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
 
-            if (releaseTimer - ScaredTimer >= myStartDelay)
-            { // Only apply scared mode to ghosts that are outside jail when Pac-Man eats a pellet.
+            if (releaseTimer - ScaredTimer >= myStartDelay)//If we are outside jail when Pac-Man eats a big pellet, then
+            { 
                 currentlyScared = true;
-                Scared();
+                checkIfScared();
             }
+
             if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
                 behaviorTimer += Time.deltaTime;
 
@@ -168,29 +167,41 @@ public class GhostController : ControllerNodes
             if (!canLeave) //Don't release if we already can leave (efficiency check only).
                 releaseGhosts();
             else
-            {
-                if (currentlyScared)
-                    randomInput();
-                else if (isChasing) //Use preprogrammed AI if chasing.
-                {
-                    if (identity == GhostColor.Red)
-                        shortestPathTo(objectName: "Pac-Man-Node");
-                    else if (identity == GhostColor.Pink)
-                        nAheadOfPacMan();
-                    else if (identity == GhostColor.Blue)
-                        doubleRedtoPacPlusTwo();
-                    else
-                        randomInput(); //Bashful AI Allows ghosts to reenter jail.
-                }
-                else //Otherwise, "Scatter" or chase home base.
-                    shortestPathTo(objectName: myHomeBase);
-            }
+                chooseAI(); //Determine which AI we will use if we are not scared and we can leave jail.
         }
 
         if (canLeave) //Don't leave unless your release timer is up.
             Move();
 
         UpdateOrientation();
+    }
+
+    private void chooseAI()
+    {
+        if (currentlyScared)
+            randomInput();
+        else if (isChasing) //Use preprogrammed AI if chasing.
+        {
+            if (identity == GhostColor.Red)
+                shortestPathTo(objectName: "Pac-Man-Node");
+            else if (identity == GhostColor.Pink)
+                nAheadOfPacMan();
+            else if (identity == GhostColor.Blue)
+                doubleRedtoPacPlusTwo();
+            else
+                randomInput(); //Bashful AI Allows ghosts to reenter jail. Fix and then replace here.
+        }
+        else //Otherwise, "Scatter" or chase home base.
+            shortestPathTo(objectName: myHomeBase);
+    }
+
+    private void returnToJail()
+    {
+        shortestPathTo(myGhostHouse.transform.position);
+        if (transform.position == myGhostHouse.transform.position || transform.position == otherGhostHouse.transform.position)
+        {
+            respawn();
+        }
     }
 
     private void releaseGhosts()
@@ -220,9 +231,9 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-                if (!isConsumed)
+                if (!isConsumed)//If we are not consumed, then we shouldn't enter jail.
                 {
-                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);
                     if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
                     {
                         continue;
@@ -410,7 +421,7 @@ private bool b = true;
                 print("Chase turned off");
                 isChasing = false;
                 if((ghostPos - pacPos).sqrMagnitude <= 20 && needNewTarget){
-                    nextNodePos = cornerNodes[(int)Random.Range(0, 4)].transform.position;
+                    nextNodePos = cornerNodes[(int)UnityEngine.Random.Range(0, 4)].transform.position;
                     needNewTarget = false;
                     print("new target: " + nextNodePos);
                 }
@@ -427,12 +438,15 @@ private bool b = true;
     }
 
 
-    private void Scared()//Might need to extract this to the gameboard class so that transitions are instantaneous.
+    private void checkIfScared()//Might need to extract this to the gameboard class so that transitions are instantaneous.
     {
+        if(blinkForSeconds >= frightTime)
+            throw new System.ArgumentException("blinkForSeconds cannot be greater than or eqaul to the specified frightTime", "blinkForSeconds");
+
         if (scaredTimer > 0 && scaredTimer <= frightTime)//Need to add transition from blink to fright for timer reset.
         {
             animator.SetBool("frightened", true);
-            if(scaredTimer >= blinkAtTime)
+            if(scaredTimer >= (frightTime-blinkForSeconds))
             {
                 animator.SetBool("blink", true);
             }
@@ -525,7 +539,7 @@ private bool b = true;
 
     private void chaseOrFlee()
     {
-        if (!isScared)
+        if (!currentlyScared)//If we are currently scared, we should not be chasing.
         {
             if (chaseIteration >= numberOfChaseIterations)
                 isChasing = true;
