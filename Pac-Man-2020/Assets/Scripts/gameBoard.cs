@@ -18,13 +18,13 @@ public class gameBoard : MonoBehaviour
     public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
-    public string Ghost1 = "Blinky";
-    public string Ghost2 = "Inky";
-    public string Ghost3 = "Clyde";
-    public string Ghost4 = "Pinky";
-    public string PacManName = "Pac-Man-Node";
+    public static string Ghost1 = "Blinky";
+    public static string Ghost2 = "Inky";
+    public static string Ghost3 = "Clyde";
+    public static string Ghost4 = "Pinky";
+    public static string PacManName = "Pac-Man-Node";
     //String identifiers of UI objects.
-    public string ready = "ReadySprite";
+    public static string ready = "ReadySprite";
     //Point Tracker
     public static int points = 0;
     //Delay before game starts again after Pac-Man hits a ghost.
@@ -83,7 +83,7 @@ public class gameBoard : MonoBehaviour
     }
 
     public void Die() //Put the death logic here.
-      {
+    {
         StartCoroutine(RepositionCharactersAndDelay());
     }
 
@@ -259,6 +259,16 @@ public class gameBoard : MonoBehaviour
 
     private void Update()
     {
-
+        //Handle Fright Mode outside of GhostController Class
+        if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
+        {
+            GhostController.ScaredTimer += Time.deltaTime;
+        }
+        else
+        {
+            GhostController.ScaredTimer = 0f;
+            GhostController.IsScared = false;
+        }
+            
     }
 }
