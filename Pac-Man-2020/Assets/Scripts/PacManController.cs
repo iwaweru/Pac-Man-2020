@@ -14,6 +14,7 @@ public class PacManController : ControllerNodes
 
     public override void Start()
     {
+        isPacMan = true;
         if (randomMovement)
         {
             this.canReverse = false;
@@ -123,7 +124,11 @@ public class PacManController : ControllerNodes
                     game.munch();
                     totalPellets++;
 
-
+                    if (tile.isLargePellet)
+                    {
+                        GhostController.ScaredTimer = 0f;
+                        GhostController.IsScared = true;
+                    }
 
 
                     if (totalPellets == allPellets){
@@ -136,7 +141,7 @@ public class PacManController : ControllerNodes
 
 
 
-                    }
+
                     //game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
                     //if (!temp.GetComponent<AudioSource>().isPlaying)
                     //{
@@ -149,7 +154,14 @@ public class PacManController : ControllerNodes
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject.Find("Game").GetComponent<gameBoard>().Die();
+        if (collision.gameObject.GetComponent<Animator>().GetBool("frightened"))
+            collision.gameObject.GetComponent<GhostController>().Die();
+        else
+        {
+            GameObject.Find("Game").GetComponent<gameBoard>().Die();
+        }
+
+
     }
 
     public Direction getFacing()

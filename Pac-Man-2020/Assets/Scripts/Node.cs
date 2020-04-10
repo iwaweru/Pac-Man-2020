@@ -6,7 +6,7 @@ public class Node : MonoBehaviour
 {
     public Node[] neighbors;
     public Vector2[] validDir;
-
+    public bool isEntryNode; //Determines if a node is an entrance to jail.
     // Start is called before the first frame update
     void Start()
     {
