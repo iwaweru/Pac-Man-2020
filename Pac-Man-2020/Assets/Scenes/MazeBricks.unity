@@ -36546,7 +36546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1857341710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36579,10 +36579,10 @@ MonoBehaviour:
   - {fileID: 1726240128}
   - {fileID: 1463363171}
   - {fileID: 1206572900}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 720646159}
+  - {fileID: 1011714482}
+  - {fileID: 1004771047}
+  - {fileID: 1809095958}
   extraLife: 10000
   maxscore: 2147483647
   recalc: 1
@@ -37726,7 +37726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1906093841
 Transform:
   m_ObjectHideFlags: 0

@@ -468,7 +468,6 @@ private bool b = true;
         GetComponent<Animator>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
         speed = eyeSpeed;
-        
 
     }
 
