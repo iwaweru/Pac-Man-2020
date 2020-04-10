@@ -130,45 +130,6 @@ public class gameBoard : MonoBehaviour
     Pinky.SetActive(true);
     PacMan.SetActive(true);
 
-
-
-
-    //Pause game on contact
-     //delay once pacman hits ghost, initiates death animation
-    //Ghost contact sound/ death sound
-    //Disable Scripts for death delay.
-  /*  Inky.GetComponent<GhostController>().enabled = true;
-    Inky.GetComponent<Animator>().enabled = true;
-    Blinky.GetComponent<GhostController>().enabled = true;
-    Blinky.GetComponent<Animator>().enabled = true;
-    Clyde.GetComponent<GhostController>().enabled = true;
-    Clyde.GetComponent<Animator>().enabled = true;
-    Pinky.GetComponent<GhostController>().enabled = true;
-    Pinky.GetComponent<Animator>().enabled = true;
-    //Unpause after contact
-    Inky.SetActive(false);
-    Blinky.SetActive(false);
-    Clyde.SetActive(false);
-    Pinky.SetActive(false);// not pacman yet since death animation plays once ghosts disappear
-
-
-
-    //Add ready sprite here.
-    readySprite.GetComponent<SpriteRenderer>().enabled = true;
-    readySprite.GetComponent<Animator>().enabled = true;
-    readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
-    yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
-    readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
-    readySprite.GetComponent<SpriteRenderer>().enabled = false;
-    //Remove ready sprite here.
-
-    //GO -- reactivate scripts.
-    Inky.SetActive(true);
-    Blinky.SetActive(true);
-    Clyde.SetActive(true);
-    Pinky.SetActive(true);
-    PacMan.SetActive(true);
-    BackgroundSound.GetComponent<AudioSource>().Play();*/
   }
 
 

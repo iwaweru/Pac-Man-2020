@@ -8,8 +8,9 @@ public class PacManController : ControllerNodes
     private Direction facing = Direction.Left; // 0 = left, 1 = right, 2 = down, 3 = up;
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     public int totalPellets=0;
+    int allPellets =191;
 
-
+   //float Spd = GameObject.Find("Blinky").GetComponent<GhostController>().speed;
 
     public override void Start()
     {
@@ -123,7 +124,9 @@ public class PacManController : ControllerNodes
                     totalPellets++;
 
 
-                    if (totalPellets == 30){
+
+
+                    if (totalPellets == allPellets){
                       GetComponent<Animator>().enabled = false;
                       GetComponent<SpriteRenderer>().sprite = nextLevel;
                       //GetComponent<Animator>().Play("DeathAnim", 0, 0);

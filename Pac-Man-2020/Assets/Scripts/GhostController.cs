@@ -6,7 +6,7 @@ public class GhostController : ControllerNodes
 {
 
 
-    public float blinkySpeed = GameObject.Find("Blinky").GetComponent<GhostController>().speed;
+    //float blinkySpeed = GameObject.Find("Blinky").GetComponent<GhostController>().speed;
 
 
 // blinky
@@ -64,10 +64,10 @@ public class GhostController : ControllerNodes
         resetRelease();
     }
 
-    /*public void CruiseElroy(){
-      GameObject Cruise1 = GameObject.Find(Cruise);
-      Cruise1.GetComponent<Animator>().SetFloat("Speed",7);
-
+  /*  public void CruiseElroy(){
+      //GameObject Cruise1 = GameObject.Find();
+      //Cruise1.GetComponent<Animator>().SetFloat("Speed",7);
+      blinkySpeed = 7.0f;
 
       }*/
 
@@ -75,6 +75,7 @@ public class GhostController : ControllerNodes
     public override void Start()
     {
       //CruiseElroy();
+      //c blinkySpeed = 7.0f;
         GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
 
         for(int i = 0; i < cornerNodes.Length; i++){
@@ -110,6 +111,8 @@ public class GhostController : ControllerNodes
         {
             currentNode = current;
         }
+
+
     }
 
     public override void Update() //Override to change behavior
