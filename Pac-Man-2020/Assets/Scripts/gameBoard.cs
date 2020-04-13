@@ -19,8 +19,10 @@ public class gameBoard : MonoBehaviour
     public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
-    private string Life2 = "PacLife2";
-    private string Life3 = "PacLife3";
+    private string LifeName1 = "PacLife2";
+    private string LifeName2 = "PacLife3";
+    private GameObject lifeAsset1;
+    private GameObject lifeAsset2;
     public static string Ghost1 = "Blinky";
     public static string Ghost2 = "Inky";
     public static string Ghost3 = "Clyde";
@@ -45,6 +47,8 @@ public class gameBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lifeAsset1 = GameObject.Find(LifeName1);
+        lifeAsset2 = GameObject.Find(LifeName2);
         //Create an array of objects containing every objects in the scene
         Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
 
@@ -262,17 +266,16 @@ public class gameBoard : MonoBehaviour
 
     private void Update()
     {
-        GameObject PacLife2 = GameObject.Find("PacLife2");
-        GameObject PacLife3 = GameObject.Find("PacLife3");
+
         if(LifeCount >= 3) {
-            PacLife3.GetComponent<SpriteRenderer>().enabled = true;
-            PacLife2.GetComponent<SpriteRenderer>().enabled = true;
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = true;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = true;
         } else if(LifeCount == 2) {
-            PacLife3.GetComponent<SpriteRenderer>().enabled = false;
-            PacLife2.GetComponent<SpriteRenderer>().enabled = true;
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = true;
         } else {
-            PacLife3.GetComponent<SpriteRenderer>().enabled = false;
-            PacLife2.GetComponent<SpriteRenderer>().enabled = false;
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = false;
         } 
         //Handle Fright Mode outside of GhostController Class
         if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
