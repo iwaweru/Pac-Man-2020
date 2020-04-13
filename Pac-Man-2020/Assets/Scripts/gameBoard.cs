@@ -15,9 +15,12 @@ public class gameBoard : MonoBehaviour
     // board dimensions
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
+    public static int LifeCount = 3;
     public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
+    private string Life2 = "PacLife2";
+    private string Life3 = "PacLife3";
     public static string Ghost1 = "Blinky";
     public static string Ghost2 = "Inky";
     public static string Ghost3 = "Clyde";
@@ -82,10 +85,13 @@ public class gameBoard : MonoBehaviour
     {
     }
 
+    
+
     public void Die() //Put the death logic here.
     {
         StartCoroutine(RepositionCharactersAndDelay());
     }
+  
 
     public void PauseGame(float waitTime)
     {
@@ -143,6 +149,7 @@ public class gameBoard : MonoBehaviour
         GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
         GameObject readySprite = GameObject.Find(ready);
+        
         BackgroundSound.GetComponent<AudioSource>().Stop();
         //Pause game on contact
         Time.timeScale = 0.0f;
@@ -200,7 +207,7 @@ public class gameBoard : MonoBehaviour
         readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
         readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
-
+        
         //GO -- reactivate scripts.
         Inky.SetActive(true);
         Blinky.SetActive(true);
@@ -255,6 +262,18 @@ public class gameBoard : MonoBehaviour
 
     private void Update()
     {
+        GameObject PacLife2 = GameObject.Find("PacLife2");
+        GameObject PacLife3 = GameObject.Find("PacLife3");
+        if(LifeCount >= 3) {
+            PacLife3.GetComponent<SpriteRenderer>().enabled = true;
+            PacLife2.GetComponent<SpriteRenderer>().enabled = true;
+        } else if(LifeCount == 2) {
+            PacLife3.GetComponent<SpriteRenderer>().enabled = false;
+            PacLife2.GetComponent<SpriteRenderer>().enabled = true;
+        } else {
+            PacLife3.GetComponent<SpriteRenderer>().enabled = false;
+            PacLife2.GetComponent<SpriteRenderer>().enabled = false;
+        } 
         //Handle Fright Mode outside of GhostController Class
         if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
         {
@@ -265,6 +284,9 @@ public class gameBoard : MonoBehaviour
             GhostController.ScaredTimer = 0f;
             GhostController.IsScared = false;
         }
-            
     }
 }
+
+      
+        
+    

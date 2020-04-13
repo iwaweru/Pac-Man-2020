@@ -134,10 +134,9 @@ public class PacManController : ControllerNodes
             collision.gameObject.GetComponent<GhostController>().Die();
         else
         {
+            gameBoard.LifeCount--;
             GameObject.Find("Game").GetComponent<gameBoard>().Die();
         }
-
-
     }
 
     public Direction getFacing()
