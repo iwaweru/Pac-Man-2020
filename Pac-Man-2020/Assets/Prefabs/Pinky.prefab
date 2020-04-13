@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8574752846295226655}
   - component: {fileID: 8574752846295226652}
-  - component: {fileID: 8574752846295226653}
   - component: {fileID: 8574752846295226594}
+  - component: {fileID: 2300468159093970671}
+  - component: {fileID: 8574752846295226653}
   m_Layer: 8
   m_Name: Pinky
   m_TagString: Untagged
@@ -83,6 +84,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &8574752846295226594
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574752846295226592}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.0001
+--- !u!114 &2300468159093970671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574752846295226592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d302085f7f944bdaa7a431adbbcfc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: {fileID: 0}
+  speed: 4
+  defaultState: {fileID: 0}
+  defaultSpeed: 4
+  eyeSpeed: 10
+  defualtAnimation: {fileID: 0}
+  eyesLeft: {fileID: 21300000, guid: 6403681ba51036149ad9487fb050adef, type: 3}
+  eyesRight: {fileID: 21300000, guid: 09936fb1a6242264691ec9090c642fe6, type: 3}
+  eyesUp: {fileID: 21300000, guid: 419ae7ecae240d94384bca49fbe50c2b, type: 3}
+  eyesDown: {fileID: 21300000, guid: 0473d49982d543e448d9a1a3185ad11e, type: 3}
+  myGhostHouse: {fileID: 0}
+  otherGhostHouse: {fileID: 0}
+  nAhead: 4
+  animator: {fileID: 0}
+  identity: 3
 --- !u!95 &8574752846295226653
 Animator:
   serializedVersion: 3
@@ -102,19 +146,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &8574752846295226594
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8574752846295226592}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.0001
