@@ -45,14 +45,15 @@ public class GhostController : ControllerNodes
     private float blueStartDelay = 10f;
     private float pinkStartDelay = 15f;
 
-
+    //Decisin Algorithm Settings
+    public float PacPlusN = 2f; //number of pills ahead of pacman used to obtain the vector pacPosPlusN and target in the function doubleRedToPacPlusN()
+    public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
+    public float approachableRadius = 10f; //the radius of the circle the ghost can approach pacman used in the function BashfulAI()
 
 
     private float myStartDelay;
 
     string myHomeBase;
-
-    public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
 
     public Animator animator;//This will need to be edited when each ghost is given a different start position. Appears in the GameBoard script.
     private Direction dirNum = Direction.Right;
@@ -63,6 +64,7 @@ public class GhostController : ControllerNodes
         Blue, //leaves third
         Pink //leaves fourth
     }
+
     private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
@@ -301,7 +303,7 @@ public class GhostController : ControllerNodes
         }
     }
 
-    private void doubleRedtoPacPlusTwo() ///Decision making algorithm: that choose the shortest path to the position obtained by doubling the vector from Blinky(red) to PacMan+2units.
+    private void doubleRedtoPacPlusN() //Decision making algorithm: that choose the shortest path to the position obtained by doubling the vector from Blinky(red) to PacMan + PacPlusN units.
     {
         Vector2 target = Vector2.zero;
 
@@ -314,21 +316,21 @@ public class GhostController : ControllerNodes
         Vector2 pacPos = Pac.transform.position; //get the coordinates of pacman
         Vector2 redPos = red.transform.position; //get the coordinates of red
 
-        Vector2 pacPosPlusTwo = Vector2.zero;
+        Vector2 pacPosPlusN = Vector2.zero;
 
-        //choose how to add +2 to pac's coordinates and assgin it tt pacPosPlusTwo
+        //choose how to add +PacPlusN to pac's coordinates and assgin it to pacPosPlusN
         if (PacFacing == Direction.Down)
-            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y - 2);
+            pacPosPlusN = new Vector2(pacPos.x, pacPos.y - PacPlusN);
         else if (PacFacing == Direction.Left)
-            pacPosPlusTwo = new Vector2(pacPos.x - 2, pacPos.y);
+            pacPosPlusN = new Vector2(pacPos.x - PacPlusN, pacPos.y);
         else if (PacFacing == Direction.Right)
-            pacPosPlusTwo = new Vector2(pacPos.x + 2, pacPos.y);
+            pacPosPlusN = new Vector2(pacPos.x + PacPlusN, pacPos.y);
         else //implies that PacFacing == Direction.Up
-            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y + 2);
+            pacPosPlusN = new Vector2(pacPos.x, pacPos.y + PacPlusN);
 
-        //Now use pacPosPlusTwo and redPos to find and assign target
+        //Now use pacPosPlusN and redPos to find and assign target
 
-        target = 2 * (pacPosPlusTwo - redPos); //target is double the vector from red to pac+2 (vector algebra)
+        target = 2 * (pacPosPlusN - redPos); //target is double the vector from red to pac+2 (vector algebra)
 
         shortestPathTo(targetPosition: target); //now that inky has his target position, just take the shortest path to it. 
     }
@@ -395,8 +397,9 @@ public class GhostController : ControllerNodes
         }
 
     }
-private bool b = true;
 
+
+private bool b = true;
 
 
     private void BashfulAI()
@@ -417,17 +420,17 @@ private bool b = true;
                 isChasing = true;
                 isAtCorner = false;
             }
-            if((ghostPos - pacPos).sqrMagnitude <= 20 || !isChasing){
+            if((ghostPos - pacPos).sqrMagnitude <= approachableRadius || !isChasing){
                 print("Chase turned off");
                 isChasing = false;
-                if((ghostPos - pacPos).sqrMagnitude <= 20 && needNewTarget){
+                if((ghostPos - pacPos).sqrMagnitude <= approachableRadius && needNewTarget){
                     nextNodePos = cornerNodes[(int)UnityEngine.Random.Range(0, 4)].transform.position;
                     needNewTarget = false;
                     print("new target: " + nextNodePos);
                 }
                 print("Taarget: " + nextNodePos);
                 shortestPathTo(nextNodePos);
-            }else{
+            } else {
                 if(isChasing){
                     shortestPathTo(pacPos);
                 }
