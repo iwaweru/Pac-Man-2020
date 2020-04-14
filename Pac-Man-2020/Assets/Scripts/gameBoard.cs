@@ -89,10 +89,13 @@ public class gameBoard : MonoBehaviour
     {
     }
 
+    
+
     public void Die() //Put the death logic here.
     {
         StartCoroutine(RepositionCharactersAndDelay());
     }
+  
 
     public void PauseGame(float waitTime)
     {
@@ -150,6 +153,7 @@ public class gameBoard : MonoBehaviour
         GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
         GameObject readySprite = GameObject.Find(ready);
+        
         BackgroundSound.GetComponent<AudioSource>().Stop();
         //Pause game on contact
         Time.timeScale = 0.0f;
@@ -164,10 +168,9 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<PacManController>().enabled = false;
         PacMan.GetComponent<Animator>().enabled = false;
 
-        Time.timeScale = 1.0f;
-        //PauseGame(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
+        Time.timeScale = 1.0f; 
         //yield return new WaitForSeconds(PAUSE_DELAY);
-        PauseGame(PAUSE_DELAY);
+        PauseGame(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
         //Ghost contact sound/ death sound
         //Disable Scripts for death delay.
         Inky.GetComponent<GhostController>().enabled = true;
@@ -188,8 +191,7 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<Animator>().enabled = true;
         PacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
         DeathSound.GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(WAIT_DELAY);
-        //PauseGame(WAIT_DELAY); // delay to play death animation
+        yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
         PacMan.GetComponent<PacManController>().enabled = true;
         PacMan.GetComponent<Animator>().enabled = true;
         PacMan.SetActive(false); // now pacman disappears since animation played
@@ -207,11 +209,10 @@ public class gameBoard : MonoBehaviour
         readySprite.GetComponent<Animator>().enabled = true;
         readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
-        //PauseGame(5.0f);
         readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
         readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
-
+        
         //GO -- reactivate scripts.
         Inky.SetActive(true);
         Blinky.SetActive(true);
