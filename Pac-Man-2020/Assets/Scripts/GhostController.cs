@@ -31,13 +31,7 @@ public class GhostController : ControllerNodes
     private int numberOfChaseIterations = 3; //The number of times ghosts will cycle from chase to scatter before permanent chase
     private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
     private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
-
-    // Bashful settings
-    private bool isAtCorner = false; 
-    private Vector2 nextNodePos;
-    Node[] cornerNodes = new Node[4];
-    private bool needNewTarget = true;
-    // I am also using isChasing property for Bashful
+    
 
     // Time before ghosts leave jail;
     private float redStartDelay = 0f;
@@ -48,7 +42,13 @@ public class GhostController : ControllerNodes
     //Decisin Algorithm Settings
     public float PacPlusN = 2f; //number of pills ahead of pacman used to obtain the vector pacPosPlusN and target in the function doubleRedToPacPlusN()
     public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
+    // Bashful settings
     public float approachableRadius = 10f; //the radius of the circle the ghost can approach pacman used in the function BashfulAI()
+    private bool isAtCorner = false;
+    private Vector2 nextNodePos;
+    Node[] cornerNodes = new Node[4];
+    private bool needNewTarget = true;
+    // also using isChasing property for Bashful
 
 
     private float myStartDelay;
@@ -189,7 +189,7 @@ public class GhostController : ControllerNodes
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
-                doubleRedtoPacPlusTwo();
+                doubleRedtoPacPlusN();
             else
                 randomInput(); //Bashful AI Allows ghosts to reenter jail. Fix and then replace here.
         }
