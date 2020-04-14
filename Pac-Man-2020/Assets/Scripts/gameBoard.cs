@@ -15,9 +15,14 @@ public class gameBoard : MonoBehaviour
     // board dimensions
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
+    public static int LifeCount = 3;
     public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
+    private string LifeName1 = "PacLife2";
+    private string LifeName2 = "PacLife3";
+    private GameObject lifeAsset1;
+    private GameObject lifeAsset2;
     public static string Ghost1 = "Blinky";
     public static string Ghost2 = "Inky";
     public static string Ghost3 = "Clyde";
@@ -42,6 +47,8 @@ public class gameBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lifeAsset1 = GameObject.Find(LifeName1);
+        lifeAsset2 = GameObject.Find(LifeName2);
         //Create an array of objects containing every objects in the scene
         Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
 
@@ -117,7 +124,7 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<Animator>().enabled = false;
 
         Time.timeScale = 1.0f;
-        yield return new WaitForSeconds(waitTime); //delay once pacman hits ghost, initiates death animation
+        yield return new WaitForSeconds(WAIT_DELAY); //delay once pacman hits ghost, initiates death animation
         //Ghost contact sound/ death sound
         //Disable Scripts for death delay.
         Inky.GetComponent<GhostController>().enabled = true;
@@ -158,7 +165,9 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<Animator>().enabled = false;
 
         Time.timeScale = 1.0f;
-        yield return new WaitForSeconds(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
+        //PauseGame(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
+        //yield return new WaitForSeconds(PAUSE_DELAY);
+        PauseGame(PAUSE_DELAY);
         //Ghost contact sound/ death sound
         //Disable Scripts for death delay.
         Inky.GetComponent<GhostController>().enabled = true;
@@ -179,7 +188,8 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<Animator>().enabled = true;
         PacMan.GetComponent<Animator>().Play("DeathAnim", 0, 0);
         DeathSound.GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(WAIT_DELAY); // delay to play death animation
+        yield return new WaitForSeconds(WAIT_DELAY);
+        //PauseGame(WAIT_DELAY); // delay to play death animation
         PacMan.GetComponent<PacManController>().enabled = true;
         PacMan.GetComponent<Animator>().enabled = true;
         PacMan.SetActive(false); // now pacman disappears since animation played
@@ -197,6 +207,7 @@ public class gameBoard : MonoBehaviour
         readySprite.GetComponent<Animator>().enabled = true;
         readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
         yield return new WaitForSeconds(DEATH_DELAY); //Death Delay
+        //PauseGame(5.0f);
         readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
         readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
@@ -255,6 +266,16 @@ public class gameBoard : MonoBehaviour
 
     private void Update()
     {
+        if(LifeCount >= 3) {
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = true;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = true;
+        } else if(LifeCount == 2) {
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = true;
+        } else {
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = false;
+        } 
         //Handle Fright Mode outside of GhostController Class
         if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
         {

@@ -20,7 +20,7 @@ public class ScoreObject : MonoBehaviour
     {
         numbers = Resources.LoadAll<Sprite>("Score/"); //load in sprites to numbers
         UpdateScore(score, arrayOfNum);
-        UpdateScore(oneUpScore, arrayOfOneUp);
+        UpdateScore(oneUpScore, arrayOfOneUp); //should be score but variables are switched with cooresponding sprites
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class ScoreObject : MonoBehaviour
     {
         if(recalc){//this is probably where points will be added so score stays updated
             score = gameBoard.points; //gets points variable from gameBoard
-            //score += 10015;
+            //score += 9915;
             oneUpScore = score % extraLife;
             UpdateScore(oneUpScore, arrayOfNum); //should be score but variables are switched with cooresponding sprites
             UpdateScore(score, arrayOfOneUp);

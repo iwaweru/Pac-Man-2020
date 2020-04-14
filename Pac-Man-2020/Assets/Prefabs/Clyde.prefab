@@ -114,10 +114,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idle: {fileID: 0}
   speed: 4
-  randomMovement: 0
+  defaultState: {fileID: 0}
+  defaultSpeed: 4
+  eyeSpeed: 10
+  defualtAnimation: {fileID: 0}
+  eyesLeft: {fileID: 21300000, guid: 6403681ba51036149ad9487fb050adef, type: 3}
+  eyesRight: {fileID: 21300000, guid: 09936fb1a6242264691ec9090c642fe6, type: 3}
+  eyesUp: {fileID: 21300000, guid: 419ae7ecae240d94384bca49fbe50c2b, type: 3}
+  eyesDown: {fileID: 21300000, guid: 0473d49982d543e448d9a1a3185ad11e, type: 3}
+  myGhostHouse: {fileID: 0}
+  otherGhostHouse: {fileID: 0}
   nAhead: 4
-  animator: {fileID: 0}
-  identity: 0
+  animator: {fileID: 2409492246630471958}
+  identity: 1
 --- !u!95 &2409492246630471958
 Animator:
   serializedVersion: 3
@@ -128,7 +137,7 @@ Animator:
   m_GameObject: {fileID: 2409492246630471977}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: da100b1c3a71a004f8941f3867555d1e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 346f9194857ddd9458ca5d9c9d0c06d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
