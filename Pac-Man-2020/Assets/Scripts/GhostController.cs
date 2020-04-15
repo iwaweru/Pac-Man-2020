@@ -40,10 +40,10 @@ public class GhostController : ControllerNodes
     private float pinkStartDelay = 15f;
 
     //Decisin Algorithm Settings
-    public float PacPlusN = 2f; //number of pills ahead of pacman used to obtain the vector pacPosPlusN and target in the function doubleRedToPacPlusN()
+    private float PacPlusN = 2f; //number of pills ahead of pacman used to obtain the vector pacPosPlusN and target in the function doubleRedToPacPlusN()
     public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
     // Bashful settings
-    public float approachableRadius = 10f; //the radius of the circle the ghost can approach pacman used in the function BashfulAI()
+    private float approachableRadius = 10f; //the radius of the circle the ghost can approach pacman used in the function BashfulAI()
     private bool isAtCorner = false;
     private Vector2 nextNodePos;
     Node[] cornerNodes = new Node[4];
