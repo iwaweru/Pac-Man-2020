@@ -1,9 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GhostController : ControllerNodes
 {
+
+    //Fright Mode Variables
+    private static bool isScared = false;
+    private bool currentlyScared = false;
+    public static float frightTime= 5f;
+    private static float blinkForSeconds = 1.5f;//How long the ghost should blink for at the end of its fright duration. Cannot be greater than or equal to frighttime.
+    private static float scaredTimer = 0f;
+    private bool isConsumed = false;
+    public Animation defaultState;
+    public float defaultSpeed;
+    public float eyeSpeed;
+
+    public Animation defualtAnimation;
+    public Sprite eyesLeft;
+    public Sprite eyesRight;
+    public Sprite eyesUp;
+    public Sprite eyesDown;
+
+    public Node myGhostHouse;
+    public Node otherGhostHouse;
 
     // Scatter Mode Settings
     private int chaseIteration = 0; //Keeps track of current chase iteration.
@@ -23,10 +44,15 @@ public class GhostController : ControllerNodes
     List<Node> nodes = new List<Node>();
 
     // Time before ghosts leave jail;
-    private float blueStartDelay = 0f;
+    private float redStartDelay = 0f;
     private float orangeStartDelay = 5f;
-    private float redStartDelay = 10f;
+    private float blueStartDelay = 10f;
     private float pinkStartDelay = 15f;
+
+
+
+
+    private float myStartDelay;
 
     string myHomeBase;
 
@@ -36,9 +62,9 @@ public class GhostController : ControllerNodes
     private Direction dirNum = Direction.Right;
     public enum GhostColor
     {
-        Blue, //leaves first
+        Red, //leaves first
         Orange, //leaves second
-        Red, //leaves third
+        Blue, //leaves third
         Pink //leaves fourth
     }
     private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
@@ -48,6 +74,9 @@ public class GhostController : ControllerNodes
     private bool isChasing = true; //Am I chasing or fleeing (Scatter Mode)
     private bool canLeave = false; //Determines if the ghost can leave.
 
+    public static bool IsScared { get => isScared; set => isScared = value; }
+    public static float ScaredTimer { get => scaredTimer; set => scaredTimer = value; }
+
     public void resetRelease()
     {
         releaseTimer = 0;
@@ -56,14 +85,19 @@ public class GhostController : ControllerNodes
 
     public override void refresh()
     {
+        isConsumed = false;
         base.refresh();
         resetRelease();
     }
 
+    //Currently, Ghosts will continue behavior they were currently in upon Pac-Death (Scatter or Chase Mode)
     public override void Start()
     {
         // get corner nodes for BashfulAI
+        GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
         go = GameObject.FindGameObjectsWithTag("corner");
+        speed = defaultSpeed;
+        
         for(int i = 0; i < cornerNodes.Length; i++){
             Vector2 nodePos = go[i].transform.position;
             cornerNodes[i] = getNodeAtPosition(nodePos);
@@ -92,12 +126,28 @@ public class GhostController : ControllerNodes
         else
             myHomeBase = "Home Base Pink";
 
-        
+        //Set myStartDelay at bootup to save computation during game and make scaling other features easier.
+        if (identity == GhostColor.Blue)
+        {
+            myStartDelay = blueStartDelay;
+        }
+        else if (identity == GhostColor.Pink)
+        {
+            myStartDelay = pinkStartDelay;
+        }
+        else if (identity == GhostColor.Orange)
+        {
+            myStartDelay = orangeStartDelay;
+        }
+        else
+        {
+            myStartDelay = redStartDelay;
+        }
 
         startPosition = startPositions[(int)identity];//Set start position for the ghosts.
         dirNum = Direction.Right;//Reinitialize for refresh;
         this.canReverse = false;//Ghosts cannot move unless they are at an intersection.
-
+        animator = GetComponent<Animator>();
         transform.position = startPosition;//Ghost must start at node for now.
 
         Node current = getNodeAtPosition(transform.position);//Get node at this position.
@@ -109,17 +159,42 @@ public class GhostController : ControllerNodes
 
     public override void Update() //Override to change behavior
     {
-        releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
+        if (isConsumed)
+        {
+            returnToJail();
+        }
+        else
+        {
+            releaseTimer += Time.deltaTime; //Increment the Ghost Timer.
 
-        if (canLeave) //Only increment the Behavior, or chase timer, if the ghost has left.
-            behaviorTimer += Time.deltaTime;
+            if (releaseTimer - ScaredTimer >= myStartDelay)//If we are outside jail when Pac-Man eats a big pellet, then
+            { 
+                currentlyScared = true;
+                checkIfScared();
+            }
 
-        chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
+            if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
+                behaviorTimer += Time.deltaTime;
 
-        if(!canLeave) //Don't release if we already can leave (efficiency check only).
-            releaseGhosts();
+            chaseOrFlee();//Are we chasing or fleeing? Choose to chase or flee using configuration at top of file. 
 
-        if (isChasing) //Use preprogrammed AI if chasing.
+            if (!canLeave) //Don't release if we already can leave (efficiency check only).
+                releaseGhosts();
+            else
+                chooseAI(); //Determine which AI we will use if we are not scared and we can leave jail.
+        }
+
+        if (canLeave) //Don't leave unless your release timer is up.
+            Move();
+
+        UpdateOrientation();
+    }
+
+    private void chooseAI()
+    {
+        if (currentlyScared)
+            randomInput();
+        else if (isChasing) //Use preprogrammed AI if chasing.
         {
             if (identity == GhostColor.Red)
                 Dijkstra();
@@ -128,33 +203,25 @@ public class GhostController : ControllerNodes
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
                 doubleRedtoPacPlusTwo();
-            else 
-                BashfulAI();
+            else
+                randomInput(); //Bashful AI Allows ghosts to reenter jail. Fix and then replace here.
         }
         else //Otherwise, "Scatter" or chase home base.
             shortestPathTo(objectName: myHomeBase);
+    }
 
-        if (canLeave) //Don't leave unless your release timer is up.
-            Move();
-
-        UpdateOrientation();
+    private void returnToJail()
+    {
+        shortestPathTo(myGhostHouse.transform.position);
+        if (transform.position == myGhostHouse.transform.position || transform.position == otherGhostHouse.transform.position)
+        {
+            respawn();
+        }
     }
 
     private void releaseGhosts()
     {
-        if(identity == GhostColor.Blue && releaseTimer > blueStartDelay)
-        {
-            canLeave = true;
-        }
-        else if(identity == GhostColor.Pink && releaseTimer > pinkStartDelay)
-        {
-            canLeave = true;
-        }
-        else if(identity == GhostColor.Orange && releaseTimer > orangeStartDelay)
-        {
-            canLeave = true;
-        }
-        else if(identity == GhostColor.Red && releaseTimer > redStartDelay)
+        if(releaseTimer >= myStartDelay)
         {
             canLeave = true;
         }
@@ -166,6 +233,8 @@ public class GhostController : ControllerNodes
 
         if(getNodeAtPosition(transform.position) != null) //run only if on a node
         {
+
+
             float minDistance = 9999; //initialize minDistance to a random big value that's greater than any ghost-pacman distance possible
             Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
             Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
@@ -177,7 +246,14 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-
+                if (!isConsumed)//If we are not consumed, then we shouldn't enter jail.
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
@@ -208,25 +284,31 @@ public class GhostController : ControllerNodes
             Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
             Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
             Node[] myNeighbors = currentPosition.neighbors; //get my neighbors, store them in an array of nodes called myNeighbors
-
             for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
             {
                 if (direction * (-1) == currentPosition.validDir[i])
                 {
                     continue;
                 }
-
+                if (!isConsumed)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
 
                 float tempDistance = (targetPosition - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
-
                 if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
                 {
                     //Access the valid directions of the node we are currently on.
                     minDistance = tempDistance;
                     tempDirection = currentPosition.validDir[i];
+
                 }
             }
             //ghost chooses to go to the position of tempDirection store after the for-loop
@@ -287,7 +369,14 @@ public class GhostController : ControllerNodes
                 {
                     continue;
                 }
-
+                if (!isConsumed)
+                {
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
+                    {
+                        continue;
+                    }
+                }
                 Node neighborNode = myNeighbors[i];
 
                 Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
@@ -342,9 +431,7 @@ public class GhostController : ControllerNodes
             if((ghostPos - pacPos).sqrMagnitude <= 20 || !isChasing){
                 isChasing = false;
                 if((ghostPos - pacPos).sqrMagnitude <= 20 && needNewTarget){
-                    int num = (int)Random.Range(0, 4);
-                    print(num);
-                    nextNodePos = cornerNodes[num].transform.position;
+                    nextNodePos = cornerNodes[(int)UnityEngine.Random.Range(0, 4)].transform.position;
                     needNewTarget = false;
                 }
                 shortestPathTo(nextNodePos);
@@ -413,42 +500,126 @@ public class GhostController : ControllerNodes
     }
 
 
-    private void UpdateOrientation()
+    private void checkIfScared()//Might need to extract this to the gameboard class so that transitions are instantaneous.
     {
-        if (direction == Vector2.left)
+        if(blinkForSeconds >= frightTime)
+            throw new System.ArgumentException("blinkForSeconds cannot be greater than or eqaul to the specified frightTime", "blinkForSeconds");
+
+        if (scaredTimer > 0 && scaredTimer <= frightTime)//Need to add transition from blink to fright for timer reset.
         {
-            dirNum = Direction.Left;
+            animator.SetBool("frightened", true);
+            if(scaredTimer >= (frightTime-blinkForSeconds))
+            {
+                animator.SetBool("blink", true);
+            }
         }
-        else if(direction == Vector2.right)
+        else
         {
-            dirNum = Direction.Right;
+            animator.SetBool("frightened", false);
+            animator.SetBool("blink", false);
+            currentlyScared = false;
         }
-        else if(direction == Vector2.up)
-        {
-            dirNum = Direction.Up;
-        }
-        else if(direction == Vector2.down)
-        {
-            dirNum = Direction.Down;
-        }
-        animator.SetInteger("orientation", (int)dirNum);
+    }
+
+    public void Die()
+    {
+        
+        GameObject.Find("Game").GetComponent<gameBoard>().PauseGame(0.5f);
+        resetAnimator();
+        isConsumed = true;
+        GetComponent<Animator>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        speed = eyeSpeed;
+        
 
     }
 
+    void resetAnimator()
+    {
+
+        GetComponent<Animator>().SetTrigger("reset");
+        GetComponent<Animator>().SetBool("frightened", false);
+        GetComponent<Animator>().SetBool("blink", false);
+
+    }
+
+    void respawn()
+    {
+        releaseTimer = myStartDelay;//We were just released. Helps out animator.
+        isConsumed = false;
+        GetComponent<Animator>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+        speed = defaultSpeed;
+    }
+
+    private void UpdateOrientation()
+    {
+        if (!isConsumed)
+        {
+            if (direction == Vector2.left)
+            {
+                dirNum = Direction.Left;
+            }
+            else if (direction == Vector2.right)
+            {
+                dirNum = Direction.Right;
+            }
+            else if (direction == Vector2.up)
+            {
+                dirNum = Direction.Up;
+            }
+            else if (direction == Vector2.down)
+            {
+                dirNum = Direction.Down;
+            }
+            animator.SetInteger("orientation", (int)dirNum);
+        }
+        else
+        {
+            GetComponent<Animator>().enabled = false;
+            Debug.Log("Disabling!");
+            if (direction == Vector2.left)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesLeft;
+            }
+            else if (direction == Vector2.right)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesRight;
+            }
+            else if (direction == Vector2.up)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesUp;
+            }
+            else if (direction == Vector2.down)
+            {
+                GetComponent<SpriteRenderer>().sprite = eyesDown;
+            }
+        }
+
+    }
+    
+
     private void chaseOrFlee()
     {
-        if (chaseIteration >= numberOfChaseIterations)
-            isChasing = true;
-        else if(isChasing && behaviorTimer > 20f)
+        if (!currentlyScared)//If we are currently scared, we should not be chasing.
+        {
+            if (chaseIteration >= numberOfChaseIterations)
+                isChasing = true;
+            else if (isChasing && behaviorTimer > 20f)
+            {
+                isChasing = false;
+                behaviorTimer = 0f;
+            }
+            else if (!isChasing && behaviorTimer > 7f)
+            {
+                isChasing = true;
+                behaviorTimer = 0f;
+                chaseIteration++;
+            }
+        }
+        else
         {
             isChasing = false;
-            behaviorTimer = 0f;
-        }
-        else if(!isChasing && behaviorTimer > 7f)
-        {
-            isChasing = true;
-            behaviorTimer = 0f;
-            chaseIteration++;
         }
     }
 

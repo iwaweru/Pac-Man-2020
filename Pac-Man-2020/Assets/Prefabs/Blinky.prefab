@@ -114,9 +114,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idle: {fileID: 0}
   speed: 4
-  randomMovement: 0
+  defaultState: {fileID: 0}
+  defaultSpeed: 4
+  eyeSpeed: 10
+  defualtAnimation: {fileID: 0}
+  eyesLeft: {fileID: 21300000, guid: 6403681ba51036149ad9487fb050adef, type: 3}
+  eyesRight: {fileID: 21300000, guid: 09936fb1a6242264691ec9090c642fe6, type: 3}
+  eyesUp: {fileID: 21300000, guid: 419ae7ecae240d94384bca49fbe50c2b, type: 3}
+  eyesDown: {fileID: 21300000, guid: 0473d49982d543e448d9a1a3185ad11e, type: 3}
+  myGhostHouse: {fileID: 0}
+  otherGhostHouse: {fileID: 0}
   nAhead: 4
-  animator: {fileID: 0}
+  animator: {fileID: 8925563996359968564}
   identity: 0
 --- !u!95 &8925563996359968564
 Animator:

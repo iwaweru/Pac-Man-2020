@@ -9,6 +9,7 @@ public class Node : MonoBehaviour
     public float[] neighborDistance;
     public Node predecessor = null;
     public float distance;
+    public bool isEntryNode; //Determines if a node is an entrance to jail.
     // Start is called before the first frame update
     void Start()
     {

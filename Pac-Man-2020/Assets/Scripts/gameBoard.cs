@@ -15,16 +15,21 @@ public class gameBoard : MonoBehaviour
     // board dimensions
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
+    public static int LifeCount = 3;
     public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
-    public string Ghost1 = "Blinky";
-    public string Ghost2 = "Inky";
-    public string Ghost3 = "Clyde";
-    public string Ghost4 = "Pinky";
-    public string PacManName = "Pac-Man-Node";
+    private string LifeName1 = "PacLife2";
+    private string LifeName2 = "PacLife3";
+    private GameObject lifeAsset1;
+    private GameObject lifeAsset2;
+    public static string Ghost1 = "Blinky";
+    public static string Ghost2 = "Inky";
+    public static string Ghost3 = "Clyde";
+    public static string Ghost4 = "Pinky";
+    public static string PacManName = "Pac-Man-Node";
     //String identifiers of UI objects.
-    public string ready = "ReadySprite";
+    public static string ready = "ReadySprite";
     //Point Tracker
     public static int points = 0;
     //Delay before game starts again after Pac-Man hits a ghost.
@@ -42,6 +47,8 @@ public class gameBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lifeAsset1 = GameObject.Find(LifeName1);
+        lifeAsset2 = GameObject.Find(LifeName2);
         //Create an array of objects containing every objects in the scene
         Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
 
@@ -82,10 +89,13 @@ public class gameBoard : MonoBehaviour
     {
     }
 
+    
+
     public void Die() //Put the death logic here.
-      {
+    {
         StartCoroutine(RepositionCharactersAndDelay());
     }
+  
 
     public void PauseGame(float waitTime)
     {
@@ -143,6 +153,7 @@ public class gameBoard : MonoBehaviour
         GameObject Pinky = GameObject.Find(Ghost4);
         GameObject PacMan = GameObject.Find(PacManName);
         GameObject readySprite = GameObject.Find(ready);
+        
         BackgroundSound.GetComponent<AudioSource>().Stop();
         //Pause game on contact
         Time.timeScale = 0.0f;
@@ -200,7 +211,7 @@ public class gameBoard : MonoBehaviour
         readySprite.GetComponent<Animator>().enabled = false; //reseting the animation back to the  first frame
         readySprite.GetComponent<SpriteRenderer>().enabled = false;
         //Remove ready sprite here. 
-
+        
         //GO -- reactivate scripts.
         Inky.SetActive(true);
         Blinky.SetActive(true);
@@ -256,5 +267,29 @@ public class gameBoard : MonoBehaviour
     private void Update()
     {
 
+        if(LifeCount >= 3) {
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = true;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = true;
+        } else if(LifeCount == 2) {
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = true;
+        } else {
+            lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
+            lifeAsset1.GetComponent<SpriteRenderer>().enabled = false;
+        } 
+        //Handle Fright Mode outside of GhostController Class
+        if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
+        {
+            GhostController.ScaredTimer += Time.deltaTime;
+        }
+        else
+        {
+            GhostController.ScaredTimer = 0f;
+            GhostController.IsScared = false;
+        }
     }
 }
+
+      
+        
+    
