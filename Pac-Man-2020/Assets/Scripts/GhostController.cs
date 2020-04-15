@@ -94,7 +94,6 @@ public class GhostController : ControllerNodes
     public override void Start()
     {
         // get corner nodes for BashfulAI
-        GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
         go = GameObject.FindGameObjectsWithTag("corner");
         speed = defaultSpeed;
         
