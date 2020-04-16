@@ -37,7 +37,11 @@ public class GhostController : ControllerNodes
     private Vector2 nextNodePos;
     Node[] cornerNodes = new Node[4];
     private bool needNewTarget = true;
+    GameObject[] go = new GameObject[4];
     // I am also using isChasing property for Bashful
+
+    // Dijkstra
+    List<Node> nodes = new List<Node>();
 
     // Time before ghosts leave jail;
     private float redStartDelay = 0f;
@@ -89,13 +93,22 @@ public class GhostController : ControllerNodes
     //Currently, Ghosts will continue behavior they were currently in upon Pac-Death (Scatter or Chase Mode)
     public override void Start()
     {
+        // get corner nodes for BashfulAI
+        go = GameObject.FindGameObjectsWithTag("corner");
         speed = defaultSpeed;
-        GameObject[] go = GameObject.FindGameObjectsWithTag("corner");
         
         for(int i = 0; i < cornerNodes.Length; i++){
             Vector2 nodePos = go[i].transform.position;
             cornerNodes[i] = getNodeAtPosition(nodePos);
         }
+       // get all nodes for Dijkstra and assign it to "nodes"
+        foreach(GameObject o in GameObject.FindGameObjectsWithTag("node")){
+            nodes.Add(o.GetComponent<Node>());
+        }
+        foreach(GameObject o in go){
+            nodes.Add(o.GetComponent<Node>());
+        }
+    
         //Initialize and Set Home Base by Identity.
         if (identity == GhostColor.Blue)
         {
@@ -183,7 +196,8 @@ public class GhostController : ControllerNodes
         else if (isChasing) //Use preprogrammed AI if chasing.
         {
             if (identity == GhostColor.Red)
-                shortestPathTo(objectName: "Pac-Man-Node");
+                Dijkstra();
+                // shortestPathTo(objectName: "Pac-Man-Node");
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
@@ -395,8 +409,6 @@ public class GhostController : ControllerNodes
         }
 
     }
-private bool b = true;
-
 
 
     private void BashfulAI()
@@ -408,24 +420,19 @@ private bool b = true;
         if(ghostNode != null){
             for(int i = 0; i < cornerNodes.Length && !isAtCorner && !isChasing; i++){
                 if(cornerNodes[i] == ghostNode){
-                    print("I am corner");
                     isAtCorner = true;
                 }
             }
             if(isAtCorner){
-                print("Is at corner");
                 isChasing = true;
                 isAtCorner = false;
             }
             if((ghostPos - pacPos).sqrMagnitude <= 20 || !isChasing){
-                print("Chase turned off");
                 isChasing = false;
                 if((ghostPos - pacPos).sqrMagnitude <= 20 && needNewTarget){
                     nextNodePos = cornerNodes[(int)UnityEngine.Random.Range(0, 4)].transform.position;
                     needNewTarget = false;
-                    print("new target: " + nextNodePos);
                 }
-                print("Taarget: " + nextNodePos);
                 shortestPathTo(nextNodePos);
             }else{
                 if(isChasing){
@@ -435,6 +442,60 @@ private bool b = true;
             }
         }
         
+    }
+
+    private void Dijkstra(){
+        Node ghostNode = getNodeAtPosition(transform.position);
+        if(ghostNode != null){
+            foreach(Node node in nodes){    // initialize node distance to INFINITY
+                node.distance = 9999f;
+            }
+            PacManController pac = GameObject.FindGameObjectWithTag("PacMan").GetComponent<PacManController>();
+            HashSet<Node> visited = new HashSet<Node>();
+            List<Node> priorityList = new List<Node>(); // have to sort after each insertion
+            ghostNode.distance = 0f;
+            priorityList.Add(ghostNode);
+            while(priorityList.Count != 0){
+                
+                Node v = priorityList[0]; // retrieve Node with smallest distance property
+                priorityList.RemoveAt(0); // remove previous Node
+                visited.Add(v); // add node to the "visited" set
+                for(int i = 0; i < v.neighbors.Length; i++){
+                    Node u = v.neighbors[i];
+                    if(!visited.Contains(u)){
+                        float thisPathLength = v.distance + v.neighborDistance[i]; // distance to parent node from origin + distance to this neighbor node
+                        if(u.distance > thisPathLength){
+                            u.distance = thisPathLength; // distance to parent node from origin + distance to this neighbor node
+                            u.predecessor = v;
+                        }
+                        priorityList.Add(u); 
+                        priorityList.Sort((x, y) => x.distance.CompareTo(y.distance)); // sort list based on Node distance from ghost; Node with smallest distance first
+                    }
+                }  
+            }
+            ChangePosition(findNextDirection(ghostNode, pac.getTargetNode()));
+            
+
+        }
+    }
+
+    private Vector2 findNextDirection(Node ghostNode, Node pacManNode){
+        if(ghostNode != pacManNode.predecessor){
+            return findNextDirection(ghostNode, pacManNode.predecessor);
+        }else{
+            return findDirectionHelper(ghostNode, pacManNode);
+        }
+    }
+
+    private Vector2 findDirectionHelper(Node myNode, Node targetNode){
+        Vector2 dir = new Vector2();
+        for(int i = 0; i < myNode.neighbors.Length; i++){
+                if(myNode.neighbors[i] == targetNode){
+                     dir = myNode.validDir[i];
+                     break;
+                }
+            }
+        return dir;
     }
 
 
