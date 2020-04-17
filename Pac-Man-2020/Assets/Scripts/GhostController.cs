@@ -197,8 +197,8 @@ public class GhostController : ControllerNodes
         else if (isChasing) //Use preprogrammed AI if chasing.
         {
             if (identity == GhostColor.Red)
-                Dijkstra();
-                // shortestPathTo(objectName: "Pac-Man-Node");
+                //Dijkstra();
+                shortestPathTo(objectName: "Pac-Man-Node");
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
