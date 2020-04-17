@@ -7,6 +7,7 @@ public class GhostController : ControllerNodes
 {
 
     //Fright Mode Variables
+    public int frightSpeed;
     private static bool isScared = false;
     private bool currentlyScared = false;
     public static float frightTime= 5f;
@@ -32,14 +33,6 @@ public class GhostController : ControllerNodes
     private float chaseDuration = 20f; // The amount of time each ghost will chase for while iterating. (before perm chase)
     private float scatterDuration = 7f; // The amount of time each ghost will scatter for while iterating. (before perm chase)
 
-    // Bashful settings
-    private bool isAtCorner = false; 
-    private Vector2 nextNodePos;
-    Node[] cornerNodes = new Node[4];
-    private bool needNewTarget = true;
-    GameObject[] go = new GameObject[4];
-    // I am also using isChasing property for Bashful
-
     // Dijkstra
     List<Node> nodes = new List<Node>();
 
@@ -49,14 +42,22 @@ public class GhostController : ControllerNodes
     private float blueStartDelay = 10f;
     private float pinkStartDelay = 15f;
 
-
+    //Decisin Algorithm Settings
+    private float PacPlusN = 2f; //number of pills ahead of pacman used to obtain the vector pacPosPlusN and target in the function doubleRedToPacPlusN()
+    public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
+    // Bashful settings
+    private float approachableRadius = 10f; //the radius of the circle the ghost can approach pacman used in the function BashfulAI()
+    private bool isAtCorner = false;
+    private Vector2 nextNodePos;
+    Node[] cornerNodes = new Node[4];
+    private bool needNewTarget = true;
+    GameObject[] go = new GameObject[4];
+    // also using isChasing property for Bashful
 
 
     private float myStartDelay;
 
     string myHomeBase;
-
-    public float nAhead = 4f; //number of pills to aim ahead when using the nPillsAheadOfPacMan() decision algo
 
     public Animator animator;//This will need to be edited when each ghost is given a different start position. Appears in the GameBoard script.
     private Direction dirNum = Direction.Right;
@@ -67,6 +68,7 @@ public class GhostController : ControllerNodes
         Blue, //leaves third
         Pink //leaves fourth
     }
+
     private Vector2[] startPositions = { new Vector2(10, 12), new Vector2(11, 10), new Vector2(10, 10), new Vector2(9,10)};//Corresponding Start Pos for ghost color.
     public GhostColor identity = GhostColor.Blue; //Which ghost is this?
     private float releaseTimer = 0f;
@@ -196,12 +198,12 @@ public class GhostController : ControllerNodes
         else if (isChasing) //Use preprogrammed AI if chasing.
         {
             if (identity == GhostColor.Red)
-                Dijkstra();
-                // shortestPathTo(objectName: "Pac-Man-Node");
+                //Dijkstra();
+                shortestPathTo(objectName: "Pac-Man-Node");
             else if (identity == GhostColor.Pink)
                 nAheadOfPacMan();
             else if (identity == GhostColor.Blue)
-                doubleRedtoPacPlusTwo();
+                doubleRedtoPacPlusN();
             else
                 randomInput(); //Bashful AI Allows ghosts to reenter jail. Fix and then replace here.
         }
@@ -315,7 +317,7 @@ public class GhostController : ControllerNodes
         }
     }
 
-    private void doubleRedtoPacPlusTwo() ///Decision making algorithm: that choose the shortest path to the position obtained by doubling the vector from Blinky(red) to PacMan+2units.
+    private void doubleRedtoPacPlusN() //Decision making algorithm: that choose the shortest path to the position obtained by doubling the vector from Blinky(red) to PacMan + PacPlusN units.
     {
         Vector2 target = Vector2.zero;
 
@@ -328,21 +330,21 @@ public class GhostController : ControllerNodes
         Vector2 pacPos = Pac.transform.position; //get the coordinates of pacman
         Vector2 redPos = red.transform.position; //get the coordinates of red
 
-        Vector2 pacPosPlusTwo = Vector2.zero;
+        Vector2 pacPosPlusN = Vector2.zero;
 
-        //choose how to add +2 to pac's coordinates and assgin it tt pacPosPlusTwo
+        //choose how to add +PacPlusN to pac's coordinates and assgin it to pacPosPlusN
         if (PacFacing == Direction.Down)
-            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y - 2);
+            pacPosPlusN = new Vector2(pacPos.x, pacPos.y - PacPlusN);
         else if (PacFacing == Direction.Left)
-            pacPosPlusTwo = new Vector2(pacPos.x - 2, pacPos.y);
+            pacPosPlusN = new Vector2(pacPos.x - PacPlusN, pacPos.y);
         else if (PacFacing == Direction.Right)
-            pacPosPlusTwo = new Vector2(pacPos.x + 2, pacPos.y);
+            pacPosPlusN = new Vector2(pacPos.x + PacPlusN, pacPos.y);
         else //implies that PacFacing == Direction.Up
-            pacPosPlusTwo = new Vector2(pacPos.x, pacPos.y + 2);
+            pacPosPlusN = new Vector2(pacPos.x, pacPos.y + PacPlusN);
 
-        //Now use pacPosPlusTwo and redPos to find and assign target
+        //Now use pacPosPlusN and redPos to find and assign target
 
-        target = 2 * (pacPosPlusTwo - redPos); //target is double the vector from red to pac+2 (vector algebra)
+        target = 2 * (pacPosPlusN - redPos); //target is double the vector from red to pac+2 (vector algebra)
 
         shortestPathTo(targetPosition: target); //now that inky has his target position, just take the shortest path to it. 
     }
@@ -423,18 +425,22 @@ public class GhostController : ControllerNodes
                     isAtCorner = true;
                 }
             }
+
             if(isAtCorner){
                 isChasing = true;
                 isAtCorner = false;
             }
-            if((ghostPos - pacPos).sqrMagnitude <= 20 || !isChasing){
+
+            if((ghostPos - pacPos).sqrMagnitude <= approachableRadius || !isChasing){
+                print("Chase turned off");
                 isChasing = false;
-                if((ghostPos - pacPos).sqrMagnitude <= 20 && needNewTarget){
+                if((ghostPos - pacPos).sqrMagnitude <= approachableRadius && needNewTarget){
                     nextNodePos = cornerNodes[(int)UnityEngine.Random.Range(0, 4)].transform.position;
                     needNewTarget = false;
                 }
                 shortestPathTo(nextNodePos);
-            }else{
+            } else {
+
                 if(isChasing){
                     shortestPathTo(pacPos);
                 }
@@ -506,6 +512,7 @@ public class GhostController : ControllerNodes
 
         if (scaredTimer > 0 && scaredTimer <= frightTime)//Need to add transition from blink to fright for timer reset.
         {
+            speed = frightSpeed;
             animator.SetBool("frightened", true);
             if(scaredTimer >= (frightTime-blinkForSeconds))
             {
@@ -514,6 +521,7 @@ public class GhostController : ControllerNodes
         }
         else
         {
+            speed = defaultSpeed;
             animator.SetBool("frightened", false);
             animator.SetBool("blink", false);
             currentlyScared = false;
