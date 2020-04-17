@@ -7,6 +7,7 @@ public class GhostController : ControllerNodes
 {
 
     //Fright Mode Variables
+    public int frightSpeed;
     private static bool isScared = false;
     private bool currentlyScared = false;
     public static float frightTime= 5f;
@@ -511,6 +512,7 @@ public class GhostController : ControllerNodes
 
         if (scaredTimer > 0 && scaredTimer <= frightTime)//Need to add transition from blink to fright for timer reset.
         {
+            speed = frightSpeed;
             animator.SetBool("frightened", true);
             if(scaredTimer >= (frightTime-blinkForSeconds))
             {
@@ -519,6 +521,7 @@ public class GhostController : ControllerNodes
         }
         else
         {
+            speed = defaultSpeed;
             animator.SetBool("frightened", false);
             animator.SetBool("blink", false);
             currentlyScared = false;
