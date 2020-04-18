@@ -17,6 +17,8 @@ public class GhostController : ControllerNodes
     public Animation defaultState;
     public float defaultSpeed;
     public float eyeSpeed;
+    public static bool IsScared { get => isScared; set => isScared = value; }
+    public static float ScaredTimer { get => scaredTimer; set => scaredTimer = value; }
 
     public Animation defualtAnimation;
     public Sprite eyesLeft;
@@ -76,8 +78,7 @@ public class GhostController : ControllerNodes
     private bool isChasing = true; //Am I chasing or fleeing (Scatter Mode)
     private bool canLeave = false; //Determines if the ghost can leave.
 
-    public static bool IsScared { get => isScared; set => isScared = value; }
-    public static float ScaredTimer { get => scaredTimer; set => scaredTimer = value; }
+
 
     public void resetRelease()
     {
@@ -91,7 +92,6 @@ public class GhostController : ControllerNodes
         base.refresh();
         resetRelease();
     }
-
     //Currently, Ghosts will continue behavior they were currently in upon Pac-Death (Scatter or Chase Mode)
     public override void Start()
     {
@@ -274,18 +274,16 @@ public class GhostController : ControllerNodes
         }
     }
 
-    //Overloading shortestPathTo to take vector2s as input also
-
-    private void shortestPathTo(Vector2 targetPosition) //Decision making algorithm: ghost finds his neighbor node closest to some postion as a vector and chooses that node as his next direction
+    private void shortestPathTo(Vector2 targetPosition)
     {
 
-        if (getNodeAtPosition(transform.position) != null) //run only if on a node
+        if (getNodeAtPosition(transform.position) != null) 
         {
-            float minDistance = 9999; //initialize minDistance to a random big value that's greater than any ghost-pacman distance possible
-            Vector2 tempDirection = Vector2.zero; //initialize the direction vector the ghost will take
-            Node currentPosition = getNodeAtPosition(transform.position); //get current position to then find my neighbors
-            Node[] myNeighbors = currentPosition.neighbors; //get my neighbors, store them in an array of nodes called myNeighbors
-            for (int i = 0; i < myNeighbors.Length; i++) //iterate over the neighbors to find the shortest one to pacman
+            float minDistance = 9999; 
+            Vector2 tempDirection = Vector2.zero; 
+            Node currentPosition = getNodeAtPosition(transform.position);
+            Node[] myNeighbors = currentPosition.neighbors;
+            for (int i = 0; i < myNeighbors.Length; i++)
             {
                 if (direction * (-1) == currentPosition.validDir[i])
                 {
@@ -293,7 +291,7 @@ public class GhostController : ControllerNodes
                 }
                 if (!isConsumed)
                 {
-                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);//possibly redundant function
+                    GameObject tile = GetTileAtPosition(currentPosition.transform.position);
                     if (tile.GetComponent<Pills>().isJailEntrance && currentPosition.validDir[i] == Vector2.down)
                     {
                         continue;
@@ -301,19 +299,17 @@ public class GhostController : ControllerNodes
                 }
                 Node neighborNode = myNeighbors[i];
 
-                Vector2 nodePos = neighborNode.transform.position; //get the coordinates of the node
+                Vector2 nodePos = neighborNode.transform.position; 
 
-                float tempDistance = (targetPosition - nodePos).sqrMagnitude; //distance from pacman to the node we are currently iterating over
-                if (tempDistance < minDistance) //if the vector distance between the neighbor is the min, set Ghost to go towards that Node
+                float tempDistance = (targetPosition - nodePos).sqrMagnitude;
+                if (tempDistance < minDistance) 
                 {
-                    //Access the valid directions of the node we are currently on.
                     minDistance = tempDistance;
                     tempDirection = currentPosition.validDir[i];
 
                 }
             }
-            //ghost chooses to go to the position of tempDirection store after the for-loop
-            ChangePosition(tempDirection); //similar to randomInput()
+            ChangePosition(tempDirection);
         }
     }
 
@@ -348,7 +344,6 @@ public class GhostController : ControllerNodes
 
         shortestPathTo(targetPosition: target); //now that inky has his target position, just take the shortest path to it. 
     }
-
 
     private void nAheadOfPacMan() //Decision making algorithm: ghost finds his neighbor node closest to n pills ahead of PacMan as a vector and chooses that node as his next direction
     {
@@ -411,7 +406,6 @@ public class GhostController : ControllerNodes
         }
 
     }
-
 
     private void BashfulAI()
     {
@@ -503,7 +497,6 @@ public class GhostController : ControllerNodes
             }
         return dir;
     }
-
 
     private void checkIfScared()//Might need to extract this to the gameboard class so that transitions are instantaneous.
     {
@@ -604,7 +597,6 @@ public class GhostController : ControllerNodes
 
     }
     
-
     private void chaseOrFlee()
     {
         if (!currentlyScared)//If we are currently scared, we should not be chasing.
