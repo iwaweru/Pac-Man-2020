@@ -37075,7 +37075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5221836cd23194a90a6ca173f4349f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  totalScore: 0
   oneUpScore: 0
   numbers:
   - {fileID: -2973451351822383342, guid: a70b0ce41563f47eb880d9c915c8ba0d, type: 3}
@@ -37089,6 +37089,17 @@ MonoBehaviour:
   - {fileID: -6180101023728018127, guid: a70b0ce41563f47eb880d9c915c8ba0d, type: 3}
   - {fileID: -3748392377035486473, guid: a70b0ce41563f47eb880d9c915c8ba0d, type: 3}
   places:
+  - {fileID: 1417883033}
+  - {fileID: 1375154053}
+  - {fileID: 1744783936}
+  - {fileID: 366894264}
+  - {fileID: 1170132858}
+  - {fileID: 2099959389}
+  - {fileID: 720646159}
+  - {fileID: 1011714482}
+  - {fileID: 1004771047}
+  - {fileID: 1809095958}
+  oneUpPlaces:
   - {fileID: 1829815979}
   - {fileID: 1388426856}
   - {fileID: 1188441884}
@@ -37102,6 +37113,9 @@ MonoBehaviour:
   extraLife: 10000
   maxscore: 2147483647
   recalc: 1
+  isScore: 0
+  isOneUp: 1
+  LifeUp: 1
 --- !u!4 &1857341711
 Transform:
   m_ObjectHideFlags: 0
@@ -38384,7 +38398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5221836cd23194a90a6ca173f4349f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  totalScore: 0
   oneUpScore: 0
   numbers:
   - {fileID: -2973451351822383342, guid: a70b0ce41563f47eb880d9c915c8ba0d, type: 3}
@@ -38408,9 +38422,23 @@ MonoBehaviour:
   - {fileID: 1011714482}
   - {fileID: 1004771047}
   - {fileID: 1809095958}
+  oneUpPlaces:
+  - {fileID: 1829815979}
+  - {fileID: 1388426856}
+  - {fileID: 1188441884}
+  - {fileID: 1726240128}
+  - {fileID: 1463363171}
+  - {fileID: 1206572900}
+  - {fileID: 720646159}
+  - {fileID: 1011714482}
+  - {fileID: 1004771047}
+  - {fileID: 1809095958}
   extraLife: 10000
   maxscore: 2147483647
   recalc: 1
+  isScore: 1
+  isOneUp: 0
+  LifeUp: 0
 --- !u!1 &1911240693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,

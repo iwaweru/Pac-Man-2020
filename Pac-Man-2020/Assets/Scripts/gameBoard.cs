@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 
 public class gameBoard : MonoBehaviour
@@ -16,7 +17,9 @@ public class gameBoard : MonoBehaviour
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
     public static int LifeCount = 3;
-    public static int MULTIPLIER = 10; //Score added per pill.
+    public static int maxLife = 3;
+    private static int minLife = 0;
+    public static int MULTIPLIER = 1000; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
     private string LifeName1 = "PacLife2";
@@ -277,6 +280,10 @@ public class gameBoard : MonoBehaviour
             lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
             lifeAsset1.GetComponent<SpriteRenderer>().enabled = false;
         } 
+        //Handle GAME OVER 
+        if(LifeCount == minLife){
+            EditorApplication.isPlaying = false; //stops game
+        }
         //Handle Fright Mode outside of GhostController Class
         if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
         {
