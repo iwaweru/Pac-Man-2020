@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControllerNodes : MonoBehaviour
 {
+    protected bool isPacMan = false;//Used for jailhouse logic
     private Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
     protected bool canReverse = true;
     protected Vector2 direction = new Vector2(0,0);
@@ -17,10 +18,16 @@ public class ControllerNodes : MonoBehaviour
     //public float cruise = speed * 0.75;
 
 
-
     protected Node currentNode;
     protected Node previousNode;
     protected Node targetNode;
+
+    public Node getTargetNode(){
+        return targetNode;
+    }
+    public Node getPreviousNode(){
+        return previousNode;
+    }
 
     private int pelletsConsumed = 0;
 
@@ -37,7 +44,7 @@ public class ControllerNodes : MonoBehaviour
     public virtual void randomInput()
     {
         Vector2 newDir = dirs[RandomNumber()];
-        while(direction*(-1) == newDir){
+        while(direction*(-1) == newDir || (newDir == Vector2.down && GetTileAtPosition(transform.position).GetComponent<Pills>().isJailEntrance)){
             newDir = dirs[RandomNumber()];
         }
         ChangePosition(newDir);
@@ -93,9 +100,14 @@ public class ControllerNodes : MonoBehaviour
         {
             if(currentNode.validDir[i] == d)
             {
+                
                 moveToNode = currentNode.neighbors[i];
                 break;
             }
+        }
+        if (isPacMan && d == Vector2.down && currentNode.GetComponent<Pills>().isJailEntrance)
+        {
+            return null;
         }
         //disallow diagonal movement here.
         return moveToNode;

@@ -12,6 +12,7 @@ TagManager:
   - Base
   - Sound
   - corner
+  - node
   layers:
   - Default
   - TransparentFX

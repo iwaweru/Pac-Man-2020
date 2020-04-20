@@ -141,6 +141,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &13673701 stripped
 GameObject:
@@ -163,6 +164,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &23231079 stripped
 GameObject:
@@ -185,6 +187,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &23822392
 PrefabInstance:
@@ -287,6 +290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (137)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -468,6 +476,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -567,6 +580,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &58480442 stripped
 GameObject:
@@ -594,6 +608,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &58480445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +627,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &62261143 stripped
 GameObject:
@@ -631,6 +650,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &63218701 stripped
 GameObject:
@@ -653,6 +673,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &66603463 stripped
 GameObject:
@@ -675,6 +696,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &69824456 stripped
 GameObject:
@@ -702,6 +724,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &69824459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +743,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &73515606 stripped
 GameObject:
@@ -739,6 +766,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &76187393
 PrefabInstance:
@@ -957,7 +985,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &87470161
 PrefabInstance:
@@ -1070,6 +1098,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &102230366
 PrefabInstance:
@@ -1187,6 +1216,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &105823849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,6 +1235,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &115473958
 PrefabInstance:
@@ -1314,6 +1348,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &121334712
 PrefabInstance:
@@ -1331,6 +1366,65 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: identity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: ghostHouse
+      value: 
+      objectReference: {fileID: 535757885}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: myGhostHouse
+      value: 
+      objectReference: {fileID: 1271120630}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: otherGhostHouse
+      value: 
+      objectReference: {fileID: 535757885}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesDown
+      value: 
+      objectReference: {fileID: 21300000, guid: 0473d49982d543e448d9a1a3185ad11e,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesLeft
+      value: 
+      objectReference: {fileID: 21300000, guid: 6403681ba51036149ad9487fb050adef,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesUp
+      value: 
+      objectReference: {fileID: 21300000, guid: 419ae7ecae240d94384bca49fbe50c2b,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesRight
+      value: 
+      objectReference: {fileID: 21300000, guid: 09936fb1a6242264691ec9090c642fe6,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: defaultSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: frightSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6591487974774634580, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
@@ -1391,7 +1485,7 @@ PrefabInstance:
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
@@ -1522,6 +1616,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &138576993 stripped
 GameObject:
@@ -1545,10 +1640,15 @@ MonoBehaviour:
   - {fileID: 406693963}
   - {fileID: 1026397300}
   - {fileID: 1859194630}
+  - {fileID: 1271120630}
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: 1}
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &138576996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1564,6 +1664,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 1
   portalReceiver: {fileID: 0}
 --- !u!1 &140336741 stripped
 GameObject:
@@ -1586,6 +1687,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &143464338 stripped
 GameObject:
@@ -1611,6 +1713,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &143464341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,6 +1732,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &145467859 stripped
 GameObject:
@@ -1648,6 +1755,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &150890580
 GameObject:
@@ -1677,7 +1785,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &153561338
 PrefabInstance:
@@ -1690,6 +1798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (155)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -1793,6 +1906,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &160340965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1808,6 +1925,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &163122748 stripped
 GameObject:
@@ -1833,6 +1951,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &163122751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1848,6 +1970,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &163873599
 PrefabInstance:
@@ -1860,6 +1983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -1950,6 +2078,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (64)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -2050,6 +2183,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &196107697 stripped
 GameObject:
@@ -2072,6 +2206,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &197158035
 PrefabInstance:
@@ -2274,6 +2409,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &207473941
 PrefabInstance:
@@ -2667,6 +2803,10 @@ MonoBehaviour:
   - {fileID: 2066420758}
   validDir:
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &245593034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2682,6 +2822,7 @@ MonoBehaviour:
   isPortal: 1
   isPellet: 0
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 647655629}
 --- !u!1001 &248350282
 PrefabInstance:
@@ -2694,6 +2835,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (128)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -2785,6 +2931,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (129)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2874,6 +3025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (93)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -3064,6 +3220,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &270968129 stripped
 GameObject:
@@ -3086,6 +3243,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &283351683
 PrefabInstance:
@@ -3198,6 +3356,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &284500751
 PrefabInstance:
@@ -3210,6 +3369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -3300,6 +3464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -3684,7 +3853,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &299379259 stripped
 GameObject:
@@ -3707,6 +3876,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &300109417 stripped
 GameObject:
@@ -3734,6 +3904,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &300109420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3749,6 +3923,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &303753795
 PrefabInstance:
@@ -3761,6 +3936,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (151)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -3872,7 +4052,7 @@ Transform:
   - {fileID: 1664695342}
   - {fileID: 1237336616}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306628024 stripped
 GameObject:
@@ -3895,6 +4075,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &323498440
 PrefabInstance:
@@ -4001,7 +4182,7 @@ PrefabInstance:
     - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
         type: 3}
       propertyPath: identity
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
         type: 3}
@@ -4010,8 +4191,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
         type: 3}
-      propertyPath: Speed
-      value: 0
+      propertyPath: ghostHouse
+      value: 
+      objectReference: {fileID: 723307441}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: myGhostHouse
+      value: 
+      objectReference: {fileID: 535757885}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: otherGhostHouse
+      value: 
+      objectReference: {fileID: 1271120630}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: eyesDown
+      value: 
+      objectReference: {fileID: 21300000, guid: 0473d49982d543e448d9a1a3185ad11e,
+        type: 3}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: eyesLeft
+      value: 
+      objectReference: {fileID: 21300000, guid: 6403681ba51036149ad9487fb050adef,
+        type: 3}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: eyesUp
+      value: 
+      objectReference: {fileID: 21300000, guid: 419ae7ecae240d94384bca49fbe50c2b,
+        type: 3}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: eyesRight
+      value: 
+      objectReference: {fileID: 21300000, guid: 09936fb1a6242264691ec9090c642fe6,
+        type: 3}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: eyeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: defaultSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162795072589421491, guid: 4d7e9083dcb21427a878d6dece2cc33f,
+        type: 3}
+      propertyPath: frightSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8925563996359968562, guid: 4d7e9083dcb21427a878d6dece2cc33f,
         type: 3}
@@ -4051,7 +4281,7 @@ PrefabInstance:
     - target: {fileID: 8925563996359968562, guid: 4d7e9083dcb21427a878d6dece2cc33f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8925563996359968562, guid: 4d7e9083dcb21427a878d6dece2cc33f,
         type: 3}
@@ -4107,6 +4337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (98)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -4297,6 +4532,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &334231360
 PrefabInstance:
@@ -4315,11 +4551,6 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 774375320409627205, guid: 516da81580c8fb44b99046b18ff4514e,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9129955a9a6da4d56ac29655fdcee58d, type: 2}
     - target: {fileID: 774375320409627320, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_Enabled
@@ -4328,12 +4559,12 @@ PrefabInstance:
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
@@ -4348,7 +4579,7 @@ PrefabInstance:
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
@@ -4358,12 +4589,12 @@ PrefabInstance:
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
@@ -4373,7 +4604,7 @@ PrefabInstance:
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 774375320409627322, guid: 516da81580c8fb44b99046b18ff4514e,
         type: 3}
@@ -4385,18 +4616,6 @@ PrefabInstance:
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 3126367209715892093, guid: 516da81580c8fb44b99046b18ff4514e,
-        type: 3}
-      propertyPath: level
-      value: 
-      objectReference: {fileID: 21300000, guid: c3c20817c33a74d6487324d3f7d4e9fe,
-        type: 3}
-    - target: {fileID: 3126367209715892093, guid: 516da81580c8fb44b99046b18ff4514e,
-        type: 3}
-      propertyPath: nextLevel
-      value: 
-      objectReference: {fileID: 21300000, guid: c3c20817c33a74d6487324d3f7d4e9fe,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 516da81580c8fb44b99046b18ff4514e, type: 3}
 --- !u!1001 &359688547
@@ -4511,6 +4730,60 @@ PrefabInstance:
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: ghostHouse
+      value: 
+      objectReference: {fileID: 723307441}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: myGhostHouse
+      value: 
+      objectReference: {fileID: 1271120630}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: otherGhostHouse
+      value: 
+      objectReference: {fileID: 535757885}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesDown
+      value: 
+      objectReference: {fileID: 21300000, guid: 0473d49982d543e448d9a1a3185ad11e,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesLeft
+      value: 
+      objectReference: {fileID: 21300000, guid: 6403681ba51036149ad9487fb050adef,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesUp
+      value: 
+      objectReference: {fileID: 21300000, guid: 419ae7ecae240d94384bca49fbe50c2b,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyesRight
+      value: 
+      objectReference: {fileID: 21300000, guid: 09936fb1a6242264691ec9090c642fe6,
+        type: 3}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: eyeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: defaultSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544592476153357890, guid: 619413b1f16e340e59f24a73572d92af,
+        type: 3}
+      propertyPath: frightSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6230251991966722336, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
       propertyPath: m_Controller
@@ -4545,12 +4818,12 @@ PrefabInstance:
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 11.63
       objectReference: {fileID: 0}
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12
+      value: 12.91
       objectReference: {fileID: 0}
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
@@ -4580,7 +4853,7 @@ PrefabInstance:
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6591487974774634591, guid: 619413b1f16e340e59f24a73572d92af,
         type: 3}
@@ -4707,6 +4980,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &369361691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4722,6 +4999,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &376790727 stripped
 GameObject:
@@ -4747,6 +5025,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &376790730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4762,6 +5044,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &386836296 stripped
 GameObject:
@@ -4789,6 +5072,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &386836299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4804,6 +5091,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &387459306
 PrefabInstance:
@@ -4816,6 +5104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (166)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -5006,6 +5299,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &406693962 stripped
 GameObject:
@@ -5028,9 +5322,14 @@ MonoBehaviour:
   neighbors:
   - {fileID: 793381775}
   - {fileID: 138576994}
+  - {fileID: 723307441}
   validDir:
   - {x: 1, y: 0}
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &406693965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5046,6 +5345,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 1
   portalReceiver: {fileID: 0}
 --- !u!1001 &408417911
 PrefabInstance:
@@ -5158,6 +5458,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &413058882
 PrefabInstance:
@@ -5181,6 +5482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -5376,6 +5682,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &425817122
 PrefabInstance:
@@ -5578,6 +5885,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &447630940 stripped
 GameObject:
@@ -5605,6 +5913,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &447630943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5620,6 +5932,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &451583055 stripped
 GameObject:
@@ -5645,6 +5958,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &451583058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5660,6 +5977,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &454881594
 GameObject:
@@ -5705,7 +6023,7 @@ Transform:
   - {fileID: 625835087}
   - {fileID: 1151314416}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &458190015 stripped
 GameObject:
@@ -5728,6 +6046,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &458552211 stripped
 GameObject:
@@ -5750,6 +6069,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &473895806
 PrefabInstance:
@@ -5867,6 +6187,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 1, y: 0}
   - {x: 0, y: 1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &476130824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5882,6 +6206,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &481214887
 PrefabInstance:
@@ -5994,6 +6319,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &487020808
 PrefabInstance:
@@ -6106,6 +6432,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &521581511 stripped
 GameObject:
@@ -6128,6 +6455,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &534695132
 PrefabInstance:
@@ -6237,6 +6565,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6342,6 +6675,10 @@ MonoBehaviour:
   - {fileID: 793381775}
   validDir:
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &535757886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6357,6 +6694,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 0
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &539131894
 PrefabInstance:
@@ -6369,6 +6707,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (119)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -6469,6 +6812,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &556343434
 PrefabInstance:
@@ -6581,6 +6925,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &561553622
 PrefabInstance:
@@ -6684,6 +7029,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (149)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6773,6 +7123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (87)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -6963,6 +7318,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &573661383 stripped
 GameObject:
@@ -6985,6 +7341,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &582780915 stripped
 GameObject:
@@ -7007,6 +7364,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &583822698 stripped
 GameObject:
@@ -7029,6 +7387,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &584725986
 PrefabInstance:
@@ -7148,6 +7507,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &593726501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7163,6 +7526,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &609353204 stripped
 GameObject:
@@ -7185,6 +7549,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &620288661
 PrefabInstance:
@@ -10010,7 +10375,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637468298 stripped
 GameObject:
@@ -10036,6 +10401,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &637468301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10051,6 +10420,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &642224479
 PrefabInstance:
@@ -10253,6 +10623,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &647655627
 PrefabInstance:
@@ -10272,6 +10643,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10376,6 +10752,7 @@ MonoBehaviour:
   isPortal: 1
   isPellet: 0
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 245593031}
 --- !u!114 &647655631
 MonoBehaviour:
@@ -10393,6 +10770,10 @@ MonoBehaviour:
   - {fileID: 593726499}
   validDir:
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!1 &649352154 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
@@ -10414,6 +10795,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &662342773
 GameObject:
@@ -10540,7 +10922,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &663977973
 PrefabInstance:
@@ -10734,6 +11116,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (161)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10914,6 +11301,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (107)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11013,6 +11405,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &682640382
 PrefabInstance:
@@ -11402,7 +11795,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692489943 stripped
 GameObject:
@@ -11428,6 +11821,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &692489946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11443,6 +11840,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &695098190 stripped
 GameObject:
@@ -11465,6 +11863,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &709604523 stripped
 GameObject:
@@ -11487,6 +11886,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &720646159
 GameObject:
@@ -11580,6 +11980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (75)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -11686,6 +12091,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 0
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!114 &723307441
 MonoBehaviour:
@@ -11703,6 +12109,10 @@ MonoBehaviour:
   - {fileID: 406693963}
   validDir:
   - {x: 0, y: 1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!1 &727384156 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
@@ -11731,6 +12141,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &727384159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11746,6 +12160,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &730309653
 PrefabInstance:
@@ -11858,6 +12273,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &732552510
 PrefabInstance:
@@ -11973,6 +12389,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &740793156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11988,6 +12408,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &740892774
 PrefabInstance:
@@ -12389,6 +12810,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12495,6 +12921,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &770960619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12510,6 +12940,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &773219956 stripped
 GameObject:
@@ -12535,6 +12966,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: -1}
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &773219959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12550,6 +12985,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &776007015 stripped
 GameObject:
@@ -12572,6 +13008,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &776977612 stripped
 GameObject:
@@ -12594,6 +13031,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &784587836
 GameObject:
@@ -12779,6 +13217,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12869,6 +13312,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12958,6 +13406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (190)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -13059,10 +13512,15 @@ MonoBehaviour:
   - {fileID: 406693963}
   - {fileID: 945310902}
   - {fileID: 740793154}
+  - {fileID: 535757885}
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &793381777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13078,6 +13536,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 1
   portalReceiver: {fileID: 0}
 --- !u!1 &796920882 stripped
 GameObject:
@@ -13100,6 +13559,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 1
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &802269119
 PrefabInstance:
@@ -13203,6 +13663,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (144)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13302,6 +13767,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &834070518
 PrefabInstance:
@@ -13348,7 +13814,7 @@ PrefabInstance:
     - target: {fileID: 2409492246630471956, guid: e0ec03e50f03940b58f1f1a219e09efa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2409492246630471956, guid: e0ec03e50f03940b58f1f1a219e09efa,
         type: 3}
@@ -13411,6 +13877,60 @@ PrefabInstance:
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: ghostHouse
+      value: 
+      objectReference: {fileID: 1271120630}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: myGhostHouse
+      value: 
+      objectReference: {fileID: 535757885}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: otherGhostHouse
+      value: 
+      objectReference: {fileID: 1271120630}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: eyesDown
+      value: 
+      objectReference: {fileID: 21300000, guid: 0473d49982d543e448d9a1a3185ad11e,
+        type: 3}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: eyesLeft
+      value: 
+      objectReference: {fileID: 21300000, guid: 6403681ba51036149ad9487fb050adef,
+        type: 3}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: eyesUp
+      value: 
+      objectReference: {fileID: 21300000, guid: 419ae7ecae240d94384bca49fbe50c2b,
+        type: 3}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: eyesRight
+      value: 
+      objectReference: {fileID: 21300000, guid: 09936fb1a6242264691ec9090c642fe6,
+        type: 3}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: eyeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: defaultSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909191062060680331, guid: e0ec03e50f03940b58f1f1a219e09efa,
+        type: 3}
+      propertyPath: frightSpeed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2409492246630471976, guid: e0ec03e50f03940b58f1f1a219e09efa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e0ec03e50f03940b58f1f1a219e09efa, type: 3}
@@ -13425,6 +13945,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (102)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -13888,6 +14413,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &854980535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13903,6 +14432,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &856215462 stripped
 GameObject:
@@ -13925,6 +14455,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &857022257
 PrefabInstance:
@@ -13937,6 +14468,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (108)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -14027,6 +14563,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -14127,6 +14668,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &882281588 stripped
 GameObject:
@@ -14149,6 +14691,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &897663334 stripped
 GameObject:
@@ -14176,6 +14719,10 @@ MonoBehaviour:
   - {x: 1, y: 0}
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &897663337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14191,6 +14738,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &899437397 stripped
 GameObject:
@@ -14218,6 +14766,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &899437400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14233,6 +14785,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &904769574
 PrefabInstance:
@@ -14345,6 +14898,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &908033433
 PrefabInstance:
@@ -14457,6 +15011,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &914744617 stripped
 GameObject:
@@ -14479,6 +15034,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &918355326
 PrefabInstance:
@@ -14591,6 +15147,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &925739688
 GameObject:
@@ -14825,6 +15382,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15197,6 +15759,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &932200665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15212,6 +15778,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &943286739
 PrefabInstance:
@@ -15327,6 +15894,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: -1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &945310904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15342,6 +15913,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &947369894
 PrefabInstance:
@@ -15354,6 +15926,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (147)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -15550,6 +16127,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &980712362
 GameObject:
@@ -15587,14 +16165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   munchSound: 1
-  Ghost1: Blinky
-  Ghost2: Inky
-  Ghost3: Clyde
-  Ghost4: Pinky
-  PacManName: Pac-Man-Node
-  speed: 0
-  NextLevlTimer: 0
-  ready: ReadySprite
 --- !u!4 &980712364
 Transform:
   m_ObjectHideFlags: 0
@@ -15607,7 +16177,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &980712365
 AudioSource:
@@ -16414,7 +16984,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.778109
+  orthographic size: 17.58154
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16636,6 +17206,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1006880375 stripped
 GameObject:
@@ -16661,6 +17232,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1006880378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16676,6 +17251,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1007961102
 PrefabInstance:
@@ -16959,6 +17535,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1020184689 stripped
 GameObject:
@@ -16984,6 +17561,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1020184692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16999,6 +17580,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 1
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1026397299 stripped
 GameObject:
@@ -17024,6 +17606,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: -1}
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1026397302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17039,6 +17625,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1029833489 stripped
 GameObject:
@@ -17061,6 +17648,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1052164460 stripped
 GameObject:
@@ -17083,6 +17671,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1060500554 stripped
 GameObject:
@@ -17105,6 +17694,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1064322342 stripped
 GameObject:
@@ -17127,6 +17717,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1065637417 stripped
 GameObject:
@@ -17149,6 +17740,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1066369906
 PrefabInstance:
@@ -17358,6 +17950,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1082435392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17373,6 +17969,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1090096663 stripped
 GameObject:
@@ -17395,6 +17992,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1100160845
 PrefabInstance:
@@ -17498,6 +18096,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (172)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17597,6 +18200,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1127726467 stripped
 GameObject:
@@ -17619,6 +18223,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1134168319
 PrefabInstance:
@@ -17734,6 +18339,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1137256714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17749,6 +18358,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1137256895 stripped
 GameObject:
@@ -17771,7 +18381,77 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
+--- !u!1001 &1137420501
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.621
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281972, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243348164803281974, guid: 712976dce2af8416eb67c4157b212d35,
+        type: 3}
+      propertyPath: m_Name
+      value: PacLife3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 712976dce2af8416eb67c4157b212d35, type: 3}
 --- !u!1 &1151314415
 GameObject:
   m_ObjectHideFlags: 0
@@ -17799,7 +18479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151314415}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.3, y: 8.9, z: 0}
+  m_LocalPosition: {x: 8.96, y: 9.5, z: 0}
   m_LocalScale: {x: 0.8908169, y: 1.0197802, z: 1}
   m_Children: []
   m_Father: {fileID: 454881596}
@@ -27722,7 +28402,7 @@ Tilemap:
   - m_RefCount: 1092
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.34109113, g: 0.990566, b: 0.8179638, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -21, y: -12, z: 0}
   m_Size: {x: 42, y: 26, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -27879,6 +28559,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1155784650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27894,6 +28578,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1159977031 stripped
 GameObject:
@@ -27919,6 +28604,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 1}
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1159977034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27934,6 +28623,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1164758137 stripped
 GameObject:
@@ -27956,6 +28646,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1166507744 stripped
 GameObject:
@@ -27978,6 +28669,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1169836324
 PrefabInstance:
@@ -27990,6 +28682,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (54)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -28351,6 +29048,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1182543037
 PrefabInstance:
@@ -28463,6 +29161,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1186242871 stripped
 GameObject:
@@ -28485,6 +29184,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1188441884
 GameObject:
@@ -28593,6 +29293,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1191694932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28608,6 +29312,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1191932204
 PrefabInstance:
@@ -28726,6 +29431,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1205321491 stripped
 GameObject:
@@ -28748,6 +29454,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1205909614
 PrefabInstance:
@@ -28941,6 +29648,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1224959980
 PrefabInstance:
@@ -28953,6 +29661,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (177)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -29053,6 +29766,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1234649784
 PrefabInstance:
@@ -29065,6 +29779,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (117)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -29155,6 +29874,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -29326,6 +30050,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29425,6 +30154,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1254875002
 PrefabInstance:
@@ -29624,6 +30354,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29729,6 +30464,10 @@ MonoBehaviour:
   - {fileID: 138576994}
   validDir:
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1271120631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29744,6 +30483,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 0
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1277077474
 PrefabInstance:
@@ -29756,6 +30496,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -29859,6 +30604,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1292737340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29874,6 +30623,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1297195937 stripped
 GameObject:
@@ -29896,6 +30646,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1298855567 stripped
 GameObject:
@@ -29921,6 +30672,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1298855570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29936,6 +30691,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1306741092 stripped
 GameObject:
@@ -29958,6 +30714,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1307970781 stripped
 GameObject:
@@ -29980,6 +30737,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1314830406
 GameObject:
@@ -30011,7 +30769,7 @@ Transform:
   - {fileID: 745153079}
   - {fileID: 784587837}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1315521086 stripped
 GameObject:
@@ -30034,6 +30792,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1317681476
 PrefabInstance:
@@ -30252,7 +31011,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1329308716
 PrefabInstance:
@@ -30548,6 +31307,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1339365046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30563,6 +31326,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1345197786 stripped
 GameObject:
@@ -30585,6 +31349,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1358756984
 PrefabInstance:
@@ -30884,6 +31649,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1386472388 stripped
 GameObject:
@@ -30906,6 +31672,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1387843176
 PrefabInstance:
@@ -31189,6 +31956,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1408300737 stripped
 GameObject:
@@ -31211,6 +31979,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1409980329
 PrefabInstance:
@@ -31223,6 +31992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -31589,6 +32363,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1432031959
 PrefabInstance:
@@ -31701,6 +32476,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1445718338
 PrefabInstance:
@@ -31813,6 +32589,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1460818806 stripped
 GameObject:
@@ -31835,6 +32612,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1461320837
 PrefabInstance:
@@ -31847,6 +32625,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (70)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -32019,6 +32802,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (134)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32123,6 +32911,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1472673825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32138,6 +32930,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1475250935
 PrefabInstance:
@@ -32255,6 +33048,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1478495352
 PrefabInstance:
@@ -32357,6 +33151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (174)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -32537,6 +33336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -32817,6 +33621,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1536344622 stripped
 GameObject:
@@ -32839,6 +33644,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1539184863 stripped
 GameObject:
@@ -32861,6 +33667,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1547056646 stripped
 GameObject:
@@ -32888,6 +33695,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1547056649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32903,6 +33714,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1562427216 stripped
 GameObject:
@@ -32925,6 +33737,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1567595801 stripped
 GameObject:
@@ -32947,6 +33760,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1570492697 stripped
 GameObject:
@@ -32972,6 +33786,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1570492700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32987,6 +33805,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1572853922
 PrefabInstance:
@@ -32999,6 +33818,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -33099,6 +33923,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1579256165
 PrefabInstance:
@@ -33202,6 +34027,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (169)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33301,6 +34131,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1591807993 stripped
 GameObject:
@@ -33328,6 +34159,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1591807996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33343,6 +34178,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1592554439
 PrefabInstance:
@@ -33355,6 +34191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (184)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -33460,6 +34301,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1601230366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33475,6 +34320,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1602390651
 PrefabInstance:
@@ -33487,6 +34333,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (188)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -33590,6 +34441,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1608284043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33605,6 +34460,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1610165683
 PrefabInstance:
@@ -33720,6 +34576,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1613450572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33735,6 +34595,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1642385752
 PrefabInstance:
@@ -33847,6 +34708,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1653967916
 PrefabInstance:
@@ -33950,6 +34812,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34049,6 +34916,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1664695341
 GameObject:
@@ -34241,6 +35109,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1683682544 stripped
 GameObject:
@@ -34263,6 +35132,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1683913848
 PrefabInstance:
@@ -34375,6 +35245,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1692372335 stripped
 GameObject:
@@ -34397,6 +35268,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1703596384 stripped
 GameObject:
@@ -34419,6 +35291,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1709540427
 PrefabInstance:
@@ -34628,6 +35501,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1714535932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34643,6 +35520,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1726240128
 GameObject:
@@ -34751,6 +35629,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1733215169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34766,6 +35648,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1736850751 stripped
 GameObject:
@@ -34788,6 +35671,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1737084261
 PrefabInstance:
@@ -34900,6 +35784,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1744783936
 GameObject:
@@ -35093,6 +35978,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1765328523
 GameObject:
@@ -35122,7 +36008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1771672481 stripped
 GameObject:
@@ -35145,6 +36031,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1772409012 stripped
 GameObject:
@@ -35167,6 +36054,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1781931084
 PrefabInstance:
@@ -35279,6 +36167,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1796241967 stripped
 GameObject:
@@ -35306,6 +36195,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1796241970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35321,6 +36214,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1809095958
 GameObject:
@@ -35504,6 +36398,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (153)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -35856,6 +36755,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (164)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35945,6 +36849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -36045,6 +36954,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1852480545
 PrefabInstance:
@@ -36152,7 +37062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1857341710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36210,7 +37120,7 @@ Transform:
   - {fileID: 1463363173}
   - {fileID: 1206572902}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1859194629 stripped
 GameObject:
@@ -36236,6 +37146,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1859194632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36251,6 +37165,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1859538770
 PrefabInstance:
@@ -36353,6 +37268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (156)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -36553,6 +37473,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1865958743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36568,6 +37492,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1879727838
 PrefabInstance:
@@ -36670,6 +37595,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (142)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -36941,6 +37871,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37043,6 +37978,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37131,6 +38071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (103)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -37228,6 +38173,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (132)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37312,6 +38262,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1897214164}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1898024355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.198
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.621
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726214, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852494447055726328, guid: 84798f44cb71841e8812edf67468e9d4,
+        type: 3}
+      propertyPath: m_Name
+      value: PacLife2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84798f44cb71841e8812edf67468e9d4, type: 3}
 --- !u!1 &1906093840
 GameObject:
   m_ObjectHideFlags: 0
@@ -37328,7 +38347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1906093841
 Transform:
   m_ObjectHideFlags: 0
@@ -37351,7 +38370,7 @@ Transform:
   - {fileID: 1004771049}
   - {fileID: 1809095960}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1906093842
 MonoBehaviour:
@@ -37418,6 +38437,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1911240696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37433,6 +38456,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1920231872 stripped
 GameObject:
@@ -37455,6 +38479,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1921271573
 PrefabInstance:
@@ -37467,6 +38492,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (77)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -37557,6 +38587,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (95)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -37660,6 +38695,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: 1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1935233281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37675,6 +38714,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1935587941 stripped
 GameObject:
@@ -37697,6 +38737,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1943417217
 PrefabInstance:
@@ -37809,6 +38850,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1947569326 stripped
 GameObject:
@@ -37836,6 +38878,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1947569329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37851,6 +38897,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1956378141 stripped
 GameObject:
@@ -37873,6 +38920,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1978515201
 GameObject:
@@ -37995,6 +39043,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &1981466837
 PrefabInstance:
@@ -38007,6 +39056,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (131)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -38200,6 +39254,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1986665759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38215,6 +39273,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1988855150 stripped
 GameObject:
@@ -38240,6 +39299,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1988855153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38255,6 +39318,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1996968151 stripped
 GameObject:
@@ -38277,6 +39341,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &1999763865 stripped
 GameObject:
@@ -38302,6 +39367,10 @@ MonoBehaviour:
   validDir:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &1999763868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38317,6 +39386,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &2000484474
 PrefabInstance:
@@ -38419,6 +39489,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -38780,6 +39855,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Pill (105)
       objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
+      objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38884,6 +39964,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2029131753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38899,6 +39983,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &2042225455
 PrefabInstance:
@@ -38911,6 +39996,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (72)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -39101,6 +40191,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2065733191 stripped
 GameObject:
@@ -39128,6 +40219,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2065733194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39143,6 +40238,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2066420757 stripped
 GameObject:
@@ -39172,6 +40268,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2066420760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39187,6 +40287,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2066980470 stripped
 GameObject:
@@ -39209,6 +40310,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &2069638346
 PrefabInstance:
@@ -39324,6 +40426,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2078075239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39339,6 +40445,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 1
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2082682834 stripped
 GameObject:
@@ -39361,6 +40468,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &2092687133
 PrefabInstance:
@@ -39463,6 +40571,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
@@ -39568,6 +40681,10 @@ MonoBehaviour:
   - {x: 0, y: -1}
   - {x: -1, y: 0}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2099283059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39583,6 +40700,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2099959389
 GameObject:
@@ -39691,6 +40809,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2102827910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39706,6 +40828,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2104377232 stripped
 GameObject:
@@ -39728,6 +40851,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2106390871 stripped
 GameObject:
@@ -39753,6 +40877,10 @@ MonoBehaviour:
   validDir:
   - {x: 0, y: 1}
   - {x: -1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2106390874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39768,6 +40896,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &2107432253
 PrefabInstance:
@@ -40093,6 +41222,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2128661851 stripped
 GameObject:
@@ -40115,6 +41245,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &2130849318
 PrefabInstance:
@@ -40412,6 +41543,10 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 1, y: 0}
   - {x: 0, y: -1}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2135158541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40427,6 +41562,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2140379033 stripped
 GameObject:
@@ -40452,6 +41588,10 @@ MonoBehaviour:
   validDir:
   - {x: -1, y: 0}
   - {x: 1, y: 0}
+  neighborDistance: []
+  predecessor: {fileID: 0}
+  distance: 0
+  isEntryNode: 0
 --- !u!114 &2140379035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40467,6 +41607,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 0
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1 &2144912139 stripped
 GameObject:
@@ -40489,6 +41630,7 @@ MonoBehaviour:
   isPortal: 0
   isPellet: 1
   isLargePellet: 1
+  isJailEntrance: 0
   portalReceiver: {fileID: 0}
 --- !u!1001 &4496438634900310684
 PrefabInstance:
@@ -40570,6 +41712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pill
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833820049369464673, guid: ea238d06b143efa409fe948bc2010854,
+        type: 3}
+      propertyPath: m_TagString
+      value: node
       objectReference: {fileID: 0}
     - target: {fileID: 8833820049369464674, guid: ea238d06b143efa409fe948bc2010854,
         type: 3}
