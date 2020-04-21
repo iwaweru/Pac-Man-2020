@@ -88,6 +88,7 @@ public class GhostController : ControllerNodes
 
     public override void refresh()
     {
+        GetComponent<CircleCollider2D>().enabled = true;
         isConsumed = false;
         base.refresh();
         resetRelease();
