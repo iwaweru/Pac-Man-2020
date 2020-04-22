@@ -19,7 +19,7 @@ public class gameBoard : MonoBehaviour
     public static int LifeCount = 3;
     public static int maxLife = 3;
     private static int minLife = 0;
-    public static int MULTIPLIER = 1000; //Score added per pill.
+    public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
     private string LifeName1 = "PacLife2";
@@ -37,7 +37,6 @@ public class gameBoard : MonoBehaviour
     public static int points = 0;
     //Delay before game starts again after Pac-Man hits a ghost.
     public static int DEATH_DELAY = 5;
-    public static int PAUSE_DELAY = 1; //pause when ghost hits pacman
     public static int WAIT_DELAY = 2; //delay for death animation
 
     //Array of type GameObject initialized with board width and height
@@ -130,7 +129,7 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<Animator>().enabled = false;
 
         Time.timeScale = 1.0f;
-        yield return new WaitForSeconds(WAIT_DELAY); //delay once pacman hits ghost, initiates death animation
+        yield return new WaitForSeconds(waitTime); //delay once pacman hits ghost, initiates death animation
         //Ghost contact sound/ death sound
         //Disable Scripts for death delay.
         Inky.GetComponent<GhostController>().enabled = true;
@@ -173,7 +172,7 @@ public class gameBoard : MonoBehaviour
 
         Time.timeScale = 1.0f; 
         //yield return new WaitForSeconds(PAUSE_DELAY);
-        PauseGame(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
+        PauseGame(WAIT_DELAY); //delay once pacman hits ghost, initiates death animation
         //Ghost contact sound/ death sound
         //Disable Scripts for death delay.
         Inky.GetComponent<GhostController>().enabled = true;

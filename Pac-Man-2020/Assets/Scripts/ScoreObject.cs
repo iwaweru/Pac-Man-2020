@@ -13,7 +13,7 @@ public class ScoreObject : MonoBehaviour
     public int extraLife = 10000; // score to get new life
     private int almostLife = 5000;
     private int lifeUpLowRange = 0;
-    private int lifeUpHighRange = 0;
+    private int lifeUpHighRange = 3000;
     public int maxscore = 2147483647; //max number that can be handled
     public bool recalc;
     public bool isScore;
@@ -35,11 +35,10 @@ public class ScoreObject : MonoBehaviour
     {
         if(recalc){//this is probably where points will be added so score stays updated
             totalScore = gameBoard.points; //gets points variable from gameBoard
-            totalScore += 9700;
             if(LifeUp && isOneUp)
             {
                 oneUpScore = totalScore % extraLife;
-                if((oneUpScore >= lifeUpLowRange && oneUpScore <= lifeUpHighRange) && gameBoard.LifeCount < gameBoard.maxLife)
+                if((oneUpScore >= lifeUpLowRange && oneUpScore <= lifeUpHighRange) && gameBoard.LifeCount < gameBoard.maxLife) //score range between 0-3000 gives lifeUp
                 {
                     gameBoard.LifeCount += 1;
                     LifeUp = false;
@@ -53,7 +52,7 @@ public class ScoreObject : MonoBehaviour
             }
             if(isOneUp)
             {
-                if(oneUpScore >= almostLife)
+                if(oneUpScore >= almostLife) //score needs to be over 5000 for lifeUp to be an option
                 {
                     LifeUp = true;
                     Debug.Log("LIFEUP ON");
