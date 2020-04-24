@@ -19,7 +19,7 @@ public class gameBoard : MonoBehaviour
     public static int LifeCount = 3;
     public static int maxLife = 3;
     private static int minLife = 0;
-    public static int MULTIPLIER = 1000; //Score added per pill.
+    public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses. 
     private string LifeName1 = "PacLife2";

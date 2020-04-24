@@ -10,7 +10,7 @@ public class GhostController : ControllerNodes
     public int frightSpeed;
     private static bool isScared = false;
     private bool currentlyScared = false;
-    public static float frightTime= 5f;
+    public static float frightTime = 5f;
     private static float blinkForSeconds = 1.5f;//How long the ghost should blink for at the end of its fright duration. Cannot be greater than or equal to frighttime.
     private static float scaredTimer = 0f;
     private bool isConsumed = false;
@@ -576,7 +576,7 @@ public class GhostController : ControllerNodes
         else
         {
             GetComponent<Animator>().enabled = false;
-            Debug.Log("Disabling!");
+            //Debug.Log("Disabling!");
             if (direction == Vector2.left)
             {
                 GetComponent<SpriteRenderer>().sprite = eyesLeft;

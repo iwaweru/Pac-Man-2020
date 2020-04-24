@@ -35,7 +35,6 @@ public class ScoreObject : MonoBehaviour
     {
         if(recalc){//this is probably where points will be added so score stays updated
             totalScore = gameBoard.points; //gets points variable from gameBoard
-            totalScore += 9700;
             if(LifeUp && isOneUp)
             {
                 oneUpScore = totalScore % extraLife;
