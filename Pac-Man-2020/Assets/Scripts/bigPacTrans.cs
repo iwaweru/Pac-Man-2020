@@ -27,20 +27,11 @@ public class bigPacTrans : MonoBehaviour
 
     public void NextLevel(){
       if (time >= 10.2f){
-
-        //SceneManager.LoadScene("MazeBricks");
-        //GameObject.Find("Game").GetComponent<gameBoard>().NextLev();
         SceneManager.LoadScene("MazeBricks");
 
 
       }
     }
-
-
-
-
-
-
 
   // Update is called once per frame
   void Update()

@@ -34,6 +34,7 @@ public class gameBoard : MonoBehaviour
     //Point Tracker
     public static int points = 0;
     public static int level = 1;
+    //public bool is = GhostController.IsScared;
 
 
 
@@ -85,7 +86,10 @@ public class gameBoard : MonoBehaviour
 
 
 
+
+
         StartGame();
+
 
     }
     public void score()
@@ -311,13 +315,12 @@ public class gameBoard : MonoBehaviour
     public void LevelUp()
     {
 
-          PacManController.cruisePellets -= 30;
+
           level ++;
         StartCoroutine(LevelTransition());
     }
          IEnumerator LevelTransition()
     {
-      GameObject DeathSound = GameObject.Find("DeathSound");
       GameObject BackgroundSound = GameObject.Find("BackgroundSound");
       GameObject Inky = GameObject.Find(Ghost1);
       GameObject Blinky = GameObject.Find(Ghost2);
@@ -371,6 +374,14 @@ public class gameBoard : MonoBehaviour
       PacMan.GetComponent<Animator>().enabled = true;
       SceneManager.LoadScene("Intermission");
 
+    }
+
+    public void Winner(){
+
+      // disable scripts
+      // load winner scene
+      // reset game
+      //SceneManager.LoadScene("Winner");
     }
 
     private void Update()

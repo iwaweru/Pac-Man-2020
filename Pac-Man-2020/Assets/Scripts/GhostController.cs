@@ -8,6 +8,7 @@ public class GhostController : ControllerNodes
 
     //Fright Mode Variables
     public int frightSpeed;
+    public int cruiseSpeed;
     private static bool isScared = false;
     private bool currentlyScared = false;
     public static float frightTime= 5f;
@@ -21,7 +22,7 @@ public class GhostController : ControllerNodes
     public static float ScaredTimer { get => scaredTimer; set => scaredTimer = value; }
     public static bool canCruise = false;
     //public static bool canCruise { get => canCruise; set => canCruise = value; }
-    public int cruiseSpeed;
+
 
     public Animation defualtAnimation;
     public Sprite eyesLeft;
@@ -178,6 +179,12 @@ public class GhostController : ControllerNodes
             {
                 currentlyScared = true;
                 checkIfScared();
+
+
+            }
+
+            if (canCruise){
+              cruiseElroy();
             }
 
             if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
@@ -189,6 +196,7 @@ public class GhostController : ControllerNodes
                 releaseGhosts();
             else
                 chooseAI(); //Determine which AI we will use if we are not scared and we can leave jail.
+
         }
 
         if (canLeave) //Don't leave unless your release timer is up.
@@ -229,13 +237,12 @@ public class GhostController : ControllerNodes
         }
     }
 
-    public void cruiseElroy(){
-      if (identity == GhostColor.Red && canCruise){
+    private void cruiseElroy(){
         speed = cruiseSpeed;
-        canCruise = false;
+        //canCruise = false;
       }
 
-    }
+
 
 
     private void releaseGhosts()
