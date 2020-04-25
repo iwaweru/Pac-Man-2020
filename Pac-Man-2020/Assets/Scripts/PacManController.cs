@@ -9,7 +9,7 @@ public class PacManController : ControllerNodes
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     public int totalPellets=0;
     public int level = 1;
-    int allPellets =191;
+    int allPellets =30;
     public static int cruisePellets = 20;
 
     //private int cruiseFactor = 10 ;
@@ -132,6 +132,7 @@ public class PacManController : ControllerNodes
 
                     if (totalPellets == allPellets){
                       level ++;
+                      GhostController.canCruise = false;
                       if (level < 3){
                       GetComponent<Animator>().enabled = false;
                       GetComponent<SpriteRenderer>().sprite = nextLevel;
@@ -155,7 +156,7 @@ public class PacManController : ControllerNodes
                     }
 
 
-                    if (totalPellets == (allPellets - (cruisePellets *level))){
+                  if (totalPellets == 25) { //if (totalPellets == (allPellets - (cruisePellets *level))){
                        GhostController.canCruise = true;
                        //GhostController.cruiseElroy();
                     }

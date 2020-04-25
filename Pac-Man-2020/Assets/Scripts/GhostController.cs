@@ -184,7 +184,10 @@ public class GhostController : ControllerNodes
             }
 
             if (canCruise){
-              cruiseElroy();
+              if (!currentlyScared){
+                cruiseElroy();
+              }
+
             }
 
             if (canLeave && !isScared) //Only increment the Behavior, or chase timer, if the ghost has left and isn't scared.
