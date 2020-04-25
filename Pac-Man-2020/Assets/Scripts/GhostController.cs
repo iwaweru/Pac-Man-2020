@@ -19,6 +19,9 @@ public class GhostController : ControllerNodes
     public float eyeSpeed;
     public static bool IsScared { get => isScared; set => isScared = value; }
     public static float ScaredTimer { get => scaredTimer; set => scaredTimer = value; }
+    public static bool canCruise = false;
+    //public static bool canCruise { get => canCruise; set => canCruise = value; }
+    public int cruiseSpeed;
 
     public Animation defualtAnimation;
     public Sprite eyesLeft;
@@ -191,6 +194,9 @@ public class GhostController : ControllerNodes
         if (canLeave) //Don't leave unless your release timer is up.
             Move();
 
+
+
+
         UpdateOrientation();
     }
 
@@ -222,6 +228,15 @@ public class GhostController : ControllerNodes
             respawn();
         }
     }
+
+    public void cruiseElroy(){
+      if (identity == GhostColor.Red && canCruise){
+        speed = cruiseSpeed;
+        canCruise = false;
+      }
+
+    }
+
 
     private void releaseGhosts()
     {
@@ -509,6 +524,7 @@ public class GhostController : ControllerNodes
         if (scaredTimer > 0 && scaredTimer <= frightTime)//Need to add transition from blink to fright for timer reset.
         {
             speed = frightSpeed;
+          //  speed = cruiseSpeed;
             animator.SetBool("frightened", true);
             if(scaredTimer >= (frightTime-blinkForSeconds))
             {
@@ -536,6 +552,8 @@ public class GhostController : ControllerNodes
 
 
     }
+
+
 
     void resetAnimator()
     {

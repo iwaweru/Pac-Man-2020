@@ -34,6 +34,9 @@ public class gameBoard : MonoBehaviour
     //Point Tracker
     public static int points = 0;
     public static int level = 1;
+
+
+
     //Delay before game starts again after Pac-Man hits a ghost.
     public static int DEATH_DELAY = 5;
     public static int PAUSE_DELAY = 1; //pause when ghost hits pacman
@@ -79,7 +82,11 @@ public class gameBoard : MonoBehaviour
                 // Debug.Log("Found " + o.name + " at " + pos);
 			}
 		}
+
+
+
         StartGame();
+
     }
     public void score()
     {
@@ -225,7 +232,7 @@ public class gameBoard : MonoBehaviour
         BackgroundSound.GetComponent<AudioSource>().Play();
     }
     public void StartGame(){
-
+      //speed = 8;
       level++;
       StartCoroutine(Begin());
     }
@@ -303,20 +310,8 @@ public class gameBoard : MonoBehaviour
 
     public void LevelUp()
     {
-        /*  level ++;
-          cruiseElroy -= 25;
-          if (1<= level <=5){
 
-          }else {
-            SceneManager.LoadScene("Winner");
-          }*/
-
-          // sets up scene for transtition
-          // pause game
-          // play pacman animation
-          // pause sound
-          // change speed of blinky
-          //SceneManager.LoadScene("new");
+          PacManController.cruisePellets -= 30;
           level ++;
         StartCoroutine(LevelTransition());
     }
@@ -328,6 +323,8 @@ public class gameBoard : MonoBehaviour
       GameObject Blinky = GameObject.Find(Ghost2);
       GameObject Clyde = GameObject.Find(Ghost3);
       GameObject Pinky = GameObject.Find(Ghost4);
+
+
 
       //GameObject PacLevel = GameObject.Find(PacManLevel);
       GameObject PacMan = GameObject.Find(PacManName);

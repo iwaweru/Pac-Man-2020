@@ -9,6 +9,8 @@ public class PacManController : ControllerNodes
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     public int totalPellets=0;
     int allPellets =191;
+    public static int cruisePellets = 30;
+    //public int speedy = GhostController.speed;
 
    //float Spd = GameObject.Find("Blinky").GetComponent<GhostController>().speed;
 
@@ -135,18 +137,27 @@ public class PacManController : ControllerNodes
 
                       GameObject.Find("Game").GetComponent<gameBoard>().LevelUp();
                     }
+
                     if (tile.isLargePellet)
                     {
                         GhostController.ScaredTimer = 0f;
                         GhostController.IsScared = true;
 
                     }
+
+
+                    if (totalPellets == cruisePellets){
+                       GhostController.canCruise = true;
+                       //GhostController.cruiseElroy();
+                    }
+
                     //game.addTime(BUFFER_PILL_TIME);// WORKS AT SPEED 5 or maybe sorta (.45f*(5/speed))
                     //if (!temp.GetComponent<AudioSource>().isPlaying)
                     //{
                     //    temp.GetComponent<AudioSource>().Play();
                     //}
                 }
+
             }
         }
     }

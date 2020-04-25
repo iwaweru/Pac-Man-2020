@@ -13,7 +13,7 @@ public class ControllerNodes : MonoBehaviour
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving.
     public Sprite nextLevel;
     public float speed = 3f;
-    
+
 
     //public float cruise = speed * 0.75;
 
@@ -100,7 +100,7 @@ public class ControllerNodes : MonoBehaviour
         {
             if(currentNode.validDir[i] == d)
             {
-                
+
                 moveToNode = currentNode.neighbors[i];
                 break;
             }
