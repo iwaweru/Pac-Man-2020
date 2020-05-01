@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 
 public class gameBoard : MonoBehaviour
@@ -281,7 +282,7 @@ public class gameBoard : MonoBehaviour
         } 
         //Handle GAME OVER 
         if(LifeCount == minLife){
-            EditorApplication.isPlaying = false; //stops game
+            SceneManager.LoadScene("GameOver");
         }
         //Handle Fright Mode outside of GhostController Class
         if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
