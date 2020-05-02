@@ -33,7 +33,8 @@ public class gameBoard : MonoBehaviour
     public static string ready = "ReadySprite";
     //Point Tracker
     public static int points = 0;
-    public static int level = 1;
+    public static bool nextLev = false;
+    public static bool isDead = false;
     //public bool is = GhostController.IsScared;
 
 
@@ -107,7 +108,7 @@ public class gameBoard : MonoBehaviour
 
     public void Die() //Put the death logic here.
     {
-        level =1;
+        isDead = true;
         StartCoroutine(RepositionCharactersAndDelay());
     }
 
@@ -237,8 +238,13 @@ public class gameBoard : MonoBehaviour
     }
     public void StartGame(){
       //speed = 8;
-      level++;
-      StartCoroutine(Begin());
+      //level++;
+
+
+        StartCoroutine(Begin());
+
+
+
     }
     public void munch()
     {
@@ -314,9 +320,8 @@ public class gameBoard : MonoBehaviour
 
     public void LevelUp()
     {
+        nextLev = true;
 
-
-          level ++;
         StartCoroutine(LevelTransition());
     }
          IEnumerator LevelTransition()

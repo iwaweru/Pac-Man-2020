@@ -8,8 +8,9 @@ public class PacManController : ControllerNodes
     private Direction facing = Direction.Left; // 0 = left, 1 = right, 2 = down, 3 = up;
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     public int totalPellets=0;
+    //public static gameBoard instance;
     public int level = 1;
-    int allPellets =30;
+    int allPellets =50 ;
     public static int cruisePellets = 20;
 
     //private int cruiseFactor = 10 ;
@@ -156,7 +157,8 @@ public class PacManController : ControllerNodes
                     }
 
 
-                  if (totalPellets == 25) { //if (totalPellets == (allPellets - (cruisePellets *level))){
+                  if (totalPellets == cruisePellets) { //if (totalPellets == (allPellets - (cruisePellets *level))){
+                        cruisePellets -= 30;
                        GhostController.canCruise = true;
                        //GhostController.cruiseElroy();
                     }
