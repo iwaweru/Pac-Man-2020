@@ -10,7 +10,7 @@ public class PacManController : ControllerNodes
     public int totalPellets=0;
     //public static gameBoard instance;
     public int level = 1;
-    int allPellets =50 ;
+    int allPellets =40 ;
     public static int cruisePellets = 20;
 
     //private int cruiseFactor = 10 ;

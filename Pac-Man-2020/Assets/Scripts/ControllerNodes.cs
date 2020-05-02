@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +13,6 @@ public class ControllerNodes : MonoBehaviour
     public Sprite idle; //The sprite Pac-Man lands on when he stops moving.
     public Sprite nextLevel;
     public float speed = 3f;
-    //public int cruisePellets = 140;
-
-
-    //public float cruise = speed * 0.75;
-
 
     protected Node currentNode;
     protected Node previousNode;
@@ -194,10 +189,6 @@ public class ControllerNodes : MonoBehaviour
                     direction = Vector2.zero;
                 }
             }
-            /*else if (){
-              transform.localPosition += (Vector3)(direction * cruise) * Time.deltaTime;//Move.
-            }*/
-
             else
             {
                 transform.localPosition += (Vector3)(direction * speed) * Time.deltaTime;//Move.
