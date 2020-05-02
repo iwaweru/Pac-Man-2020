@@ -50,6 +50,7 @@ public class gameBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        points = 0;
         lifeAsset1 = GameObject.Find(LifeName1);
         lifeAsset2 = GameObject.Find(LifeName2);
         //Create an array of objects containing every objects in the scene
