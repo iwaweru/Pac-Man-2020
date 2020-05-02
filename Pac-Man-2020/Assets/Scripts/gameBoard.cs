@@ -17,7 +17,7 @@ public class gameBoard : MonoBehaviour
     // board dimensions
     private static int boardWidth = 30; 
     private static int boardHeight = 30;
-    public static int LifeCount = 3;
+    public static int LifeCount = 2;
     public static int maxLife = 3;
     private static int minLife = 0;
     public static int MULTIPLIER = 10; //Score added per pill.
