@@ -13,7 +13,7 @@ public class Levels : MonoBehaviour
 
 
   void Update (){
-    if (gameBoard.isDead && gameBoard.lives <= 1){
+    if (gameBoard.isDead){
       level = 1;
     }
 
@@ -27,7 +27,7 @@ public class Levels : MonoBehaviour
   else if (level == 3){
     level = 1;
 
-    // load menu 
+    // load menu
     //SceneManager.LoadScene("Winner");
   }
 
