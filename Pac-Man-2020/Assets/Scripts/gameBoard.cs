@@ -237,10 +237,7 @@ public class gameBoard : MonoBehaviour
         BackgroundSound.GetComponent<AudioSource>().Play();
     }
     public void StartGame(){
-      //speed = 8;
-      //level++;
-
-
+  
         StartCoroutine(Begin());
 
 

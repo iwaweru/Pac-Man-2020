@@ -183,7 +183,7 @@ public class GhostController : ControllerNodes
 
             }
 
-            if (canCruise){
+           if (canCruise){
               if (!currentlyScared){
                 cruiseElroy();
               }

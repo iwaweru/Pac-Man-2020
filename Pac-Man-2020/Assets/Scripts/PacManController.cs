@@ -9,8 +9,8 @@ public class PacManController : ControllerNodes
     private static float BUFFER_PILL_TIME = .45f;//Amount of time each pill adds to the pill munching duration length.
     public int totalPellets=0;
     //public static gameBoard instance;
-    public int level = 1;
-    int allPellets = 30;
+    //public int level = 1;
+    int allPellets = 20;
     public static int cruisePellets = 140;
 
     //private int cruiseFactor = 10 ;
@@ -132,22 +132,18 @@ public class PacManController : ControllerNodes
                     totalPellets++;
 
                     if (totalPellets == allPellets){ // allPellets = 191
-                      level ++;
+
                       GhostController.canCruise = false;
-                      if (level < 3){
+
                       GetComponent<Animator>().enabled = false;
                       GetComponent<SpriteRenderer>().sprite = nextLevel;
 
 
                       GameObject.Find("Game").GetComponent<gameBoard>().LevelUp();
                     }
-                    else if (level == 3){
-                      GetComponent<Animator>().enabled = false;
-                      GetComponent<SpriteRenderer>().sprite = nextLevel;
-                      GameObject.Find("Game").GetComponent<gameBoard>().LevelUp();
 
-                    }
-                  }
+
+
 
                   if (totalPellets == cruisePellets) { // cruisePellets = 140, after 140 pellets blinky speeds up
                        GhostController.canCruise = true;
