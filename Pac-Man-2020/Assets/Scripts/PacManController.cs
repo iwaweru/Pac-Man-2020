@@ -10,8 +10,8 @@ public class PacManController : ControllerNodes
     public int totalPellets=0;
     //public static gameBoard instance;
     public int level = 1;
-    int allPellets =40 ;
-    public static int cruisePellets = 20;
+    int allPellets = 30;
+    public static int cruisePellets = 140;
 
     //private int cruiseFactor = 10 ;
     //public int speedy = GhostController.speed;
@@ -131,7 +131,7 @@ public class PacManController : ControllerNodes
 
                     totalPellets++;
 
-                    if (totalPellets == allPellets){
+                    if (totalPellets == allPellets){ // allPellets = 191
                       level ++;
                       GhostController.canCruise = false;
                       if (level < 3){
@@ -149,6 +149,11 @@ public class PacManController : ControllerNodes
                     }
                   }
 
+                  if (totalPellets == cruisePellets) { // cruisePellets = 140, after 140 pellets blinky speeds up
+                       GhostController.canCruise = true;
+                       //GhostController.cruiseElroy();
+                    }
+
                     if (tile.isLargePellet)
                     {
                         GhostController.ScaredTimer = 0f;
@@ -157,11 +162,7 @@ public class PacManController : ControllerNodes
                     }
 
 
-                  if (totalPellets == cruisePellets) { //if (totalPellets == (allPellets - (cruisePellets *level))){
-                        cruisePellets -= 30;
-                       GhostController.canCruise = true;
-                       //GhostController.cruiseElroy();
-                    }
+
 
 
 

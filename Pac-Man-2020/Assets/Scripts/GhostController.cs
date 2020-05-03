@@ -20,7 +20,7 @@ public class GhostController : ControllerNodes
     public float eyeSpeed;
     public static bool IsScared { get => isScared; set => isScared = value; }
     public static float ScaredTimer { get => scaredTimer; set => scaredTimer = value; }
-    public static bool canCruise = false;
+    public static bool canCruise = false;//
     //public static bool canCruise { get => canCruise; set => canCruise = value; }
 
 
@@ -242,7 +242,7 @@ public class GhostController : ControllerNodes
 
     private void cruiseElroy(){
         speed = cruiseSpeed;
-        //canCruise = false;
+
       }
 
 

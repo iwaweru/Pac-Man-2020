@@ -292,7 +292,7 @@ public class gameBoard : MonoBehaviour
         IEnumerator Begin()
 
   {
-
+    //GameObject BackgroundSound = GameObject.Find("BackgroundSound");
     GameObject BackgroundSound = GameObject.Find("BackgroundSound");
     GameObject Inky = GameObject.Find(Ghost1);
     GameObject Blinky = GameObject.Find(Ghost2);
@@ -331,10 +331,6 @@ public class gameBoard : MonoBehaviour
       GameObject Blinky = GameObject.Find(Ghost2);
       GameObject Clyde = GameObject.Find(Ghost3);
       GameObject Pinky = GameObject.Find(Ghost4);
-
-
-
-      //GameObject PacLevel = GameObject.Find(PacManLevel);
       GameObject PacMan = GameObject.Find(PacManName);
       GameObject readySprite = GameObject.Find(ready);
       BackgroundSound.GetComponent<AudioSource>().Stop();
@@ -352,9 +348,7 @@ public class gameBoard : MonoBehaviour
       PacMan.GetComponent<Animator>().enabled = false;
 
       Time.timeScale = 1.0f;
-      yield return new WaitForSeconds(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
-      //Ghost contact sound/ death sound
-      //Disable Scripts for death delay.
+      yield return new WaitForSeconds(PAUSE_DELAY);
       Inky.GetComponent<GhostController>().enabled = true;
       Inky.GetComponent<Animator>().enabled = true;
       Blinky.GetComponent<GhostController>().enabled = true;
@@ -364,11 +358,11 @@ public class gameBoard : MonoBehaviour
       Pinky.GetComponent<GhostController>().enabled = true;
       Pinky.GetComponent<Animator>().enabled = true;
 
-      //Unpause after contact
+
       Inky.SetActive(false);
       Blinky.SetActive(false);
       Clyde.SetActive(false);
-      Pinky.SetActive(false);// not pacman yet since death animation plays once ghosts disappear
+      Pinky.SetActive(false);
 
 
       PacMan.GetComponent<Animator>().enabled = true;
@@ -377,9 +371,10 @@ public class gameBoard : MonoBehaviour
       PacMan.GetComponent<Animator>().enabled = false;
       yield return new WaitForSeconds(1);
       PacMan.GetComponent<Animator>().enabled = true;
-      SceneManager.LoadScene("Intermission");
+      SceneManager.LoadScene("Intermission"); // play tranition animation
 
     }
+
 
     public void Winner(){
 
