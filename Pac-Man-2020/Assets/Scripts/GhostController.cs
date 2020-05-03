@@ -88,7 +88,6 @@ public class GhostController : ControllerNodes
 
     public override void refresh()
     {
-        GetComponent<CircleCollider2D>().enabled = true;
         isConsumed = false;
         base.refresh();
         resetRelease();
@@ -577,7 +576,7 @@ public class GhostController : ControllerNodes
         else
         {
             GetComponent<Animator>().enabled = false;
-            //Debug.Log("Disabling!");
+            Debug.Log("Disabling!");
             if (direction == Vector2.left)
             {
                 GetComponent<SpriteRenderer>().sprite = eyesLeft;
