@@ -176,9 +176,9 @@ GameObject:
   - component: {fileID: 838129441}
   - component: {fileID: 838129440}
   - component: {fileID: 838129442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: gameover
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,8 +218,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1752805823
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6d02076b92b744d69b0092d51b5d0417, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -258,7 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e44ce6c1f114bddb9564de43a87aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerLimit: 20
 --- !u!1 &1001913523
 GameObject:
   m_ObjectHideFlags: 0
