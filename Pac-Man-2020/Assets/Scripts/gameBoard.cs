@@ -67,11 +67,11 @@ public class gameBoard : MonoBehaviour
             //Sanity check: we only want to store the objects in the array (pills, walls, etc.) not PacMan itself. 
             if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.tag != "Ghost" && o.tag != "UI" && o.tag != "Base" && o.tag != "Sound")
 			{
-                //if (o.GetComponent<Pills>() != null) {
+                // if (o.GetComponent<Pills>() != null) {
                 //    if (o.GetComponent<Pills>().isPellet || o.GetComponent<Pills>().isLargePellet) {
                 //        totalPellets++;
                 //    }
-                //}
+                // }
                 //store the object o in the board array
                // Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
@@ -210,6 +210,7 @@ public class gameBoard : MonoBehaviour
         Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
+        BackgroundSound.GetComponent<AudioSource>().Stop();
         readySprite.GetComponent<SpriteRenderer>().enabled = true;
         readySprite.GetComponent<Animator>().enabled = true;
         readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
