@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 
@@ -16,7 +17,9 @@ public class gameBoard : MonoBehaviour
     // board dimensions
     private static int boardWidth = 30;
     private static int boardHeight = 30;
-    public static int LifeCount = 3;
+    public static int LifeCount = 2;
+    public static int maxLife = 3;
+    private static int minLife = 0;
     public static int MULTIPLIER = 10; //Score added per pill.
     private static float time = 0;
     //String Names of Game Characters for various uses.
@@ -41,7 +44,6 @@ public class gameBoard : MonoBehaviour
 
     //Delay before game starts again after Pac-Man hits a ghost.
     public static int DEATH_DELAY = 5;
-    public static int PAUSE_DELAY = 1; //pause when ghost hits pacman
     public static int WAIT_DELAY = 2; //delay for death animation
 
     //Array of type GameObject initialized with board width and height
@@ -54,6 +56,8 @@ public class gameBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        points = 0;
+        LifeCount = 2;
         lifeAsset1 = GameObject.Find(LifeName1);
         lifeAsset2 = GameObject.Find(LifeName2);
         //Create an array of objects containing every objects in the scene
@@ -69,11 +73,11 @@ public class gameBoard : MonoBehaviour
             //Sanity check: we only want to store the objects in the array (pills, walls, etc.) not PacMan itself.
             if (o.name != "Pac-Man-Node" && o.name != "Game" && o.name != "Maze" && o.name != "Pills" && o.name != "Nodes" && o.name != "Background" &&  o.name != "NonNodes" && o.name != "Overlay" && o.tag != "Ghost" && o.tag != "UI" && o.tag != "Base" && o.tag != "Sound")
 			{
-                //if (o.GetComponent<Pills>() != null) {
+                // if (o.GetComponent<Pills>() != null) {
                 //    if (o.GetComponent<Pills>().isPellet || o.GetComponent<Pills>().isLargePellet) {
                 //        totalPellets++;
                 //    }
-                //}
+                // }
                 //store the object o in the board array
                // Debug.Log("X: " + (int)pos.x + " Y: " + (int)pos.y + " " + o.name);
                 board[(int)pos.x, (int)pos.y] = o;
@@ -184,8 +188,9 @@ public class gameBoard : MonoBehaviour
         PacMan.GetComponent<PacManController>().enabled = false;
         PacMan.GetComponent<Animator>().enabled = false;
 
-        Time.timeScale = 1.0f;
-        yield return new WaitForSeconds(PAUSE_DELAY); //delay once pacman hits ghost, initiates death animation
+        Time.timeScale = 1.0f; 
+        //yield return new WaitForSeconds(PAUSE_DELAY);
+        PauseGame(WAIT_DELAY); //delay once pacman hits ghost, initiates death animation
         //Ghost contact sound/ death sound
         //Disable Scripts for death delay.
         Inky.GetComponent<GhostController>().enabled = true;
@@ -220,6 +225,7 @@ public class gameBoard : MonoBehaviour
         Pinky.GetComponent<GhostController>().refresh();
 
         //Add ready sprite here.
+        BackgroundSound.GetComponent<AudioSource>().Stop();
         readySprite.GetComponent<SpriteRenderer>().enabled = true;
         readySprite.GetComponent<Animator>().enabled = true;
         readySprite.GetComponent<Animator>().Play("ReadySprite", 0, 0); //reseting the animation back to the  first frame
@@ -383,7 +389,6 @@ public class gameBoard : MonoBehaviour
 
     private void Update()
     {
-
         if(LifeCount >= 3) {
             lifeAsset2.GetComponent<SpriteRenderer>().enabled = true;
             lifeAsset1.GetComponent<SpriteRenderer>().enabled = true;
@@ -393,6 +398,10 @@ public class gameBoard : MonoBehaviour
         } else {
             lifeAsset2.GetComponent<SpriteRenderer>().enabled = false;
             lifeAsset1.GetComponent<SpriteRenderer>().enabled = false;
+        } 
+        //Handle GAME OVER 
+        if(LifeCount == minLife){
+            SceneManager.LoadScene("GameOver");
         }
         //Handle Fright Mode outside of GhostController Class
         if (GhostController.IsScared && GhostController.ScaredTimer <= GhostController.frightTime)
@@ -404,5 +413,6 @@ public class gameBoard : MonoBehaviour
             GhostController.ScaredTimer = 0f;
             GhostController.IsScared = false;
         }
+            
     }
 }
